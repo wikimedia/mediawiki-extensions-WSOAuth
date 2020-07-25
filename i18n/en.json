@@ -1,27 +1,27 @@
 {
-  "@metadata": {
-    "authors": [
-      "Marijn van Wezel <xxmarijnw>"
-    ]
-  },
-  "wsoauth-extensionname": "WSOAuth",
-  "wsoauth-desc": "Extends the PluggableAuth extension to provide authentication using OAuth.",
-  "wsoauth-pluggable-auth-class-desc": "The class name that extends PluggableAuth; this configuration parameter is set by the extension and should not be edited by the user.",
-  "wsoauth-uri-desc": "The OAuth authentication URL.",
-  "wsoauth-client-id-desc": "The consumer key received from the OAuth application.",
-  "wsoauth-client-secret-desc": "The consumer secret received from the OAuth application.",
-  "wsoauth-redirect-uri-desc": "The default callback URL to which the OAuth application returns after a successful authentication request.",
-  "wsoauth-auth-providers-desc": "An array containing a list of custom OAuth providers together with their class name.",
-  "wsoauth-auth-provider-desc": "The OAuth provider that the extension will use.",
-  "wsoauth-auto-populate-groups-desc": "An array containing a list of MediaWiki group names that must be automatically assigned to the user after they are authenticated.",
-  "wsoauth-pluggable-auth-button-label-message-desc": "The name of the message that will be used for the label of the login button on the Special:UserLogin form.",
-  "wsoauth-pluggable-auth-button-label-message": "Log in with OAuth",
-  "wsoauth-authentication-failure": "Authentication failed (are you authorised for this wiki?).",
-  "wsoauth-invalid-username": "Username provided by the OAuth provider is not valid.",
-  "wsoauth-unknown-auth-provider-class-exception-message": "OAuth provider class not loaded or not found",
-  "wsoauth-unknown-auth-provider-exception-message": "Unknown OAuth provider ($1)",
-  "wsoauth-invalid-auth-provider-class-exception-message": "The OAuth provider class does not implement AuthProvider",
-  "wsoauth-initiate-login-failure": "Unable to initiate communication with OAuth provider.",
-  "wsoauth-migrate-users-by-username-desc": "Whether or not to allow usurpation of existing accounts by username.",
-  "wsoauth-user-already-exists-message": "The username \"$1\" is already taken."
+	"@metadata": {
+		"authors": [
+			"Marijn van Wezel <xxmarijnw>"
+		]
+	},
+	"wsoauth-extensionname": "WSOAuth",
+	"wsoauth-desc": "Extends the PluggableAuth extension to provide authentication using OAuth.",
+	"wsoauth-pluggable-auth-class-desc": "The class name that extends PluggableAuth; this configuration parameter is set by the extension and should not be edited by the user.",
+	"wsoauth-uri-desc": "The OAuth authentication URL.",
+	"wsoauth-client-id-desc": "The consumer key received from the OAuth application.",
+	"wsoauth-client-secret-desc": "The consumer secret received from the OAuth application.",
+	"wsoauth-redirect-uri-desc": "The default callback URL to which the OAuth application returns after a successful authentication request.",
+	"wsoauth-auth-providers-desc": "An array containing a list of custom OAuth providers together with their class name.",
+	"wsoauth-auth-provider-desc": "The OAuth provider that the extension will use.",
+	"wsoauth-auto-populate-groups-desc": "An array containing a list of MediaWiki group names that must be automatically assigned to the user after they are authenticated.",
+	"wsoauth-pluggable-auth-button-label-message-desc": "The name of the message that will be used for the label of the login button on the Special:UserLogin form.",
+	"wsoauth-pluggable-auth-button-label-message": "Log in with OAuth",
+	"wsoauth-authentication-failure": "Authentication failed (are you authorised for this wiki?).",
+	"wsoauth-invalid-username": "Username provided by the OAuth provider is not valid.",
+	"wsoauth-unknown-auth-provider-class-exception-message": "OAuth provider class not loaded or not found",
+	"wsoauth-unknown-auth-provider-exception-message": "Unknown OAuth provider ($1)",
+	"wsoauth-invalid-auth-provider-class-exception-message": "The OAuth provider class does not implement AuthProvider",
+	"wsoauth-initiate-login-failure": "Unable to initiate communication with OAuth provider.",
+	"wsoauth-migrate-users-by-username-desc": "Whether or not to allow usurpation of existing accounts by username.",
+	"wsoauth-user-already-exists-message": "The username \"$1\" is already taken."
 }

@@ -1,27 +1,27 @@
 {
-  "@metadata": {
-    "authors": [
-      "Marijn van Wezel <xxmarijnw>"
-    ]
-  },
-  "wsoauth-extensionname": "The name of the extension (typically WSOAuth).",
-  "wsoauth-desc": "The description of the extension as shown in Special:Version.",
-  "wsoauth-pluggable-class-desc": "The description of the configuration parameter that defines the classname that extends PluggableAuth.",
-  "wsoauth-uri-desc": "The description of the configuration parameter that defines the Auth0 domain full url.",
-  "wsoauth-client-id-desc": "The description of the configuration parameter that defines the Auth0 application client ID.",
-  "wsoauth-client-secret-desc": "The description of the configuration parameter that defines theAuth0 application client secret.",
-  "wsoauth-redirect-uri": "The description of the configuration parameter that defines the redirect URI to handle authentication.",
-  "wsoauth-auth-providers-desc": "The description of the configuration parameter that defines the list of custom OAuth providers.",
-  "wsoauth-auth-provider-desc": "The description of the configuration parameter that defines the used authentication provider.",
-  "wsoauth-auto-populate-groups-desc": "The description of the configuration parameter that defines the list of MediaWiki groups that get automatically assigned to the user after they are authenticated.",
-  "wsoauth-pluggable-auth-button-label-message-desc": "The description of the configuration parameter that defines the name of the system message that gets shown on Special:UserLogin.",
-  "wsoauth-pluggable-auth-button-label-message": "The value of the system message that gets shown on Special:UserLogin.",
-  "wsoauth-authentication-failure": "Message shown to the user when the authentication failed or when they are not authorised for this wiki.",
-  "wsoauth-invalid-username": "Message shown to the user when the OAuth provider returns an invalid username.",
-  "wsoauth-unknown-auth-provider-class-exception-message": "Exception message shown when the auth provider class was not loaded or found.",
-  "wsoauth-unknown-auth-provider-exception-message": "Exception message shown when the auth provider was not found.",
-  "wsoauth-invalid-auth-provider-class-exception-message": "Exception message shown when the auth provider class does not implement AuthProvider.",
-  "wsoauth-initiate-login-failure": "Message shown to the user when the communication to the OAuth-provider could not be initialised.",
-  "wsoauth-migrate-users-by-username-desc": "The description of the configuration parameter that defines whether ot not to allow account usurpation by username.",
-  "wsoauth-user-already-exists-message": "Message shown to the user if the username they are trying to register has already been taken and account usurpation is turned off."
+	"@metadata": {
+		"authors": [
+			"Marijn van Wezel <xxmarijnw>"
+		]
+	},
+	"wsoauth-extensionname": "The name of the extension (typically WSOAuth).",
+	"wsoauth-desc": "The description of the extension as shown in Special:Version.",
+	"wsoauth-pluggable-auth-class-desc": "The description of the configuration parameter that defines the classname that extends PluggableAuth.",
+	"wsoauth-uri-desc": "The description of the configuration parameter that defines the Auth0 domain full url.",
+	"wsoauth-client-id-desc": "The description of the configuration parameter that defines the Auth0 application client ID.",
+	"wsoauth-client-secret-desc": "The description of the configuration parameter that defines theAuth0 application client secret.",
+	"wsoauth-redirect-uri-desc": "The description of the configuration parameter that defines the redirect URI to handle authentication.",
+	"wsoauth-auth-providers-desc": "The description of the configuration parameter that defines the list of custom OAuth providers.",
+	"wsoauth-auth-provider-desc": "The description of the configuration parameter that defines the used authentication provider.",
+	"wsoauth-auto-populate-groups-desc": "The description of the configuration parameter that defines the list of MediaWiki groups that get automatically assigned to the user after they are authenticated.",
+	"wsoauth-pluggable-auth-button-label-message-desc": "The description of the configuration parameter that defines the name of the system message that gets shown on Special:UserLogin.",
+	"wsoauth-pluggable-auth-button-label-message": "The value of the system message that gets shown on Special:UserLogin.",
+	"wsoauth-authentication-failure": "Message shown to the user when the authentication failed or when they are not authorised for this wiki.",
+	"wsoauth-invalid-username": "Message shown to the user when the OAuth provider returns an invalid username.",
+	"wsoauth-unknown-auth-provider-class-exception-message": "Exception message shown when the auth provider class was not loaded or found.",
+	"wsoauth-unknown-auth-provider-exception-message": "Exception message shown when the auth provider was not found.",
+	"wsoauth-invalid-auth-provider-class-exception-message": "Exception message shown when the auth provider class does not implement AuthProvider.",
+	"wsoauth-initiate-login-failure": "Message shown to the user when the communication to the OAuth-provider could not be initialised.",
+	"wsoauth-migrate-users-by-username-desc": "The description of the configuration parameter that defines whether ot not to allow account usurpation by username.",
+	"wsoauth-user-already-exists-message": "Message shown to the user if the username they are trying to register has already been taken and account usurpation is turned off."
 }
