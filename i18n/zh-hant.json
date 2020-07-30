@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kly"
+		]
+	},
+	"wsoauth-pluggable-auth-button-label-message": "以 OAuth 登入",
+	"wsoauth-unknown-auth-provider-exception-message": "不明的 OAuth 供應者（$1）",
+	"wsoauth-user-already-exists-message": "使用者名稱「$1」已被採用。"
+}

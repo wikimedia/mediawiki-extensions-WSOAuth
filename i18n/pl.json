@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Rail"
+		]
+	},
+	"wsoauth-desc": "Dodaje do rozszerzenia PluggableAuth funkcję uwierzytelniania z użyciem OAuth",
+	"wsoauth-pluggable-auth-class-desc": "Nazwa klasy rozszerzającej PluggableAuth; ten parametr konfiguracji jest ustawiany przez rozszerzenie i nie powinien być edytowany przez użytkownika.",
+	"wsoauth-uri-desc": "Adres URL uwierzytelniania z użyciem OAuth.",
+	"wsoauth-client-id-desc": "Klucz konsumenta otrzymany z aplikacji OAuth.",
+	"wsoauth-client-secret-desc": "Sekret konsumenta otrzymany z aplikacji OAuth.",
+	"wsoauth-redirect-uri-desc": "Domyślny zwrotny adres URL do którego wraca aplikacja OAuth po udanym żądaniu uwierzytelniania.",
+	"wsoauth-auth-providers-desc": "Tablica zawierająca listę niestandardowych dostawców OAuth wraz z ich nazwami klas.",
+	"wsoauth-auth-provider-desc": "Dostawca OAuth z którego korzystać będzie rozszerzenie.",
+	"wsoauth-auto-populate-groups-desc": "Tablica zawierająca listę nazw grup MediaWiki, które muszą być automatycznie przypisane do użytkownika po uwierzytelnieniu.",
+	"wsoauth-pluggable-auth-button-label-message-desc": "Nazwa komunikatu, który będzie używany jako tekst przycisku logowania w formularzu na stronie Specjalna:UserLogin.",
+	"wsoauth-pluggable-auth-button-label-message": "Zaloguj się przez OAuth",
+	"wsoauth-authentication-failure": "Uwierzytelnianie nie powiodło się (czy jesteś upoważniony do korzystania z tej wiki?).",
+	"wsoauth-invalid-username": "Nazwa użytkownika otrzymana od dostawcy OAuth nie jest prawidłowa.",
+	"wsoauth-unknown-auth-provider-class-exception-message": "Klasa dostawcy OAuth nie jest załadowana lub nie została odnaleziona",
+	"wsoauth-unknown-auth-provider-exception-message": "Nieznany dostawca OAuth ($1)",
+	"wsoauth-initiate-login-failure": "Nie udało się nawiązać komunikacji z dostawcą OAuth.",
+	"wsoauth-user-already-exists-message": "Nazwa użytkownika „$1” jest już zajęta."
+}
