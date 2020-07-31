@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bjankuloski06"
+		]
+	},
+	"wsoauth-desc": "Го проширува додатокот PluggableAuth со можност за заверка со помош на OAuth."
+}

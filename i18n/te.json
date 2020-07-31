@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Veeven"
+		]
+	},
+	"wsoauth-user-already-exists-message": "\"$1\" అనే వాడుకరి పేరును ఇప్పటికే తీసేసుకున్నారు."
+}

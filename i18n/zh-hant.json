@@ -4,7 +4,17 @@
 			"Kly"
 		]
 	},
+	"wsoauth-desc": "讓 PluggableAuth 擴充套件使用 OAuth 提供認證。",
+	"wsoauth-uri-desc": "OAuth 認證 URL。",
+	"wsoauth-auth-provider-desc": "擴充套件將使用的 OAuth 提供者。",
+	"wsoauth-pluggable-auth-button-label-message-desc": "使用在 Special:UserLogin 表單上登入按鈕標籤的訊息名稱。",
 	"wsoauth-pluggable-auth-button-label-message": "以 OAuth 登入",
+	"wsoauth-authentication-failure": "認證失敗（您是否有獲得此 wiki 的授權？）。",
+	"wsoauth-invalid-username": "由 OAuth 提供者給予的使用者名稱無效。",
+	"wsoauth-unknown-auth-provider-class-exception-message": "OAuth 提供者類別無法載入或找不到",
 	"wsoauth-unknown-auth-provider-exception-message": "不明的 OAuth 供應者（$1）",
+	"wsoauth-invalid-auth-provider-class-exception-message": "OAuth 提供者類別未實行 AuthProvider",
+	"wsoauth-initiate-login-failure": "無法開始與 OAuth 提供者之間的通訊。",
+	"wsoauth-migrate-users-by-username-desc": "是否允許透過使用者名稱奪取現有帳號。",
 	"wsoauth-user-already-exists-message": "使用者名稱「$1」已被採用。"
 }
