@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Robby"
+		]
+	},
+	"wsoauth-pluggable-auth-button-label-message": "Alogge mat OAuth",
+	"wsoauth-unknown-auth-provider-exception-message": "onbekannten OAuth-provider ($1)",
+	"wsoauth-user-already-exists-message": "De Benotzernumm \"$1\" gëtt scho benotzt."
+}

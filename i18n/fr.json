@@ -11,7 +11,7 @@
 	"wsoauth-client-id-desc": "La clé de consommateur reçue de l’application OAuth.",
 	"wsoauth-client-secret-desc": "Le secret de consommateur reçu de l’application OAuth.",
 	"wsoauth-redirect-uri-desc": "L’URL de rappel par défaut vers laquelle reviendra l’application OAuth après une requête d’authentification réussie.",
-	"wsoauth-auth-providers-desc": "Un tableau contenant une liste de fournisseurs OAuth personnalisée, conjointement avec leur nom de classe.",
+	"wsoauth-auth-providers-desc": "Un tableau contenant une liste personnalisée de fournisseurs OAuth, conjointement avec leur nom de classe.",
 	"wsoauth-auth-provider-desc": "Le fournisseur OAuth que l’extension utilisera.",
 	"wsoauth-auto-populate-groups-desc": "Un tableau contenant une liste de noms de groupe MédiaWiki qui doivent être automatiquement affectés à l’utilisateur après s’être authentifié.",
 	"wsoauth-pluggable-auth-button-label-message-desc": "Le nom du message qui sera utilisé comme libellé du bouton de connexion sur le formulaire Special:UserLogin.",
