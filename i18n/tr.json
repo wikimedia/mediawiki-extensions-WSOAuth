@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"MuratTheTurkish"
+		]
+	},
+	"wsoauth-desc": "PluggableAuth uzantısını OAuth kullanarak kimlik doğrulaması sağlayacak şekilde genişletir.",
+	"wsoauth-pluggable-auth-class-desc": "PluggableAuth genişleten sınıf adı; bu yapılandırma parametresi uzantı tarafından ayarlanır ve kullanıcı tarafından düzenlenmemelidir.",
+	"wsoauth-uri-desc": "OAuth kimlik doğrulama URL'si.",
+	"wsoauth-client-id-desc": "OAuth uygulamasından alınan tüketici anahtarı.",
+	"wsoauth-client-secret-desc": "OAuth uygulamasından alınan tüketici sırrı.",
+	"wsoauth-redirect-uri-desc": "Başarılı bir kimlik doğrulama isteğinden sonra OAuth uygulamasının döndürdüğü varsayılan geri arama URL'si.",
+	"wsoauth-auth-providers-desc": "Sınıf adlarıyla birlikte özel OAuth sağlayıcılarının listesini içeren bir dizi.",
+	"wsoauth-auth-provider-desc": "Uzantının kullanacağı OAuth sağlayıcısı.",
+	"wsoauth-auto-populate-groups-desc": "Kimliği doğrulandıktan sonra kullanıcıya otomatik olarak atanması gereken MediaWiki grup adlarının listesini içeren bir dizi.",
+	"wsoauth-pluggable-auth-button-label-message-desc": "Special:UserLogin formundaki oturum açma düğmesinin etiketi için kullanılacak iletinin adı.",
+	"wsoauth-pluggable-auth-button-label-message": "OAuth ile oturum açın",
+	"wsoauth-authentication-failure": "Kimlik doğrulama başarısız oldu (bu viki için yetkiniz var mı?).",
+	"wsoauth-invalid-username": "OAuth sağlayıcısı tarafından sağlanan kullanıcı adı geçerli değil.",
+	"wsoauth-unknown-auth-provider-class-exception-message": "OAuth sağlayıcı sınıfı yüklenmedi veya bulunamadı",
+	"wsoauth-unknown-auth-provider-exception-message": "Bilinmeyen OAuth sağlayıcısı ($1)",
+	"wsoauth-invalid-auth-provider-class-exception-message": "OAuth sağlayıcı sınıfı AuthProvider uygulamıyor",
+	"wsoauth-initiate-login-failure": "OAuth sağlayıcısı ile iletişim başlatılamıyor.",
+	"wsoauth-migrate-users-by-username-desc": "Mevcut hesapların kullanıcı adına göre kullanılmasına izin verilip verilmeyeceği.",
+	"wsoauth-user-already-exists-message": "\"$1\" kullanıcı adı zaten alınmış."
+}
