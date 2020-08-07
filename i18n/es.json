@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fitoschido"
+		]
+	},
+	"wsoauth-user-already-exists-message": "Alguien más ya utiliza el nombre de usuario «$1»."
+}
