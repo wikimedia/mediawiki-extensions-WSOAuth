@@ -1,11 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Marijn van Wezel <xxmarijnw>"
+			"Marijn van Wezel <xxmarijnw>",
+			"Umherirrender"
 		]
 	},
-	"wsoauth-extensionname": "The name of the extension (typically WSOAuth).",
-	"wsoauth-desc": "The description of the extension as shown in Special:Version.",
+	"wsoauth-extensionname": "{{name}}\nThe name of the extension (typically WSOAuth).",
+	"wsoauth-desc": "{{desc|name=WSOAuth|url=https://www.mediawiki.org/wiki/Extension:WSOAuth}}",
 	"wsoauth-pluggable-auth-class-desc": "The description of the configuration parameter that defines the classname that extends PluggableAuth.",
 	"wsoauth-uri-desc": "The description of the configuration parameter that defines the Auth0 domain full url.",
 	"wsoauth-client-id-desc": "The description of the configuration parameter that defines the Auth0 application client ID.",
