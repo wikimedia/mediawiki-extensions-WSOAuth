@@ -1,84 +1,81 @@
 {
-  "name": "WSOAuth",
-  "version": "3.0",
-  "namemsg": "wsoauth-extensionname",
-  "url": "https://www.mediawiki.org/wiki/Extension:WSOAuth",
-  "type": "other",
-  "author": [
-    "Marijn van Wezel [https://www.mediawiki.org/wiki/User:Xxmarijnw <xxmarijnw>]",
-    "others"
-  ],
-  "descriptionmsg": "wsoauth-desc",
-  "license-name": "MIT",
-  "requires": {
-    "MediaWiki": ">= 1.31.0",
-    "extensions": {
-      "PluggableAuth": ">= 5.0"
-    }
-  },
-  "MessagesDirs": {
-    "WSOAuth": [
-      "i18n"
-    ]
-  },
-  "ExtensionMessagesFiles": {
-    "WSOAuthMagic": "i18n/WSOAuth.i18n.php"
-  },
-  "AutoloadClasses": {
-    "WSOAuth": "src/WSOAuth.php",
-    "AuthProviderFramework": "src/AuthProviderFramework.php",
-    "AuthProvider": "src/AuthProvider.php"
-  },
-  "AutoloadNamespaces": {
-    "AuthenticationProvider\\": "src/AuthenticationProvider/",
-    "Exception\\": "src/Exception/"
-  },
-  "Hooks": {
-    "PluggableAuthPopulateGroups": "WSOAuth::onPluggableAuthPopulateGroups",
-    "LoadExtensionSchemaUpdates": "WSOAuth::onLoadExtensionSchemaUpdates"
-  },
-  "config": {
-    "PluggableAuth_Class": {
-      "value": "WSOAuth",
-      "descriptionmsg": "wsoauth-pluggable-auth-class-desc"
-    },
-    "PluggableAuth_ButtonLabelMessage": {
-      "value": "wsoauth-pluggable-auth-button-label-message",
-      "descriptionmsg": "wsoauth-pluggable-auth-button-label-message-desc"
-    },
-    "OAuthUri": {
-      "value": false,
-      "descriptionmsg": "wsoauth-uri-desc"
-    },
-    "OAuthClientId": {
-      "value": false,
-      "descriptionmsg": "wsoauth-client-id-desc"
-    },
-    "OAuthClientSecret": {
-      "value": false,
-      "descriptionmsg": "wsoauth-client-secret-desc"
-    },
-    "OAuthRedirectUri": {
-      "value": "/index.php/Special:PluggableAuthLogin",
-      "descriptionmsg": "wsoauth-redirect-uri-desc"
-    },
-    "OAuthCustomAuthProviders": {
-      "value": false,
-      "descriptionmsg": "wsoauth-auth-providers-desc"
-    },
-    "OAuthAuthProvider": {
-      "value": "mediawiki",
-      "descriptionmsg": "wsoauth-auth-provider-desc"
-    },
-    "OAuthAutoPopulateGroups": {
-      "value": [],
-      "descriptionmsg": "wsoauth-auto-populate-groups-desc"
-    },
-    "OAuthMigrateUsersByUsername": {
-      "value": false,
-      "descriptionmsg": "wsoauth-migrate-users-by-username-desc"
-    }
-  },
-  "load_composer_autoloader": true,
-  "manifest_version": 2
+	"name": "WSOAuth",
+	"version": "3.0",
+	"namemsg": "wsoauth-extensionname",
+	"url": "https://www.mediawiki.org/wiki/Extension:WSOAuth",
+	"type": "other",
+	"author": [
+		"Marijn van Wezel [https://www.mediawiki.org/wiki/User:Xxmarijnw <xxmarijnw>]",
+		"others"
+	],
+	"descriptionmsg": "wsoauth-desc",
+	"license-name": "MIT",
+	"requires": {
+		"MediaWiki": ">= 1.31.0",
+		"extensions": {
+			"PluggableAuth": ">= 5.0"
+		}
+	},
+	"MessagesDirs": {
+		"WSOAuth": [
+			"i18n"
+		]
+	},
+	"AutoloadClasses": {
+		"WSOAuth": "src/WSOAuth.php",
+		"AuthProviderFramework": "src/AuthProviderFramework.php",
+		"AuthProvider": "src/AuthProvider.php"
+	},
+	"AutoloadNamespaces": {
+		"AuthenticationProvider\\": "src/AuthenticationProvider/",
+		"Exception\\": "src/Exception/"
+	},
+	"Hooks": {
+		"PluggableAuthPopulateGroups": "WSOAuth::onPluggableAuthPopulateGroups",
+		"LoadExtensionSchemaUpdates": "WSOAuth::onLoadExtensionSchemaUpdates"
+	},
+	"config": {
+		"PluggableAuth_Class": {
+			"value": "WSOAuth",
+			"descriptionmsg": "wsoauth-pluggable-auth-class-desc"
+		},
+		"PluggableAuth_ButtonLabelMessage": {
+			"value": "wsoauth-pluggable-auth-button-label-message",
+			"descriptionmsg": "wsoauth-pluggable-auth-button-label-message-desc"
+		},
+		"OAuthUri": {
+			"value": false,
+			"descriptionmsg": "wsoauth-uri-desc"
+		},
+		"OAuthClientId": {
+			"value": false,
+			"descriptionmsg": "wsoauth-client-id-desc"
+		},
+		"OAuthClientSecret": {
+			"value": false,
+			"descriptionmsg": "wsoauth-client-secret-desc"
+		},
+		"OAuthRedirectUri": {
+			"value": "/index.php/Special:PluggableAuthLogin",
+			"descriptionmsg": "wsoauth-redirect-uri-desc"
+		},
+		"OAuthCustomAuthProviders": {
+			"value": false,
+			"descriptionmsg": "wsoauth-auth-providers-desc"
+		},
+		"OAuthAuthProvider": {
+			"value": "mediawiki",
+			"descriptionmsg": "wsoauth-auth-provider-desc"
+		},
+		"OAuthAutoPopulateGroups": {
+			"value": [],
+			"descriptionmsg": "wsoauth-auto-populate-groups-desc"
+		},
+		"OAuthMigrateUsersByUsername": {
+			"value": false,
+			"descriptionmsg": "wsoauth-migrate-users-by-username-desc"
+		}
+	},
+	"load_composer_autoloader": true,
+	"manifest_version": 2
 }
