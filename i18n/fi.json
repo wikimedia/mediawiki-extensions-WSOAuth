@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Pyscowicz"
+		]
+	},
+	"wsoauth-pluggable-auth-button-label-message": "Kirjaudu sisään OAuth:n avulla"
+}
