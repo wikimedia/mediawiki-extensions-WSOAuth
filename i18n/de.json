@@ -1,9 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"MuratTheTurkish"
+			"MuratTheTurkish",
+			"Umherirrender"
 		]
 	},
 	"wsoauth-desc": "Erweitert die PluggableAuth-Erweiterung, um die Authentifizierung mit OAuth bereitzustellen.",
-	"wsoauth-pluggable-auth-class-desc": "Der Klassenname, der PluggableAuth erweitert.  Dieser Konfigurationsparameter wird von der Erweiterung festgelegt und sollte vom Benutzer nicht bearbeitet werden."
+	"wsoauth-pluggable-auth-class-desc": "Der Klassenname, der PluggableAuth erweitert. Dieser Konfigurationsparameter wird von der Erweiterung festgelegt und sollte vom Benutzer nicht bearbeitet werden."
 }
