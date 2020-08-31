@@ -9,6 +9,6 @@
 	"wsoauth-extensionname": "WSOAuth",
 	"wsoauth-desc": "Erweitert die PluggableAuth-Erweiterung, um die Authentifizierung mit OAuth bereitzustellen.",
 	"wsoauth-pluggable-auth-class-desc": "Der Klassenname, der PluggableAuth erweitert. Dieser Konfigurationsparameter wird von der Erweiterung festgelegt und sollte vom Benutzer nicht bearbeitet werden.",
-	"wsoauth-pluggable-auth-button-label-message": "Mat OAuth aloggen",
-	"wsoauth-user-already-exists-message": "De Benotzernumm \"$1\" gëtt scho benotzt."
+	"wsoauth-pluggable-auth-button-label-message": "Mit OAuth anmelden",
+	"wsoauth-user-already-exists-message": "Der Benutzername „$1“ wird bereits genutzt."
 }
