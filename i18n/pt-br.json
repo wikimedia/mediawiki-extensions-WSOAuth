@@ -4,6 +4,8 @@
 			"Eduardo Addad de Oliveira"
 		]
 	},
+	"wsoauth-desc": "Estende a extensão PluggableAuth para fornecer autenticação usando OAuth.",
+	"wsoauth-pluggable-auth-class-desc": "O nome da classe que estende PluggableAuth; este parâmetro de configuração é definido pela extensão e não deve ser editado pelo usuário.",
 	"wsoauth-uri-desc": "O URL de autenticação OAuth.",
 	"wsoauth-client-id-desc": "A chave do consumidor recebida do aplicativo OAuth.",
 	"wsoauth-client-secret-desc": "O segredo do consumidor recebido do aplicativo OAuth.",
@@ -11,6 +13,7 @@
 	"wsoauth-auth-providers-desc": "Uma matriz contendo uma lista de provedores OAuth personalizados junto com seus nomes de classe.",
 	"wsoauth-auth-provider-desc": "O provedor OAuth que a extensão usará.",
 	"wsoauth-auto-populate-groups-desc": "Um array contendo uma lista de nomes de grupos MediaWiki que devem ser atribuídos automaticamente ao usuário após a autenticação.",
+	"wsoauth-pluggable-auth-button-label-message-desc": "O nome da mensagem que será usada para o rótulo do botão de entrar no formulário Special:UserLogin.",
 	"wsoauth-pluggable-auth-button-label-message": "Entrar com OAuth",
 	"wsoauth-authentication-failure": "A autenticação falhou (você está autorizado para essa wiki?).",
 	"wsoauth-invalid-username": "O nome de usuário fornecido pelo provedor OAuth não é válido.",
