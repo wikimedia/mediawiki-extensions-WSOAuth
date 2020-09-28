@@ -10,12 +10,12 @@ require_once "IAuthProvider.php";
  */
 class MediaWikiAuthTest extends PHPUnit\Framework\TestCase implements IAuthProvider
 {
-    protected function setUp()
+    protected function setUp() : void
     {
         parent::setUp();
     }
 
-    protected function tearDown()
+    protected function tearDown() : void
     {
         parent::tearDown();
     }
