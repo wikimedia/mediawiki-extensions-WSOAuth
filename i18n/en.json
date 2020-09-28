@@ -23,5 +23,6 @@
 	"wsoauth-invalid-auth-provider-class-exception-message": "The OAuth provider class does not implement AuthProvider",
 	"wsoauth-initiate-login-failure": "Unable to initiate communication with OAuth provider.",
 	"wsoauth-migrate-users-by-username-desc": "Whether or not to allow usurpation of existing accounts by username.",
-	"wsoauth-user-already-exists-message": "The username \"$1\" is already taken."
+	"wsoauth-user-already-exists-message": "The username \"$1\" is already taken.",
+	"wsoauth-not-configured-message": "Remote login has not been configured for this wiki. Please try a different authentication method."
 }

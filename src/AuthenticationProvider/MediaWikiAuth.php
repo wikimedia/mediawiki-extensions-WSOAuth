@@ -122,6 +122,13 @@ class MediaWikiAuth implements \AuthProvider
         );
         $conf->setRedirUrl($conf->endpointURL . "/authenticate&");
 
-        return new \MediaWiki\OAuthClient\Client($conf);
+        $client = new \MediaWiki\OAuthClient\Client($conf);
+
+        $callback = $GLOBALS['wgOAuthRedirectUri'];
+        if ( $callback ) {
+            $client->setCallback( $callback );
+        }
+
+        return $client;
     }
 }

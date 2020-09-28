@@ -14,15 +14,21 @@
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+use AuthenticationProvider\FacebookAuth;
+use AuthenticationProvider\MediaWikiAuth;
+use Exception\InvalidAuthProviderClassException;
+use Exception\UnknownAuthProviderException;
+
 /**
  * Class WSOAuth
  */
 class WSOAuth extends AuthProviderFramework
 {
     const DEFAULT_AUTH_PROVIDERS = [
-        "mediawiki" => "AuthenticationProvider\MediaWikiAuth",
-        "facebook" => "AuthenticationProvider\FacebookAuth"
+        "mediawiki" => MediaWikiAuth::class,
+        "facebook" => FacebookAuth::class
     ];
+
     /**
      * @var AuthProvider
      */
@@ -30,14 +36,19 @@ class WSOAuth extends AuthProviderFramework
 
     /**
      * WSOAuth constructor.
-     * @throws Exception\UnknownAuthProviderException
-     * @throws Exception\InvalidAuthProviderClassException
+     * @throws FatalError
+     * @throws InvalidAuthProviderClassException
+     * @throws MWException
+     * @throws UnknownAuthProviderException
      * @internal
      */
     public function __construct()
     {
         parent::__construct();
-        $this->auth_provider = WSOAuth::getAuthProvider();
+
+        if ($GLOBALS['wgOAuthUri'] !== false && $GLOBALS['wgOAuthClientId'] !== false && $GLOBALS['wgOAuthClientSecret'] !== false) {
+            $this->auth_provider = WSOAuth::getAuthProvider();
+        }
     }
 
     /**
@@ -53,6 +64,11 @@ class WSOAuth extends AuthProviderFramework
      */
     public function authenticate(&$id, &$username, &$realname, &$email, &$errorMessage)
     {
+        if (!isset($this->auth_provider)) {
+            $errorMessage = wfMessage("wsoauth-not-configured-message")->parse();
+            return false;
+        }
+
         if ($this->doesSessionVariableExist("request_key") && $this->doesSessionVariableExist("request_secret")) {
             $key = $this->getSessionVariable("request_key");
             $secret = $this->getSessionVariable("request_secret");
@@ -81,11 +97,11 @@ class WSOAuth extends AuthProviderFramework
             $email = isset($user_info['email']) ? $user_info['email'] : '';
 
             $user = User::newFromName($username);
-            $user_id = $user->getId() === 0 ? null : $user->getId();
-
+            $user_id = $user->idForName();
+            
             $id = $user_id === 0 ? null : $user_id;
 
-            if ($user_id !== 0 && !$this->userLoggedInThroughOAuth($id)) {
+            if (!is_null($user_id) && $user_id > 0 && !$this->userLoggedInThroughOAuth($user_id)) {
                 // The user exists and has not logged in through OAuth
                 if ($GLOBALS['wgOAuthMigrateUsersByUsername'] === false) {
                     $errorMessage = wfMessage('wsoauth-user-already-exists-message', $username)->plain();
@@ -148,6 +164,7 @@ class WSOAuth extends AuthProviderFramework
      *
      * @param int $id
      * @return bool Whether or not this user was registered by WSOAuth.
+     * @throws MWException
      */
     private function userLoggedInThroughOAuth($id)
     {
@@ -165,13 +182,15 @@ class WSOAuth extends AuthProviderFramework
      * Returns an instance of the configured auth provider.
      *
      * @return AuthProvider
-     * @throws Exception\UnknownAuthProviderException
-     * @throws Exception\InvalidAuthProviderClassException
+     * @throws FatalError
+     * @throws MWException
+     * @throws InvalidAuthProviderClassException
+     * @throws UnknownAuthProviderException
      * @internal
      */
     public static function getAuthProvider()
     {
-        $auth_providers = array_merge(WSOAuth::DEFAULT_AUTH_PROVIDERS, (array)$GLOBALS['wgOAuthCustomAuthProviders']);
+        $auth_providers = array_merge(self::getAuthProviders(), (array)$GLOBALS['wgOAuthCustomAuthProviders']);
         $auth_provider = $GLOBALS['wgOAuthAuthProvider'];
 
         if (!isset($auth_providers[$auth_provider])) {
@@ -187,6 +206,21 @@ class WSOAuth extends AuthProviderFramework
         }
 
         return new $auth_providers[$auth_provider]();
+    }
+
+    /**
+     * Returns the list of available auth providers.
+     *
+     * @return array
+     * @throws FatalError
+     * @throws MWException
+     */
+    public static function getAuthProviders()
+    {
+        $auth_providers = self::DEFAULT_AUTH_PROVIDERS;
+        Hooks::run("WSOAuthGetAuthProviders", [&$auth_providers]);
+
+        return $auth_providers;
     }
 
     /**
@@ -224,6 +258,7 @@ class WSOAuth extends AuthProviderFramework
      * Fired when MediaWiki is updated to allow WSOAuth to register updates for the database schema.
      *
      * @param DatabaseUpdater $updater
+     * @throws MWException
      * @internal
      */
     public static function onLoadExtensionSchemaUpdates(DatabaseUpdater $updater)

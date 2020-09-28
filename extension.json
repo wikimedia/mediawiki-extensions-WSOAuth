@@ -1,6 +1,6 @@
 {
 	"name": "WSOAuth",
-	"version": "3.0",
+	"version": "4.1",
 	"namemsg": "wsoauth-extensionname",
 	"url": "https://www.mediawiki.org/wiki/Extension:WSOAuth",
 	"type": "other",
@@ -56,7 +56,7 @@
 			"descriptionmsg": "wsoauth-client-secret-desc"
 		},
 		"OAuthRedirectUri": {
-			"value": "/index.php/Special:PluggableAuthLogin",
+			"value": false,
 			"descriptionmsg": "wsoauth-redirect-uri-desc"
 		},
 		"OAuthCustomAuthProviders": {
