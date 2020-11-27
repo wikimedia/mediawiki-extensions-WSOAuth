@@ -24,5 +24,6 @@
 	"wsoauth-invalid-auth-provider-class-exception-message": "La classe du fournisseur OAuth n’implémente pas AuthProvider",
 	"wsoauth-initiate-login-failure": "Impossible d’initialiser la communication avec le fournisseur OAuth.",
 	"wsoauth-migrate-users-by-username-desc": "S’il faut ou non permettre l’usurpation de comptes existants par nom d’utilisateur.",
-	"wsoauth-user-already-exists-message": "Le nom d’utilisateur « $1 » est déjà pris."
+	"wsoauth-user-already-exists-message": "Le nom d’utilisateur « $1 » est déjà pris.",
+	"wsoauth-not-configured-message": "La connexion à distance n’a pas été configurée pour ce wiki. Veuillez essayer une méthode d’authentification différente."
 }
