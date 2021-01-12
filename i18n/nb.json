@@ -22,5 +22,6 @@
 	"wsoauth-invalid-auth-provider-class-exception-message": "OAuth-tilbyderklassen implementerer ikke AuthProvider",
 	"wsoauth-initiate-login-failure": "Kunne ikke initiere kommunikasjon med OAuth-tilbyder.",
 	"wsoauth-migrate-users-by-username-desc": "Hvorvidt det skal tillates å overta eksisterende kontoer etter brukernavn.",
-	"wsoauth-user-already-exists-message": "Brukernavnet «$1» er allerede i bruk."
+	"wsoauth-user-already-exists-message": "Brukernavnet «$1» er allerede i bruk.",
+	"wsoauth-not-configured-message": "Ekstern innlogging er ikke satt opp for denne wikien. Prøv en annen autentiseringsmetode."
 }
