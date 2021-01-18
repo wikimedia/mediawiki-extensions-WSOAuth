@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eleassar"
+		]
+	},
+	"wsoauth-auth-providers-desc": "Imenik, ki vsebuje seznam ponudnikov OAuth po meri, vključno z njihovim imenom razreda."
+}
