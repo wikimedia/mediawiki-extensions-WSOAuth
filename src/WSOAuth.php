@@ -18,6 +18,7 @@ use AuthenticationProvider\FacebookAuth;
 use AuthenticationProvider\MediaWikiAuth;
 use Exception\InvalidAuthProviderClassException;
 use Exception\UnknownAuthProviderException;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Class WSOAuth
@@ -87,7 +88,19 @@ class WSOAuth extends AuthProviderFramework
 
             $user_info['name'] = ucfirst($user_info['name']);
 
-            if (!isset($user_info['name']) || !User::isValidUserName($user_info['name'])) {
+            if (!isset($user_info['name'])) {
+                $errorMessage = wfMessage('wsoauth-invalid-username')->plain();
+                return false;
+            }
+
+            $services = MediaWikiServices::getInstance();
+            if(method_exists($services, 'getUserNameUtils')) {
+                // MW 1.35 +
+                $isValidUsername = $services->getUserNameUtils()->isValid($user_info['name']);
+            } else {
+                $isValidUsername = User::isValidUserName($user_info['name']);
+            }
+            if (!$isValidUsername) {
                 $errorMessage = wfMessage('wsoauth-invalid-username')->plain();
                 return false;
             }
@@ -98,7 +111,7 @@ class WSOAuth extends AuthProviderFramework
 
             $user = User::newFromName($username);
             $user_id = $user->idForName();
-            
+
             $id = $user_id === 0 ? null : $user_id;
 
             if (!is_null($user_id) && $user_id > 0 && !$this->userLoggedInThroughOAuth($user_id)) {
