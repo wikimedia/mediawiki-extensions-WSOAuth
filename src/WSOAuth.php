@@ -51,11 +51,11 @@ class WSOAuth extends AuthProviderFramework {
 	}
 
 	/**
-	 * @param &$id
-	 * @param &$username
-	 * @param &$realname
-	 * @param &$email
-	 * @param &$errorMessage
+	 * @param int &$id
+	 * @param string &$username
+	 * @param string &$realname
+	 * @param string &$email
+	 * @param string &$errorMessage
 	 * @return bool
 	 * @throws FatalError
 	 * @throws MWException
@@ -156,7 +156,7 @@ class WSOAuth extends AuthProviderFramework {
 	}
 
 	/**
-	 * @param $id
+	 * @param int $id
 	 * @return void
 	 * @throws DBError
 	 * @internal

@@ -22,10 +22,10 @@ interface AuthProvider {
 	/**
 	 * Log in the user through the external OAuth provider.
 	 *
-	 * @param &$key string The consumer key returned by the OAuth provider. May be left empty.
-	 * @param &$secret string The consumer secret returned by the OAuth provider. May be left empty.
-	 * @param &$auth_url string The URL the user must be redirected to. Must not be left empty.
-	 * @return boolean Returns true on successful login, false otherwise.
+	 * @param string &$key The consumer key returned by the OAuth provider. May be left empty.
+	 * @param string &$secret The consumer secret returned by the OAuth provider. May be left empty.
+	 * @param string &$auth_url The URL the user must be redirected to. Must not be left empty.
+	 * @return bool Returns true on successful login, false otherwise.
 	 * @internal
 	 */
 	public function login( &$key, &$secret, &$auth_url );
@@ -42,8 +42,8 @@ interface AuthProvider {
 	/**
 	 * Get user info from session. Returns false when the request failed or the user is not authorised.
 	 *
-	 * @param $key string The consumer key set during login().
-	 * @param $secret string The consumer secret set during login().
+	 * @param string $key The consumer key set during login().
+	 * @param string $secret The consumer secret set during login().
 	 * @param string &$errorMessage Message shown to the user when there is an error.
 	 * @return boolean|array Returns an array with at least a 'name' when the user is authenticated, returns false when the user is not authorised or the authentication failed.
 	 * @internal

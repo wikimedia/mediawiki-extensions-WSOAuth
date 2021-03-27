@@ -35,8 +35,8 @@ abstract class AuthProviderFramework extends PluggableAuth {
 	/**
 	 * Exposes the set() method from MediaWiki\Session\Session.
 	 *
-	 * @param $key
-	 * @param $value
+	 * @param string $key
+	 * @param string $value
 	 */
 	protected function setSessionVariable( $key, $value ) {
 		$this->session->set( $key, $value );
@@ -45,7 +45,7 @@ abstract class AuthProviderFramework extends PluggableAuth {
 	/**
 	 * Exposes the remove() method from MediaWiki\Session\Session.
 	 *
-	 * @param $key
+	 * @param string $key
 	 */
 	protected function removeSessionVariable( $key ) {
 		$this->session->remove( $key );
@@ -54,7 +54,7 @@ abstract class AuthProviderFramework extends PluggableAuth {
 	/**
 	 * Exposes the get() method from MediaWiki\Session\Session.
 	 *
-	 * @param $key
+	 * @param string $key
 	 * @return null|string
 	 */
 	protected function getSessionVariable( $key ) {
@@ -64,7 +64,7 @@ abstract class AuthProviderFramework extends PluggableAuth {
 	/**
 	 * Exposes the exists() method from MediaWiki\Session\Session.
 	 *
-	 * @param $key
+	 * @param string $key
 	 * @return bool
 	 */
 	protected function doesSessionVariableExist( $key ) {

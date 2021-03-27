@@ -33,9 +33,9 @@ class MediaWikiAuth implements \AuthProvider {
 	/**
 	 * Log in the user through the external OAuth provider.
 	 *
-	 * @param &$key
-	 * @param &$secret
-	 * @param &$auth_url
+	 * @param string &$key
+	 * @param string &$secret
+	 * @param string &$auth_url
 	 * @return bool Returns true on successful login, false otherwise.
 	 * @internal
 	 */
@@ -66,8 +66,8 @@ class MediaWikiAuth implements \AuthProvider {
 	/**
 	 * Get user info from session. Returns false when the request failed or the user is not authorised.
 	 *
-	 * @param $key
-	 * @param $secret
+	 * @param string $key
+	 * @param string $secret
 	 * @param string &$errorMessage Message shown to the user when there is an error.
 	 * @return bool|array Returns an array with at least a 'name' when the user is authenticated, returns false when the user is not authorised or the authentication failed.
 	 * @internal

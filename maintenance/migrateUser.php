@@ -123,7 +123,7 @@ class MigrateUser extends Maintenance {
 	}
 
 	/**
-	 * @param $username
+	 * @param string $username
 	 * @return bool True if the user got migrated, false if the user was already migrated
 	 * @throws InvalidUsernameException
 	 * @throws Exception
@@ -149,7 +149,7 @@ class MigrateUser extends Maintenance {
 
 	/**
 	 * @param WSOAuth $instance
-	 * @param $id
+	 * @param int|string $id
 	 * @return bool
 	 */
 	private function migrateUser( WSOAuth $instance, $id ) {
@@ -179,8 +179,8 @@ class MigrateUser extends Maintenance {
 	}
 
 	/**
-	 * @param $current
-	 * @param $total
+	 * @param int $current
+	 * @param int $total
 	 * @return string
 	 */
 	private function getProgress( $current, $total ) {
@@ -188,7 +188,7 @@ class MigrateUser extends Maintenance {
 	}
 
 	/**
-	 * @param $id
+	 * @param int $id
 	 * @return bool
 	 */
 	private function isUserMigrated( $id ) {
@@ -198,7 +198,7 @@ class MigrateUser extends Maintenance {
 
 	/**
 	 * @param IResultWrapper $wrapper
-	 * @param $key
+	 * @param string $key
 	 * @return array
 	 */
 	private function resultToArray( IResultWrapper $wrapper, $key ) {
