@@ -22,81 +22,75 @@ use League\OAuth2\Client\Provider\Facebook;
  * Class FacebookAuth
  * @package AuthenticationProvider
  */
-class FacebookAuth implements \AuthProvider
-{
-    /**
-     * @var Facebook
-     */
-    private $provider;
+class FacebookAuth implements \AuthProvider {
+	/**
+	 * @var Facebook
+	 */
+	private $provider;
 
-    /**
-     * FacebookAuth constructor.
-     */
-    public function __construct()
-    {
-        $this->provider = new Facebook([
-            'clientId' => $GLOBALS['wgOAuthClientId'],
-            'clientSecret' => $GLOBALS['wgOAuthClientSecret'],
-            'redirectUri' => $GLOBALS['wgOAuthRedirectUri'],
-            'graphApiVersion' => 'v6.0'
-        ]);
-    }
+	/**
+	 * FacebookAuth constructor.
+	 */
+	public function __construct() {
+		$this->provider = new Facebook( [
+			'clientId' => $GLOBALS['wgOAuthClientId'],
+			'clientSecret' => $GLOBALS['wgOAuthClientSecret'],
+			'redirectUri' => $GLOBALS['wgOAuthRedirectUri'],
+			'graphApiVersion' => 'v6.0'
+		] );
+	}
 
-    /**
-     * @inheritDoc
-     */
-    public function login(&$key, &$secret, &$auth_url)
-    {
-        $auth_url = $this->provider->getAuthorizationUrl([
-            'scope' => ['email']
-        ]);
+	/**
+	 * @inheritDoc
+	 */
+	public function login( &$key, &$secret, &$auth_url ) {
+		$auth_url = $this->provider->getAuthorizationUrl( [
+			'scope' => [ 'email' ]
+		] );
 
-        $secret = $this->provider->getState();
+		$secret = $this->provider->getState();
 
-        return true;
-    }
+		return true;
+	}
 
-    /**
-     * @inheritDoc
-     */
-    public function logout(\User &$user)
-    {
-    }
+	/**
+	 * @inheritDoc
+	 */
+	public function logout( \User &$user ) {
+	}
 
-    /**
-     * @inheritDoc
-     */
-    public function getUser($key, $secret, &$errorMessage)
-    {
-        if (!isset($_GET['code'])) {
-            return false;
-        }
+	/**
+	 * @inheritDoc
+	 */
+	public function getUser( $key, $secret, &$errorMessage ) {
+		if ( !isset( $_GET['code'] ) ) {
+			return false;
+		}
 
-        if (!isset($_GET['state']) || empty($_GET['state']) || ($_GET['state'] !== $secret)) {
-            return false;
-        }
+		if ( !isset( $_GET['state'] ) || empty( $_GET['state'] ) || ( $_GET['state'] !== $secret ) ) {
+			return false;
+		}
 
-        try {
-            $token = $this->provider->getAccessToken('authorization_code', [
-                'code' => $_GET['code']
-            ]);
+		try {
+			$token = $this->provider->getAccessToken( 'authorization_code', [
+				'code' => $_GET['code']
+			] );
 
-            $user = $this->provider->getResourceOwner($token);
+			$user = $this->provider->getResourceOwner( $token );
 
-            return [
-                'name' => $user->getId(),
-                'realname' => $user->getName(),
-                'email' => $user->getEmail()
-            ];
-        } catch(\Exception $e) {
-            return false;
-        }
-    }
+			return [
+				'name' => $user->getId(),
+				'realname' => $user->getName(),
+				'email' => $user->getEmail()
+			];
+		} catch ( \Exception $e ) {
+			return false;
+		}
+	}
 
-    /**
-     * @inheritDoc
-     */
-    public function saveExtraAttributes($id)
-    {
-    }
+	/**
+	 * @inheritDoc
+	 */
+	public function saveExtraAttributes( $id ) {
+	}
 }

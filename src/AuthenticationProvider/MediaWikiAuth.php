@@ -20,115 +20,108 @@ namespace AuthenticationProvider;
  * Class MediaWikiAuth
  * @package AuthenticationProvider
  */
-class MediaWikiAuth implements \AuthProvider
-{
-    /**
-     * @var \MediaWiki\OAuthClient\Client
-     */
-    private $client;
+class MediaWikiAuth implements \AuthProvider {
+	/**
+	 * @var \MediaWiki\OAuthClient\Client
+	 */
+	private $client;
 
-    public function __construct()
-    {
-        $this->client = MediaWikiAuth::createClient();
-    }
+	public function __construct() {
+		$this->client = self::createClient();
+	}
 
-    /**
-     * Log in the user through the external OAuth provider.
-     *
-     * @param $key
-     * @param $secret
-     * @param $auth_url
-     * @return boolean Returns true on successful login, false otherwise.
-     * @internal
-     */
-    public function login(&$key, &$secret, &$auth_url)
-    {
-        try {
-            list($auth_url, $token) = $this->client->initiate();
+	/**
+	 * Log in the user through the external OAuth provider.
+	 *
+	 * @param &$key
+	 * @param &$secret
+	 * @param &$auth_url
+	 * @return bool Returns true on successful login, false otherwise.
+	 * @internal
+	 */
+	public function login( &$key, &$secret, &$auth_url ) {
+		try {
+			list( $auth_url, $token ) = $this->client->initiate();
 
-            $key = $token->key;
-            $secret = $token->secret;
+			$key = $token->key;
+			$secret = $token->secret;
 
-            return true;
-        } catch (\MediaWiki\OAuthClient\Exception $e) {
-            wfDebugLog("WSOAuth", $e->getMessage());
-            return false;
-        }
-    }
+			return true;
+		} catch ( \MediaWiki\OAuthClient\Exception $e ) {
+			wfDebugLog( "WSOAuth", $e->getMessage() );
+			return false;
+		}
+	}
 
-    /**
-     * Log out the user and destroy the session.
-     *
-     * @param \User $user The currently logged in user (i.e. the user that will be logged out).
-     * @return void
-     * @internal
-     */
-    public function logout(\User &$user)
-    {
-    }
+	/**
+	 * Log out the user and destroy the session.
+	 *
+	 * @param \User &$user The currently logged in user (i.e. the user that will be logged out).
+	 * @return void
+	 * @internal
+	 */
+	public function logout( \User &$user ) {
+	}
 
-    /**
-     * Get user info from session. Returns false when the request failed or the user is not authorised.
-     *
-     * @param $key
-     * @param $secret
-     * @param string $errorMessage Message shown to the user when there is an error.
-     * @return boolean|array Returns an array with at least a 'name' when the user is authenticated, returns false when the user is not authorised or the authentication failed.
-     * @internal
-     */
-    public function getUser($key, $secret, &$errorMessage)
-    {
-        if (!isset($_GET['oauth_verifier'])) {
-            return false;
-        }
+	/**
+	 * Get user info from session. Returns false when the request failed or the user is not authorised.
+	 *
+	 * @param $key
+	 * @param $secret
+	 * @param string &$errorMessage Message shown to the user when there is an error.
+	 * @return bool|array Returns an array with at least a 'name' when the user is authenticated, returns false when the user is not authorised or the authentication failed.
+	 * @internal
+	 */
+	public function getUser( $key, $secret, &$errorMessage ) {
+		if ( !isset( $_GET['oauth_verifier'] ) ) {
+			return false;
+		}
 
-        try {
-            $request_token = new \MediaWiki\OAuthClient\Token($key, $secret);
-            $access_token = $this->client->complete($request_token, $_GET['oauth_verifier']);
+		try {
+			$request_token = new \MediaWiki\OAuthClient\Token( $key, $secret );
+			$access_token = $this->client->complete( $request_token, $_GET['oauth_verifier'] );
 
-            $access_token = new \MediaWiki\OAuthClient\Token($access_token->key, $access_token->secret);
-            $identity = $this->client->identify($access_token);
+			$access_token = new \MediaWiki\OAuthClient\Token( $access_token->key, $access_token->secret );
+			$identity = $this->client->identify( $access_token );
 
-            return [
-                "name" => $identity->username
-            ];
-        } catch (\Exception $e) {
-            return false;
-        }
-    }
+			return [
+				"name" => $identity->username
+			];
+		} catch ( \Exception $e ) {
+			return false;
+		}
+	}
 
-    /**
-     * Gets called whenever a user is successfully authenticated, so extra attributes about the user can be saved.
-     *
-     * @param int $id The ID of the User.
-     * @return void
-     * @internal
-     */
-    public function saveExtraAttributes($id)
-    {
-    }
+	/**
+	 * Gets called whenever a user is successfully authenticated, so extra attributes about the user can be saved.
+	 *
+	 * @param int $id The ID of the User.
+	 * @return void
+	 * @internal
+	 */
+	public function saveExtraAttributes( $id ) {
+	}
 
-    /**
-     * @return \MediaWiki\OAuthClient\Client
-     */
-    public static function createClient()
-    {
-        $conf = new \MediaWiki\OAuthClient\ClientConfig($GLOBALS['wgOAuthUri']);
-        $conf->setConsumer(
-            new \MediaWiki\OAuthClient\Consumer(
-                $GLOBALS['wgOAuthClientId'],
-                $GLOBALS['wgOAuthClientSecret']
-            )
-        );
-        $conf->setRedirUrl($conf->endpointURL . "/authenticate&");
+	/**
+	 * @return \MediaWiki\OAuthClient\Client
+	 */
+	public static function createClient() {
+		$conf = new \MediaWiki\OAuthClient\ClientConfig( $GLOBALS['wgOAuthUri'] );
+		$conf->setConsumer(
+			new \MediaWiki\OAuthClient\Consumer(
+				$GLOBALS['wgOAuthClientId'],
+				$GLOBALS['wgOAuthClientSecret']
+			)
+		);
+		$conf->setRedirUrl( $conf->endpointURL . "/authenticate&" );
 
-        $client = new \MediaWiki\OAuthClient\Client($conf);
+		$client = new \MediaWiki\OAuthClient\Client( $conf );
 
-        $callback = $GLOBALS['wgOAuthRedirectUri'];
-        if ( $callback ) {
-            $client->setCallback( $callback );
-        }
+		$callback = $GLOBALS['wgOAuthRedirectUri'];
+		if ( $callback ) {
+			$client->setCallback( $callback );
+		}
 
-        return $client;
-    }
+		return $client;
+	}
 }

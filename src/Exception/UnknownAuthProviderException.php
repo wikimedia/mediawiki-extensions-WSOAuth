@@ -22,6 +22,5 @@ namespace Exception;
  * @newable
  * @throwable
  */
-class UnknownAuthProviderException extends \Exception
-{
+class UnknownAuthProviderException extends \Exception {
 }

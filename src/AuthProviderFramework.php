@@ -18,68 +18,63 @@
  * Class AuthProviderSessionFramework
  * @stable for subclassing
  */
-abstract class AuthProviderFramework extends PluggableAuth
-{
-    private $session;
+abstract class AuthProviderFramework extends PluggableAuth {
 
-    /**
-     * AuthProviderSessionFramework constructor.
-     * @internal
-     */
-    public function __construct()
-    {
-        $session_manager = \MediaWiki\Session\SessionManager::singleton();
-        $this->session = $session_manager->getGlobalSession();
-    }
+	/** @var Session */
+	private $session;
 
-    /**
-     * Exposes the set() method from MediaWiki\Session\Session.
-     *
-     * @param $key
-     * @param $value
-     */
-    protected function setSessionVariable($key, $value)
-    {
-        $this->session->set($key, $value);
-    }
+	/**
+	 * AuthProviderSessionFramework constructor.
+	 * @internal
+	 */
+	public function __construct() {
+		$session_manager = \MediaWiki\Session\SessionManager::singleton();
+		$this->session = $session_manager->getGlobalSession();
+	}
 
-    /**
-     * Exposes the remove() method from MediaWiki\Session\Session.
-     *
-     * @param $key
-     */
-    protected function removeSessionVariable($key)
-    {
-        $this->session->remove($key);
-    }
+	/**
+	 * Exposes the set() method from MediaWiki\Session\Session.
+	 *
+	 * @param $key
+	 * @param $value
+	 */
+	protected function setSessionVariable( $key, $value ) {
+		$this->session->set( $key, $value );
+	}
 
-    /**
-     * Exposes the get() method from MediaWiki\Session\Session.
-     *
-     * @param $key
-     * @return null|string
-     */
-    protected function getSessionVariable($key)
-    {
-        return $this->session->get($key);
-    }
+	/**
+	 * Exposes the remove() method from MediaWiki\Session\Session.
+	 *
+	 * @param $key
+	 */
+	protected function removeSessionVariable( $key ) {
+		$this->session->remove( $key );
+	}
 
-    /**
-     * Exposes the exists() method from MediaWiki\Session\Session.
-     *
-     * @param $key
-     * @return bool
-     */
-    protected function doesSessionVariableExist($key)
-    {
-        return $this->session->exists($key);
-    }
+	/**
+	 * Exposes the get() method from MediaWiki\Session\Session.
+	 *
+	 * @param $key
+	 * @return null|string
+	 */
+	protected function getSessionVariable( $key ) {
+		return $this->session->get( $key );
+	}
 
-    /**
-     * Exposes the save() method from MediaWiki\Session\Session.
-     */
-    protected function saveSession()
-    {
-        $this->session->save();
-    }
+	/**
+	 * Exposes the exists() method from MediaWiki\Session\Session.
+	 *
+	 * @param $key
+	 * @return bool
+	 */
+	protected function doesSessionVariableExist( $key ) {
+		return $this->session->exists( $key );
+	}
+
+	/**
+	 * Exposes the save() method from MediaWiki\Session\Session.
+	 */
+	protected function saveSession() {
+		$this->session->save();
+	}
 }

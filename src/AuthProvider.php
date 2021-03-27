@@ -18,45 +18,44 @@
  * Interface AuthProvider
  * @stable for implementation
  */
-interface AuthProvider
-{
-    /**
-     * Log in the user through the external OAuth provider.
-     *
-     * @param $key string The consumer key returned by the OAuth provider. May be left empty.
-     * @param $secret string The consumer secret returned by the OAuth provider. May be left empty.
-     * @param $auth_url string The URL the user must be redirected to. Must not be left empty.
-     * @return boolean Returns true on successful login, false otherwise.
-     * @internal
-     */
-    public function login(&$key, &$secret, &$auth_url);
+interface AuthProvider {
+	/**
+	 * Log in the user through the external OAuth provider.
+	 *
+	 * @param &$key string The consumer key returned by the OAuth provider. May be left empty.
+	 * @param &$secret string The consumer secret returned by the OAuth provider. May be left empty.
+	 * @param &$auth_url string The URL the user must be redirected to. Must not be left empty.
+	 * @return boolean Returns true on successful login, false otherwise.
+	 * @internal
+	 */
+	public function login( &$key, &$secret, &$auth_url );
 
-    /**
-     * Log out the user and destroy the session.
-     *
-     * @param \User $user
-     * @return void
-     * @internal
-     */
-    public function logout(\User &$user);
+	/**
+	 * Log out the user and destroy the session.
+	 *
+	 * @param \User &$user
+	 * @return void
+	 * @internal
+	 */
+	public function logout( \User &$user );
 
-    /**
-     * Get user info from session. Returns false when the request failed or the user is not authorised.
-     *
-     * @param $key string The consumer key set during login().
-     * @param $secret string The consumer secret set during login().
-     * @param string $errorMessage Message shown to the user when there is an error.
-     * @return boolean|array Returns an array with at least a 'name' when the user is authenticated, returns false when the user is not authorised or the authentication failed.
-     * @internal
-     */
-    public function getUser($key, $secret, &$errorMessage);
+	/**
+	 * Get user info from session. Returns false when the request failed or the user is not authorised.
+	 *
+	 * @param $key string The consumer key set during login().
+	 * @param $secret string The consumer secret set during login().
+	 * @param string &$errorMessage Message shown to the user when there is an error.
+	 * @return boolean|array Returns an array with at least a 'name' when the user is authenticated, returns false when the user is not authorised or the authentication failed.
+	 * @internal
+	 */
+	public function getUser( $key, $secret, &$errorMessage );
 
-    /**
-     * Gets called whenever a user is successfully authenticated, so extra attributes about the user can be saved.
-     *
-     * @param int $id The ID of the User
-     * @return void
-     * @internal
-     */
-    public function saveExtraAttributes($id);
+	/**
+	 * Gets called whenever a user is successfully authenticated, so extra attributes about the user can be saved.
+	 *
+	 * @param int $id The ID of the User
+	 * @return void
+	 * @internal
+	 */
+	public function saveExtraAttributes( $id );
 }
