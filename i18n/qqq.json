@@ -25,5 +25,16 @@
 	"wsoauth-initiate-login-failure": "Message shown to the user when the communication to the OAuth-provider could not be initialised.",
 	"wsoauth-migrate-users-by-username-desc": "The description of the configuration parameter that defines whether ot not to allow account usurpation by username.",
 	"wsoauth-user-already-exists-message": "Message shown to the user if the username they are trying to register has already been taken and account usurpation is turned off.",
-	"wsoauth-not-configured-message": "Message shown to the user if the wiki is not configured for remote login."
+	"wsoauth-not-configured-message": "Message shown to the user if the wiki is not configured for remote login.",
+	"wsoauth-disallow-remote-only-accounts": "The description of the configuration parameter that defines whether or not to allow remote accounts without a local counterpart.",
+	"wsoauth-already-logged-in-through-remote": "Message shown to the user if they are already logged in through a remote or migrated account.",
+	"wsoauth-account-already-coupled": "Message shown to the user if they have already connected their local account to a remote account.",
+	"wsoauth-remote-only-accounts-disabled": "Message shown to the user if remote-only login has been disabled on this wiki.",
+	"wsoauth-remote-already-used": "Message shown to the user if their remote account has already been connected to a local account.",
+	"wsoauth-prefs-manage-remote": "Key shown on 'Basic information' section on Special:Preferences.",
+	"wsoauth-connect-remote": "Button text on Special:Preferences to connect their account to a remote.",
+	"wsoauth-remote-connected": "Text shown on Special:Preferences when the user has already connected a remote account.",
+	"wsoauth-connect-remote-special-page-header": "Title of the special page to connect your existing account to a remote account (Special:WSOAuthConnectRemote).",
+	"wsoauth-connect-remote-special-page-description": "Description shown on the remote sign-in form.",
+	"wsoauth-connect-remote-special-page-wrapper-legend": "Title shown on the form to connect your existing account to a remote account."
 }

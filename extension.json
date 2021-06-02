@@ -1,6 +1,6 @@
 {
 	"name": "WSOAuth",
-	"version": "4.1",
+	"version": "5.0",
 	"namemsg": "wsoauth-extensionname",
 	"url": "https://www.mediawiki.org/wiki/Extension:WSOAuth",
 	"type": "other",
@@ -21,10 +21,14 @@
 			"i18n"
 		]
 	},
+	"ExtensionMessagesFiles": {
+		"WSOAuthAlias": "WSOAuth.i18n.alias.php"
+	},
 	"AutoloadClasses": {
 		"WSOAuth": "src/WSOAuth.php",
 		"AuthProviderFramework": "src/AuthProviderFramework.php",
-		"AuthProvider": "src/AuthProvider.php"
+		"AuthProvider": "src/AuthProvider.php",
+		"WSOAuthConnectRemoteSpecialPage": "src/WSOAuthConnectRemoteSpecialPage.php"
 	},
 	"AutoloadNamespaces": {
 		"AuthenticationProvider\\": "src/AuthenticationProvider/",
@@ -32,7 +36,8 @@
 	},
 	"Hooks": {
 		"PluggableAuthPopulateGroups": "WSOAuth::onPluggableAuthPopulateGroups",
-		"LoadExtensionSchemaUpdates": "WSOAuth::onLoadExtensionSchemaUpdates"
+		"LoadExtensionSchemaUpdates": "WSOAuth::onLoadExtensionSchemaUpdates",
+		"GetPreferences": "WSOAuth::onGetPreferences"
 	},
 	"config": {
 		"PluggableAuth_Class": {
@@ -74,7 +79,14 @@
 		"OAuthMigrateUsersByUsername": {
 			"value": false,
 			"descriptionmsg": "wsoauth-migrate-users-by-username-desc"
+		},
+		"OAuthDisallowRemoteOnlyAccounts": {
+			"value": false,
+			"descriptionmsg": "wsoauth-disallow-remote-only-accounts"
 		}
+	},
+	"SpecialPages": {
+		"WSOAuthConnectRemote": "WSOAuthConnectRemoteSpecialPage"
 	},
 	"load_composer_autoloader": true,
 	"manifest_version": 2

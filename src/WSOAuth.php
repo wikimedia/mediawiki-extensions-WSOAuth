@@ -19,6 +19,7 @@ use AuthenticationProvider\MediaWikiAuth;
 use Exception\InvalidAuthProviderClassException;
 use Exception\UnknownAuthProviderException;
 use MediaWiki\MediaWikiServices;
+use OOUI\ButtonWidget;
 
 /**
  * Class WSOAuth
@@ -79,14 +80,12 @@ class WSOAuth extends AuthProviderFramework {
 
 			// Request failed or user is not authorised.
 			if ( $user_info === false || $hook === false ) {
-				$errorMessage = !empty( $errorMessage ) ? $errorMessage : wfMessage( 'wsoauth-authentication-failure' )->plain();
+				$errorMessage = !empty( $errorMessage ) ? $errorMessage : wfMessage( 'wsoauth-authentication-failure' )->parse();
 				return false;
 			}
 
-			$user_info['name'] = ucfirst( $user_info['name'] );
-
 			if ( !isset( $user_info['name'] ) ) {
-				$errorMessage = wfMessage( 'wsoauth-invalid-username' )->plain();
+				$errorMessage = wfMessage( 'wsoauth-invalid-username' )->parse();
 				return false;
 			}
 
@@ -98,38 +97,128 @@ class WSOAuth extends AuthProviderFramework {
 				$isValidUsername = User::isValidUserName( $user_info['name'] );
 			}
 			if ( !$isValidUsername ) {
-				$errorMessage = wfMessage( 'wsoauth-invalid-username' )->plain();
+				$errorMessage = wfMessage( 'wsoauth-invalid-username' )->parse();
 				return false;
 			}
 
-			// Required.
-			$username = $user_info['name'];
+			// Already set the "realname" and "email", so we do not need to worry about that later
 			$realname = isset( $user_info['realname'] ) ? $user_info['realname'] : '';
 			$email = isset( $user_info['email'] ) ? $user_info['email'] : '';
 
-			$user = User::newFromName( $username );
-			$user_id = $user->idForName();
+			$remote_user_name = ucfirst( $user_info['name'] );
 
-			$id = $user_id === 0 ? null : $user_id;
+			$current_user = RequestContext::getMain()->getUser();
+			$mapped_local_id = $this->getLocalAccountID( $user_info['name'] );
 
-			if ( $user_id !== null && $user_id > 0 && !$this->userLoggedInThroughOAuth( $user_id ) ) {
-				// The user exists and has not logged in through OAuth
-				if ( $GLOBALS['wgOAuthMigrateUsersByUsername'] === false ) {
-					$errorMessage = wfMessage( 'wsoauth-user-already-exists-message', $username )->plain();
+			if ( $mapped_local_id !== false && $current_user->isAnon() ) {
+				// Case 1: No user is currently logged in locally, and a mapping is available from the remote
+				// user to a user on the wiki
+				$remote_user_object = User::newFromId( $mapped_local_id );
+
+				// Set the required "username" and "id" attributes for PluggableAuth
+				$username = $remote_user_object->getName();
+				$id = $mapped_local_id;
+
+				// Tell PluggableAuth the login succeeded
+				return true;
+			} elseif ( $mapped_local_id !== false && !$current_user->isAnon() ) {
+				// Case 2: A user is currently logged in locally, and a mapping is available from the remote
+				// user to a user on the wiki, and that mapping is not
+				$errorMessage = wfMessage( "wsoauth-remote-already-used", $remote_user_name )->parse();
+
+				// Tell PluggableAuth the login failed
+				return false;
+			} elseif ( $mapped_local_id === false && $current_user->isAnon() ) {
+				// Case 3: No user is currently logged in locally, and no mapping is available
+				if ( $GLOBALS['wgOAuthDisallowRemoteOnlyAccounts'] === true ) {
+					// Block the login, since remote-only accounts are disabled
+					$errorMessage = wfMessage( "wsoauth-remote-only-accounts-disabled" )->parse();
+
+					// Tell PluggableAuth the login failed
 					return false;
 				}
 
-				// Usurp the account
-				$this->saveExtraAttributes( $user_id );
+				// Regular account usurpation should be used
+
+				$user = User::newFromName( $remote_user_name );
+				$user_id = $user->idForName();
+
+				if ( !$this->userLoggedInThroughOAuth( $user_id ) ) {
+					// The user has not logged in through OAuth before
+
+					if ( $GLOBALS['wgOAuthMigrateUsersByUsername'] === false ) {
+						// Automatic remote-only account usurpation is disabled
+
+						$errorMessage = wfMessage(
+							'wsoauth-user-already-exists-message',
+							$remote_user_name
+						)->parse();
+
+						// Tell PluggableAuth the login failed
+						return false;
+					}
+
+					// Usurp the account
+					$this->saveExtraAttributes( $user_id );
+				}
+
+				// Set the required "username" and "id" attributes for PluggableAuth
+				$username = $remote_user_name;
+				$id = $user_id === 0 ? null : $user_id;
+
+				// Tell PluggableAuth the login succeeded
+				return true;
+			} elseif ( $mapped_local_id === false && !$current_user->isAnon() ) {
+				// Case 4: A user is currently logged in locally, and no mapping is available
+
+				$current_user_id = $current_user->getId();
+
+				if ( $this->getMappedAccountName( $current_user_id ) !== false ) {
+					// The user already has a different remote account coupled
+					$errorMessage = wfMessage( "wsoauth-account-already-coupled" )->parse();
+
+					// Tell PluggableAuth the login failed
+					return false;
+				}
+
+				if ( $this->userLoggedInThroughOAuth( $current_user_id ) ) {
+					// The current user has already logged in through OAuth
+					$errorMessage = wfMessage( "wsoauth-already-logged-in-through-remote" )->parse();
+
+					// Tell PluggableAuth the login failed
+					return false;
+				}
+
+				// A mapping should be created. Please note that if the remote account name and the local account
+				// name are the same, a mapping is not really needed, but we still create one for simplicity.
+
+				// If we reach this code, it means that no mapping exists from the remote account name to a local
+				// user ID (or the other way around), and a user is currently logged in that is trying to usurp
+				// the remote account
+
+				// Usurp the account like normal
+				$this->saveExtraAttributes( $current_user_id );
+
+				// Create a mapping so WSOAuth knows that this remote belongs to the currently logged-in user
+				$this->createMapping( $current_user_id, $remote_user_name );
+
+				// Log the account in like normal
+				$username = $current_user->getName();
+				$id = $current_user_id;
+
+				// Tell PluggableAuth the login succeeded
+				return true;
 			}
 
-			return true;
+			// All cases should be covered here, but to be save, return false
+			$errorMessage = wfMessage( "wsoauth-authentication-failure" )->parse();
+			return false;
 		}
 
 		$result = $this->auth_provider->login( $key, $secret, $auth_url );
 
 		if ( $result === false || empty( $auth_url ) ) {
-			$errorMessage = wfMessage( 'wsoauth-initiate-login-failure' )->plain();
+			$errorMessage = wfMessage( 'wsoauth-initiate-login-failure' )->parse();
 			return false;
 		}
 
@@ -145,8 +234,7 @@ class WSOAuth extends AuthProviderFramework {
 	/**
 	 * @param User &$user
 	 * @return void
-	 * @throws FatalError
-	 * @throws MWException
+	 * @throws Exception
 	 * @internal
 	 */
 	public function deauthenticate( User &$user ) {
@@ -169,30 +257,27 @@ class WSOAuth extends AuthProviderFramework {
 	}
 
 	/**
-	 * Returns true if and only if the given ID exists in the table `wsoauth_users`.
+	 * Creates a mapping from the given remote user name to the given local user ID.
 	 *
-	 * @param int $id
-	 * @return bool Whether or not this user was registered by WSOAuth.
-	 * @throws MWException
+	 * @param int $current_user_id
+	 * @param string $remote_user_name
 	 */
-	private function userLoggedInThroughOAuth( $id ) {
-		if ( !is_int( $id ) ) { throw new MWException( "Given user ID is not an integer." );
-		}
-
-		$dbr = wfGetDB( DB_REPLICA );
-		return $dbr->numRows( $dbr->select(
-			'wsoauth_users',
-			[ 'wsoauth_user' ],
-			'wsoauth_user = ' . $id
-		) ) === 1;
+	private function createMapping( $current_user_id, $remote_user_name ) {
+		$dbr = wfGetDB( DB_MASTER );
+		$dbr->insert(
+			'wsoauth_mappings',
+			[
+				'wsoauth_user' => $current_user_id,
+				'wsoauth_remote_name' => $remote_user_name
+			],
+			__METHOD__
+		);
 	}
 
 	/**
 	 * Returns an instance of the configured auth provider.
 	 *
 	 * @return AuthProvider
-	 * @throws FatalError
-	 * @throws MWException
 	 * @throws InvalidAuthProviderClassException
 	 * @throws UnknownAuthProviderException
 	 * @internal
@@ -202,15 +287,15 @@ class WSOAuth extends AuthProviderFramework {
 		$auth_provider = $GLOBALS['wgOAuthAuthProvider'];
 
 		if ( !isset( $auth_providers[$auth_provider] ) ) {
-			throw new Exception\UnknownAuthProviderException( wfMessage( 'wsoauth-unknown-auth-provider-exception-message' )->params( $auth_provider )->plain() );
+			throw new Exception\UnknownAuthProviderException( wfMessage( 'wsoauth-unknown-auth-provider-exception-message' )->params( $auth_provider )->parse() );
 		}
 
 		if ( !class_exists( $auth_providers[$auth_provider] ) ) {
-			throw new Exception\InvalidAuthProviderClassException( wfMessage( 'wsoauth-unknown-auth-provider-class-exception-message' )->plain() );
+			throw new Exception\InvalidAuthProviderClassException( wfMessage( 'wsoauth-unknown-auth-provider-class-exception-message' )->parse() );
 		}
 
 		if ( !class_implements( $auth_providers[$auth_provider] ) ) {
-			throw new Exception\InvalidAuthProviderClassException( wfMessage( 'wsoauth-invalid-auth-provider-class-exception-message' )->plain() );
+			throw new Exception\InvalidAuthProviderClassException( wfMessage( 'wsoauth-invalid-auth-provider-class-exception-message' )->parse() );
 		}
 
 		return new $auth_providers[$auth_provider]();
@@ -220,8 +305,7 @@ class WSOAuth extends AuthProviderFramework {
 	 * Returns the list of available auth providers.
 	 *
 	 * @return array
-	 * @throws FatalError
-	 * @throws MWException
+	 * @throws Exception
 	 */
 	public static function getAuthProviders() {
 		$auth_providers = self::DEFAULT_AUTH_PROVIDERS;
@@ -235,8 +319,7 @@ class WSOAuth extends AuthProviderFramework {
 	 *
 	 * @param User $user
 	 * @return bool
-	 * @throws FatalError
-	 * @throws MWException
+	 * @throws Exception
 	 * @internal
 	 */
 	public static function onPluggableAuthPopulateGroups( User $user ) {
@@ -270,12 +353,126 @@ class WSOAuth extends AuthProviderFramework {
 	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater ) {
 		$directory = $GLOBALS['wgExtensionDirectory'] . '/WSOAuth/sql';
 		$type = $updater->getDB()->getType();
-		$sql_file = sprintf( "%s/%s/table_wsoauth_users.sql", $directory, $type );
 
-		if ( !file_exists( $sql_file ) ) {
+		$wsoauth_users_sql_file = sprintf( "%s/%s/table_wsoauth_users.sql", $directory, $type );
+		$wsoauth_mappings_sql_file = sprintf( "%s/%s/table_wsoauth_mappings.sql", $directory, $type );
+
+		if ( !file_exists( $wsoauth_users_sql_file ) || !file_exists( $wsoauth_mappings_sql_file ) ) {
 			throw new MWException( "WSOAuth does not support database type `$type`." );
 		}
 
-		$updater->addExtensionTable( 'wsoauth_users', $sql_file );
+		$updater->addExtensionTable( 'wsoauth_users', $wsoauth_users_sql_file );
+		$updater->addExtensionTable( 'wsoauth_mappings', $wsoauth_mappings_sql_file );
+	}
+
+	/**
+	 * Returns true if and only if the given ID exists in the table `wsoauth_users`.
+	 *
+	 * @param int $id
+	 * @return bool Whether or not this user was registered by WSOAuth.
+	 * @throws MWException
+	 * @internal
+	 */
+	public static function userLoggedInThroughOAuth( $id ) {
+		if ( !is_int( $id ) ) {
+			throw new MWException( "Given user ID is not an integer." );
+		}
+
+		$dbr = wfGetDB( DB_REPLICA );
+		return $dbr->selectRowCount(
+			'wsoauth_users',
+			[ 'wsoauth_user' ],
+			[ 'wsoauth_user' => $id ],
+			__METHOD__
+		) === 1;
+	}
+
+	/**
+	 * Modify user preferences.
+	 *
+	 * @param User $user
+	 * @param array &$preferences
+	 * @return bool
+	 * @throws MWException
+	 */
+	public static function onGetPreferences( User $user, &$preferences ) {
+		$user_id = $user->getId();
+
+		if ( self::userLoggedInThroughOAuth( $user_id ) ) {
+			$remote_account_name = self::getMappedAccountName( $user->getId() ) ?: $user->getName();
+			$preferences_default = wfMessage( "wsoauth-remote-connected", $remote_account_name )->parse();
+		} else {
+			RequestContext::getMain()->getOutput()->enableOOUI();
+			$preferences_default = new ButtonWidget( [
+				'href' => SpecialPage::getTitleFor( 'WSOAuthConnectRemote' )->getLinkURL(),
+				'label' => wfMessage( 'wsoauth-connect-remote' )->plain()
+			] );
+		}
+
+		$preferences += [ 'wsoauth-prefs-manage-remote' =>
+			[
+				'section' => 'personal/info',
+				'label-message' => 'wsoauth-prefs-manage-remote',
+				'type' => 'info',
+				'raw' => true,
+				'default' => (string)$preferences_default
+			],
+		];
+
+		return true;
+	}
+
+	/**
+	 * Returns the ID of the local account or false if the user has no mapping.
+	 *
+	 * @param string $name
+	 * @return int|false
+	 * @throws MWException
+	 */
+	private static function getLocalAccountID( $name ) {
+		if ( !is_string( $name ) ) {
+			throw new MWException( "Given username is not a string." );
+		}
+
+		$dbr = wfGetDB( DB_REPLICA );
+		$results = $dbr->select(
+			'wsoauth_mappings',
+			[ 'wsoauth_user' ],
+			[ 'wsoauth_remote_name' => $name ],
+			__METHOD__
+		);
+
+		if ( $results->numRows() === 0 ) {
+			return false;
+		}
+
+		return $results->current()->wsoauth_user;
+	}
+
+	/**
+	 * Returns the name of the remote account or false if the user has no mapping.
+	 *
+	 * @param int $id
+	 * @return string|false
+	 * @throws MWException
+	 */
+	private static function getMappedAccountName( $id ) {
+		if ( !is_int( $id ) ) {
+			throw new MWException( "Given user ID is not an integer." );
+		}
+
+		$dbr = wfGetDB( DB_REPLICA );
+		$results = $dbr->select(
+			'wsoauth_mappings',
+			[ 'wsoauth_remote_name' ],
+			[ 'wsoauth_user' => $id ],
+			__METHOD__
+		);
+
+		if ( $results->numRows() === 0 ) {
+			return false;
+		}
+
+		return $results->current()->wsoauth_remote_name;
 	}
 }
