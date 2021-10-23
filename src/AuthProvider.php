@@ -45,7 +45,7 @@ interface AuthProvider {
 	 * @param string $key The consumer key set during login().
 	 * @param string $secret The consumer secret set during login().
 	 * @param string &$errorMessage Message shown to the user when there is an error.
-	 * @return boolean|array Returns an array with at least a 'name' when the user is authenticated, returns false when the user is not authorised or the authentication failed.
+	 * @return bool|array Returns an array with at least a 'name' when the user is authenticated, returns false when the user is not authorised or the authentication failed.
 	 * @internal
 	 */
 	public function getUser( $key, $secret, &$errorMessage );
