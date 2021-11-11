@@ -250,11 +250,26 @@ class WSOAuth extends AuthProviderFramework {
 			return false;
 		}
 
+		if ( method_exists( MediaWikiServices::class, 'getUserGroupManager' ) ) {
+			// MW 1.35+
+			$effectiveGroups = MediaWikiServices::getInstance()->getUserGroupManager()
+				->getUserEffectiveGroups( $user );
+		} else {
+			$effectiveGroups = $user->getEffectiveGroups();
+		}
 		// Subtract the groups the user already has from the list of groups to populate.
-		$populate_groups = array_diff( (array)$GLOBALS['wgOAuthAutoPopulateGroups'], $user->getEffectiveGroups() );
+		$populate_groups = array_diff( (array)$GLOBALS['wgOAuthAutoPopulateGroups'], $effectiveGroups );
 
-		foreach ( $populate_groups as $populate_group ) {
-			$user->addGroup( $populate_group );
+		if ( method_exists( MediaWikiServices::class, 'getUserGroupManager' ) ) {
+			// MW 1.35+
+			$userGroupManager = MediaWikiServices::getInstance()->getUserGroupManager();
+			foreach ( $populate_groups as $populate_group ) {
+				$userGroupManager->addUserToGroup( $user, $populate_group );
+			}
+		} else {
+			foreach ( $populate_groups as $populate_group ) {
+				$user->addGroup( $populate_group );
+			}
 		}
 
 		return true;
