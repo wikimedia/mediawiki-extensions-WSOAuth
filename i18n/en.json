@@ -24,5 +24,16 @@
 	"wsoauth-initiate-login-failure": "Unable to initiate communication with OAuth provider.",
 	"wsoauth-migrate-users-by-username-desc": "Whether or not to allow usurpation of existing accounts by username.",
 	"wsoauth-user-already-exists-message": "The username \"$1\" is already taken.",
-	"wsoauth-not-configured-message": "Remote login has not been configured for this wiki. Please try a different authentication method."
+	"wsoauth-not-configured-message": "Remote login has not been configured for this wiki. Please try a different authentication method.",
+	"wsoauth-disallow-remote-only-accounts": "Whether or not to allow accounts to not have a local counterpart.",
+	"wsoauth-already-logged-in-through-remote": "You are already logged in through a remote or migrated account. You cannot connect a remote account to this account. If you want to log in using another remote, please log out and log in using the other account.",
+	"wsoauth-account-already-coupled": "You have already connected this local account to a remote account.",
+	"wsoauth-remote-only-accounts-disabled": "Remote-only login has been disabled on this wiki. A remote account must be connected to a local account.",
+	"wsoauth-remote-already-used": "The remote account \"$1\" is already connected to a (different) local account.",
+	"wsoauth-prefs-manage-remote": "Remote account:",
+	"wsoauth-connect-remote": "Connect a remote account",
+	"wsoauth-remote-connected": "Connected to remote account \"$1\"",
+	"wsoauth-connect-remote-special-page-header": "Enable remote sign-in",
+	"wsoauth-connect-remote-special-page-description": "You can activate remote sign-in by clicking the button below. After you have activated remote sign-in, you can use the remote service to sign in to this wiki. Your local credentials will remain valid.",
+	"wsoauth-connect-remote-special-page-wrapper-legend": "Enable remote sign-in"
 }
