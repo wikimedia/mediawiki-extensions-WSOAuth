@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"מקף"
+		]
+	},
+	"wsoauth-account-already-coupled": "כבר קישרת את החשבון המקומי לחשבון המרוחק.",
+	"wsoauth-connect-remote": "חבר חשבון מרוחק"
+}
