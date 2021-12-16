@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
+			"Nike",
 			"Pyscowicz"
 		]
 	},
-	"wsoauth-pluggable-auth-button-label-message": "Kirjaudu sisään OAuth:n avulla"
+	"wsoauth-pluggable-auth-button-label-message": "Kirjaudu sisään OAuth:n avulla",
+	"wsoauth-connect-remote": "Yhdistä etätunnukseen"
 }

@@ -27,5 +27,16 @@
 	"wsoauth-initiate-login-failure": "Impossible d’initialiser la communication avec le fournisseur OAuth.",
 	"wsoauth-migrate-users-by-username-desc": "S’il faut ou non permettre l’usurpation de comptes existants par nom d’utilisateur.",
 	"wsoauth-user-already-exists-message": "Le nom d’utilisateur « $1 » est déjà pris.",
-	"wsoauth-not-configured-message": "La connexion à distance n’a pas été configurée pour ce wiki. Veuillez essayer une méthode d’authentification différente."
+	"wsoauth-not-configured-message": "La connexion à distance n’a pas été configurée pour ce wiki. Veuillez essayer une méthode d’authentification différente.",
+	"wsoauth-disallow-remote-only-accounts": "S’il faut ou non autoriser les comptes à ne pas avoir de contrepartie locale.",
+	"wsoauth-already-logged-in-through-remote": "Vous êtes déjà connecté via un compte distant ou migré. Vous ne pouvez pas connecter un compte distant pour ce compte. Si vous voulez vous connecter en utilisant un autre compte distant, veuillez vous déconnecter et vous reconnecter en utilisant l’autre compte.",
+	"wsoauth-account-already-coupled": "Vous avez déjà connecté ce compte local à un compte distant.",
+	"wsoauth-remote-only-accounts-disabled": "La connexion à distance seulement a été désactivée sur ce wiki. Un compte distant doit être connecté à un compte local.",
+	"wsoauth-remote-already-used": "Le compte distant « $1 » est déjà connecté à un compte local (différent).",
+	"wsoauth-prefs-manage-remote": "Compte distant :",
+	"wsoauth-connect-remote": "Connecter un compte distant",
+	"wsoauth-remote-connected": "Connecté au compte distant « $1 »",
+	"wsoauth-connect-remote-special-page-header": "Activer la connexion à distance",
+	"wsoauth-connect-remote-special-page-description": "Vous pouvez activer la connexion à distance en cliquant sur le bouton ci-dessous. Une fois cela fait, vous pourrez utiliser le service à distance pour vous connecter à ce wiki. Vos identifiants locaux demeureront valides.",
+	"wsoauth-connect-remote-special-page-wrapper-legend": "Activer la connexion à distance"
 }
