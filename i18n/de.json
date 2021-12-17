@@ -9,6 +9,7 @@
 	"wsoauth-extensionname": "WSOAuth",
 	"wsoauth-desc": "Erweitert die PluggableAuth-Erweiterung, um die Authentifizierung mit OAuth bereitzustellen.",
 	"wsoauth-pluggable-auth-class-desc": "Der Klassenname, der PluggableAuth erweitert. Dieser Konfigurationsparameter wird von der Erweiterung festgelegt und sollte vom Benutzer nicht bearbeitet werden.",
+	"wsoauth-uri-desc": "Die URL für die OAuth-Authentifizierung.",
 	"wsoauth-auto-populate-groups-desc": "Ein Array mit einer Liste von MediaWiki-Gruppennamen, die dem Benutzer nach seiner Authentifizierung automatisch zugewiesen werden müssen.",
 	"wsoauth-pluggable-auth-button-label-message-desc": "Der Name der Nachricht, die für die Beschriftung der Anmeldeschaltfläche auf dem Formular Special:UserLogin verwendet wird.",
 	"wsoauth-pluggable-auth-button-label-message": "Mit OAuth anmelden",
