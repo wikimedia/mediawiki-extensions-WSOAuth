@@ -4,5 +4,12 @@
 			"Ykhwong"
 		]
 	},
-	"wsoauth-pluggable-auth-button-label-message": "OAuth로 로그인"
+	"wsoauth-pluggable-auth-button-label-message": "OAuth로 로그인",
+	"wsoauth-account-already-coupled": "이 로컬 계정을 원격 계정에 이미 연결하였습니다.",
+	"wsoauth-remote-already-used": "\"$1\" 원격 계정은 이미 (다른) 로컬 계정에 연결되어 있습니다.",
+	"wsoauth-prefs-manage-remote": "원격 계정:",
+	"wsoauth-connect-remote": "원격 계정 연결",
+	"wsoauth-remote-connected": "원격 계정 \"$1\"에 연결됨",
+	"wsoauth-connect-remote-special-page-header": "원격 로그인 활성화",
+	"wsoauth-connect-remote-special-page-wrapper-legend": "원격 로그인 활성화"
 }
