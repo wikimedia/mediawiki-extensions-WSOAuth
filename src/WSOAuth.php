@@ -143,7 +143,7 @@ class WSOAuth extends AuthProviderFramework {
 				$user = User::newFromName( $remote_user_name );
 				$user_id = $user->idForName();
 
-				if ( !$this->userLoggedInThroughOAuth( $user_id ) ) {
+				if ( $user_id !== null && $user_id > 0 && !$this->userLoggedInThroughOAuth( $user_id ) ) {
 					// The user has not logged in through OAuth before
 
 					if ( $GLOBALS['wgOAuthMigrateUsersByUsername'] === false ) {
