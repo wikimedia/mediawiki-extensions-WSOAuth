@@ -4,5 +4,24 @@
 			"Bjankuloski06"
 		]
 	},
-	"wsoauth-desc": "Го проширува додатокот PluggableAuth со можност за заверка со помош на OAuth."
+	"wsoauth-desc": "Го проширува додатокот PluggableAuth со можност за заверка со помош на OAuth.",
+	"wsoauth-pluggable-auth-class-desc": "Назив на класата која го проширува PluggableAuth; овој параметар се задава од додатокот и не треба да се уредува од корисникот.",
+	"wsoauth-uri-desc": "URL на заверката со OAuth.",
+	"wsoauth-client-id-desc": "Потрошувачкиот клуч добиен од прилогот на OAuth.",
+	"wsoauth-client-secret-desc": "Потрошувачката тајна добиена од OAuth-прилогот.",
+	"wsoauth-redirect-uri-desc": "Стаданрдната URL за повикување на која се враќа OAuth-прилогот по успешно барање за заверка.",
+	"wsoauth-auth-providers-desc": "Строј со список на прилагодени OAuth-услужници заедно со називот на нивната класа.",
+	"wsoauth-auth-provider-desc": "Кој OAuth-услужник ќе го користи додатокот.",
+	"wsoauth-auto-populate-groups-desc": "Стројот со список на групи на МедијаВики мора автоматски да се зададе на корисникот по неговата заверка.",
+	"wsoauth-pluggable-auth-button-label-message-desc": "Назив на пораката која ќе се користи како натпис на најавното копче во образецот Special:UserLogin.",
+	"wsoauth-pluggable-auth-button-label-message": "Најава со OAuth",
+	"wsoauth-authentication-failure": "Заверката не успеа (дали сте овластени на ова вики?).",
+	"wsoauth-invalid-username": "Корисничкото име укажано на OAuth-услужникот е неважечко.",
+	"wsoauth-unknown-auth-provider-class-exception-message": "Класата на OAuth-услужник не е вчитана или не е најдена",
+	"wsoauth-unknown-auth-provider-exception-message": "Непознат OAuth-услужник ($1)",
+	"wsoauth-invalid-auth-provider-class-exception-message": "Класата на OAuth-услужник не спроведува AuthProvider",
+	"wsoauth-initiate-login-failure": "Не можев да го отпочнам општењето со OAuth-услужникот.",
+	"wsoauth-migrate-users-by-username-desc": "Дали да се дозволи узурпација на постоечки сметки по корисничко име.",
+	"wsoauth-user-already-exists-message": "Корисничкото име „$1“ е зафатено.",
+	"wsoauth-not-configured-message": "На ова вики нема далечинско најавување. Обидете се на друг начин."
 }
