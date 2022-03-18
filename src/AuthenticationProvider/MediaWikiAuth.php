@@ -14,74 +14,80 @@
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace AuthenticationProvider;
+namespace WSOAuth\AuthenticationProvider;
 
-/**
- * Class MediaWikiAuth
- * @package AuthenticationProvider
- */
-class MediaWikiAuth implements \AuthProvider {
+use ConfigException;
+use MediaWiki\OAuthClient\Client;
+use MediaWiki\OAuthClient\ClientConfig;
+use MediaWiki\OAuthClient\Consumer;
+use MediaWiki\OAuthClient\Exception;
+use MediaWiki\OAuthClient\Token;
+use MediaWiki\User\UserIdentity;
+
+class MediaWikiAuth implements AuthProvider {
 	/**
-	 * @var \MediaWiki\OAuthClient\Client
+	 * @var Client
 	 */
 	private $client;
 
-	public function __construct() {
-		$this->client = self::createClient();
+	/**
+	 * @inheritDoc
+	 */
+	public function __construct( string $clientId, string $clientSecret, ?string $authUri, ?string $redirectUri ) {
+		if ( $authUri === null ) {
+			$message = wfMessage( 'wsoauth-missing-uri' )->parse();
+			throw new ConfigException( $message );
+		}
+
+		$conf = new ClientConfig( $authUri );
+		$conf->setConsumer( new Consumer( $clientId, $clientSecret ) );
+		$conf->setRedirUrl( $conf->endpointURL . "/authenticate&" );
+
+		$client = new Client( $conf );
+
+		if ( $redirectUri !== null ) {
+			$client->setCallback( $redirectUri );
+		}
+
+		$this->client = $client;
 	}
 
 	/**
-	 * Log in the user through the external OAuth provider.
-	 *
-	 * @param string &$key
-	 * @param string &$secret
-	 * @param string &$auth_url
-	 * @return bool Returns true on successful login, false otherwise.
-	 * @internal
+	 * @inheritDoc
 	 */
-	public function login( &$key, &$secret, &$auth_url ) {
+	public function login( ?string &$key, ?string &$secret, ?string &$authUrl ): bool {
 		try {
-			list( $auth_url, $token ) = $this->client->initiate();
+			list( $authUrl, $token ) = $this->client->initiate();
 
 			$key = $token->key;
 			$secret = $token->secret;
 
 			return true;
-		} catch ( \MediaWiki\OAuthClient\Exception $e ) {
+		} catch ( Exception $e ) {
 			wfDebugLog( "WSOAuth", $e->getMessage() );
 			return false;
 		}
 	}
 
 	/**
-	 * Log out the user and destroy the session.
-	 *
-	 * @param \User &$user The currently logged in user (i.e. the user that will be logged out).
-	 * @return void
-	 * @internal
+	 * @inheritDoc
 	 */
-	public function logout( \User &$user ) {
+	public function logout( UserIdentity &$user ): void {
 	}
 
 	/**
-	 * Get user info from session. Returns false when the request failed or the user is not authorised.
-	 *
-	 * @param string $key
-	 * @param string $secret
-	 * @param string &$errorMessage Message shown to the user when there is an error.
-	 * @return bool|array Returns an array with at least a 'name' when the user is authenticated, returns false when the user is not authorised or the authentication failed.
-	 * @internal
+	 * @inheritDoc
 	 */
-	public function getUser( $key, $secret, &$errorMessage ) {
+	public function getUser( string $key, string $secret, &$errorMessage ) {
 		if ( !isset( $_GET['oauth_verifier'] ) ) {
 			return false;
 		}
 
 		try {
-			$request_token = new \MediaWiki\OAuthClient\Token( $key, $secret );
+			$request_token = new Token( $key, $secret );
 			$access_token = $this->client->complete( $request_token, $_GET['oauth_verifier'] );
 
-			$access_token = new \MediaWiki\OAuthClient\Token( $access_token->key, $access_token->secret );
+			$access_token = new Token( $access_token->key, $access_token->secret );
 			$identity = $this->client->identify( $access_token );
 
 			return [
@@ -93,35 +99,8 @@ class MediaWikiAuth implements \AuthProvider {
 	}
 
 	/**
-	 * Gets called whenever a user is successfully authenticated, so extra attributes about the user can be saved.
-	 *
-	 * @param int $id The ID of the User.
-	 * @return void
-	 * @internal
+	 * @inheritDoc
 	 */
-	public function saveExtraAttributes( $id ) {
-	}
-
-	/**
-	 * @return \MediaWiki\OAuthClient\Client
-	 */
-	public static function createClient() {
-		$conf = new \MediaWiki\OAuthClient\ClientConfig( $GLOBALS['wgOAuthUri'] );
-		$conf->setConsumer(
-			new \MediaWiki\OAuthClient\Consumer(
-				$GLOBALS['wgOAuthClientId'],
-				$GLOBALS['wgOAuthClientSecret']
-			)
-		);
-		$conf->setRedirUrl( $conf->endpointURL . "/authenticate&" );
-
-		$client = new \MediaWiki\OAuthClient\Client( $conf );
-
-		$callback = $GLOBALS['wgOAuthRedirectUri'];
-		if ( $callback ) {
-			$client->setCallback( $callback );
-		}
-
-		return $client;
+	public function saveExtraAttributes( int $id ): void {
 	}
 }

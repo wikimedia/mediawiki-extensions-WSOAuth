@@ -14,23 +14,16 @@
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/**
- * Class AuthProviderSessionFramework
- * @stable for subclassing
- */
-abstract class AuthProviderFramework extends PluggableAuth {
+namespace WSOAuth;
 
-	/** @var Session */
-	private $session;
+use MediaWiki\Session\Session;
+use MediaWiki\Session\SessionManager;
 
+trait SessionAwareTrait {
 	/**
-	 * AuthProviderSessionFramework constructor.
-	 * @internal
+	 * @var Session
 	 */
-	public function __construct() {
-		$session_manager = \MediaWiki\Session\SessionManager::singleton();
-		$this->session = $session_manager->getGlobalSession();
-	}
+	private $session;
 
 	/**
 	 * Exposes the set() method from MediaWiki\Session\Session.
@@ -38,7 +31,8 @@ abstract class AuthProviderFramework extends PluggableAuth {
 	 * @param string $key
 	 * @param string $value
 	 */
-	protected function setSessionVariable( $key, $value ) {
+	protected function setSessionVariable( string $key, string $value ): void {
+		$this->initSession();
 		$this->session->set( $key, $value );
 	}
 
@@ -47,7 +41,8 @@ abstract class AuthProviderFramework extends PluggableAuth {
 	 *
 	 * @param string $key
 	 */
-	protected function removeSessionVariable( $key ) {
+	protected function removeSessionVariable( string $key ): void {
+		$this->initSession();
 		$this->session->remove( $key );
 	}
 
@@ -57,7 +52,8 @@ abstract class AuthProviderFramework extends PluggableAuth {
 	 * @param string $key
 	 * @return null|string
 	 */
-	protected function getSessionVariable( $key ) {
+	protected function getSessionVariable( string $key ): ?string {
+		$this->initSession();
 		return $this->session->get( $key );
 	}
 
@@ -67,14 +63,41 @@ abstract class AuthProviderFramework extends PluggableAuth {
 	 * @param string $key
 	 * @return bool
 	 */
-	protected function doesSessionVariableExist( $key ) {
+	protected function doesSessionVariableExist( string $key ): bool {
+		$this->initSession();
 		return $this->session->exists( $key );
 	}
 
 	/**
 	 * Exposes the save() method from MediaWiki\Session\Session.
 	 */
-	protected function saveSession() {
+	protected function saveSession(): void {
+		$this->initSession();
 		$this->session->save();
+	}
+
+	/**
+	 * Returns and removes the session variable with the given key.
+	 *
+	 * @param string $key
+	 * @return null|string
+	 */
+	protected function popSessionVariable( string $key ): ?string {
+		$this->initSession();
+
+		try {
+			return $this->getSessionVariable( $key );
+		} finally {
+			$this->removeSessionVariable( $key );
+		}
+	}
+
+	/**
+	 * Initialises the session if necessary.
+	 */
+	private function initSession(): void {
+		if ( !isset( $this->session ) ) {
+			$this->session = SessionManager::singleton()->getGlobalSession();
+		}
 	}
 }

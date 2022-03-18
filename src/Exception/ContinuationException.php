@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2020 Marijn van Wezel
+ * Copyright 2022 Marijn van Wezel
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
@@ -14,53 +14,13 @@
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace WSOAuth;
-
-use MWException;
-use SpecialPage;
+namespace WSOAuth\Exception;
 
 /**
- * Class WSOAuthConnectRemoteSpecialPage
- *
- * This class implements the special page Special:WSOAuthConnectRemote.
+ * Class ContinuationException
+ * @package Exception
+ * @newable
+ * @throwable
  */
-class WSOAuthConnectRemoteSpecialPage extends SpecialPage {
-	/**
-	 * @inheritDoc
-	 */
-	public function __construct() {
-		parent::__construct( "WSOAuthConnectRemote", "" );
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function getDescription() {
-		return $this->msg( 'wsoauth-manage-remotes' )->parse();
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function isListed() {
-		return false;
-	}
-
-	/**
-	 * @inheritDoc
-	 * @throws MWException
-	 */
-	public function execute( $parameter ) {
-		$this->requireLogin();
-		$this->setHeaders();
-
-		$this->getOutput()->addWikiMsg( 'wsoauth-special-page-content' );
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	protected function getGroupName() {
-		return 'users';
-	}
+class ContinuationException extends \Exception {
 }

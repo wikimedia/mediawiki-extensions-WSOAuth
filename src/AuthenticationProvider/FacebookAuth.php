@@ -14,28 +14,25 @@
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace AuthenticationProvider;
+namespace WSOAuth\AuthenticationProvider;
 
 use League\OAuth2\Client\Provider\Facebook;
+use MediaWiki\User\UserIdentity;
 
-/**
- * Class FacebookAuth
- * @package AuthenticationProvider
- */
-class FacebookAuth implements \AuthProvider {
+class FacebookAuth implements AuthProvider {
 	/**
 	 * @var Facebook
 	 */
 	private $provider;
 
 	/**
-	 * FacebookAuth constructor.
+	 * @inheritDoc
 	 */
-	public function __construct() {
+	public function __construct( string $clientId, string $clientSecret, ?string $authUri, ?string $redirectUri ) {
 		$this->provider = new Facebook( [
-			'clientId' => $GLOBALS['wgOAuthClientId'],
-			'clientSecret' => $GLOBALS['wgOAuthClientSecret'],
-			'redirectUri' => $GLOBALS['wgOAuthRedirectUri'],
+			'clientId' => $clientId,
+			'clientSecret' => $clientSecret,
+			'redirectUri' => $redirectUri,
 			'graphApiVersion' => 'v6.0'
 		] );
 	}
@@ -43,8 +40,8 @@ class FacebookAuth implements \AuthProvider {
 	/**
 	 * @inheritDoc
 	 */
-	public function login( &$key, &$secret, &$auth_url ) {
-		$auth_url = $this->provider->getAuthorizationUrl( [
+	public function login( ?string &$key, ?string &$secret, ?string &$authUrl ): bool {
+		$authUrl = $this->provider->getAuthorizationUrl( [
 			'scope' => [ 'email' ]
 		] );
 
@@ -56,13 +53,13 @@ class FacebookAuth implements \AuthProvider {
 	/**
 	 * @inheritDoc
 	 */
-	public function logout( \User &$user ) {
+	public function logout( UserIdentity &$user ): void {
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	public function getUser( $key, $secret, &$errorMessage ) {
+	public function getUser( string $key, string $secret, &$errorMessage ) {
 		if ( !isset( $_GET['code'] ) ) {
 			return false;
 		}
@@ -72,10 +69,7 @@ class FacebookAuth implements \AuthProvider {
 		}
 
 		try {
-			$token = $this->provider->getAccessToken( 'authorization_code', [
-				'code' => $_GET['code']
-			] );
-
+			$token = $this->provider->getAccessToken( 'authorization_code', [ 'code' => $_GET['code'] ] );
 			$user = $this->provider->getResourceOwner( $token );
 
 			return [
@@ -91,6 +85,6 @@ class FacebookAuth implements \AuthProvider {
 	/**
 	 * @inheritDoc
 	 */
-	public function saveExtraAttributes( $id ) {
+	public function saveExtraAttributes( int $id ): void {
 	}
 }

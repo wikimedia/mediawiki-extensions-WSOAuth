@@ -16,51 +16,36 @@
 
 namespace WSOAuth;
 
+use DatabaseUpdater;
+use MediaWiki\Installer\Hook\LoadExtensionSchemaUpdatesHook;
 use MWException;
-use SpecialPage;
 
-/**
- * Class WSOAuthConnectRemoteSpecialPage
- *
- * This class implements the special page Special:WSOAuthConnectRemote.
- */
-class WSOAuthConnectRemoteSpecialPage extends SpecialPage {
+class WSOAuthSchemaUpdater implements LoadExtensionSchemaUpdatesHook {
 	/**
-	 * @inheritDoc
-	 */
-	public function __construct() {
-		parent::__construct( "WSOAuthConnectRemote", "" );
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function getDescription() {
-		return $this->msg( 'wsoauth-manage-remotes' )->parse();
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function isListed() {
-		return false;
-	}
-
-	/**
-	 * @inheritDoc
+	 * Fired when MediaWiki is updated to allow WSOAuth to register updates for the database schema.
+	 *
+	 * @param DatabaseUpdater $updater
 	 * @throws MWException
+	 * @internal
 	 */
-	public function execute( $parameter ) {
-		$this->requireLogin();
-		$this->setHeaders();
+	public function onLoadExtensionSchemaUpdates( $updater ) {
+		$directory = $GLOBALS['wgExtensionDirectory'] . '/WSOAuth/sql';
+		$type = $updater->getDB()->getType();
 
-		$this->getOutput()->addWikiMsg( 'wsoauth-special-page-content' );
-	}
+		$files = [
+			'wsoauth_multiauth_mappings' => '%s/%s/table_wsoauth_multiauth_mappings.sql'
+		];
 
-	/**
-	 * @inheritDoc
-	 */
-	protected function getGroupName() {
-		return 'users';
+		foreach ( $files as $name => $path ) {
+			$path = sprintf( $path, $directory, $type );
+
+			if ( !file_exists( $path ) ) {
+				throw new MWException( "WSOAuth does not support database type `$type`." );
+			}
+
+			$updater->addExtensionTable( $name, $path );
+		}
+
+		$updater->output( 'Please run the WSOAuth multiauth migration script if you have not done so.' );
 	}
 }

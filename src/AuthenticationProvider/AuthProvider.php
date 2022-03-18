@@ -14,30 +14,43 @@
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+namespace WSOAuth\AuthenticationProvider;
+
+use MediaWiki\User\UserIdentity;
+
 /**
- * Interface AuthProvider
  * @stable for implementation
  */
 interface AuthProvider {
 	/**
+	 * AuthProvider constructor.
+	 *
+	 * @param string $clientId
+	 * @param string $clientSecret
+	 * @param string|null $authUri
+	 * @param string|null $redirectUri
+	 */
+	public function __construct( string $clientId, string $clientSecret, ?string $authUri, ?string $redirectUri );
+
+	/**
 	 * Log in the user through the external OAuth provider.
 	 *
-	 * @param string &$key The consumer key returned by the OAuth provider. May be left empty.
-	 * @param string &$secret The consumer secret returned by the OAuth provider. May be left empty.
-	 * @param string &$auth_url The URL the user must be redirected to. Must not be left empty.
+	 * @param string|null &$key The consumer key returned by the OAuth provider. May be left empty.
+	 * @param string|null &$secret The consumer secret returned by the OAuth provider. May be left empty.
+	 * @param string|null &$authUrl The URL the user must be redirected to. Must not be left empty.
 	 * @return bool Returns true on successful login, false otherwise.
 	 * @internal
 	 */
-	public function login( &$key, &$secret, &$auth_url );
+	public function login( ?string &$key, ?string &$secret, ?string &$authUrl ): bool;
 
 	/**
 	 * Log out the user and destroy the session.
 	 *
-	 * @param \User &$user
+	 * @param UserIdentity &$user
 	 * @return void
 	 * @internal
 	 */
-	public function logout( \User &$user );
+	public function logout( UserIdentity &$user ): void;
 
 	/**
 	 * Get user info from session. Returns false when the request failed or the user is not authorised.
@@ -48,7 +61,7 @@ interface AuthProvider {
 	 * @return bool|array Returns an array with at least a 'name' when the user is authenticated, returns false when the user is not authorised or the authentication failed.
 	 * @internal
 	 */
-	public function getUser( $key, $secret, &$errorMessage );
+	public function getUser( string $key, string $secret, &$errorMessage );
 
 	/**
 	 * Gets called whenever a user is successfully authenticated, so extra attributes about the user can be saved.
@@ -57,5 +70,5 @@ interface AuthProvider {
 	 * @return void
 	 * @internal
 	 */
-	public function saveExtraAttributes( $id );
+	public function saveExtraAttributes( int $id ): void;
 }

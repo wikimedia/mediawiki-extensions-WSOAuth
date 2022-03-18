@@ -1,19 +1,18 @@
 {
 	"name": "WSOAuth",
-	"version": "5.0",
+	"version": "6.0",
 	"namemsg": "wsoauth-extensionname",
 	"url": "https://www.mediawiki.org/wiki/Extension:WSOAuth",
 	"type": "other",
 	"author": [
-		"Marijn van Wezel [https://www.mediawiki.org/wiki/User:Xxmarijnw <xxmarijnw>]",
-		"others"
+		"[https://www.mediawiki.org/wiki/User:Xxmarijnw Marijn van Wezel]"
 	],
 	"descriptionmsg": "wsoauth-desc",
 	"license-name": "MIT",
 	"requires": {
-		"MediaWiki": ">= 1.31.0",
+		"MediaWiki": ">= 1.35.0",
 		"extensions": {
-			"PluggableAuth": ">= 5.0"
+			"PluggableAuth": ">= 6.0"
 		}
 	},
 	"MessagesDirs": {
@@ -24,53 +23,29 @@
 	"ExtensionMessagesFiles": {
 		"WSOAuthAlias": "WSOAuth.i18n.alias.php"
 	},
-	"AutoloadClasses": {
-		"WSOAuth": "src/WSOAuth.php",
-		"AuthProviderFramework": "src/AuthProviderFramework.php",
-		"AuthProvider": "src/AuthProvider.php",
-		"WSOAuthConnectRemoteSpecialPage": "src/WSOAuthConnectRemoteSpecialPage.php"
-	},
 	"AutoloadNamespaces": {
-		"AuthenticationProvider\\": "src/AuthenticationProvider/",
-		"Exception\\": "src/Exception/"
+		"WSOAuth\\": "src/"
 	},
 	"Hooks": {
-		"PluggableAuthPopulateGroups": "WSOAuth::onPluggableAuthPopulateGroups",
-		"LoadExtensionSchemaUpdates": "WSOAuth::onLoadExtensionSchemaUpdates",
-		"GetPreferences": "WSOAuth::onGetPreferences"
+		"PluggableAuthPopulateGroups": "main",
+		"GetPreferences": "main",
+		"LoadExtensionSchemaUpdates": "SchemaUpdater"
+	},
+	"HookHandlers": {
+		"main": {
+			"class": "\\WSOAuth\\WSOAuthHooks",
+			"services": [
+				"UserGroupManager"
+			]
+		},
+		"SchemaUpdater": {
+			"class": "\\WSOAuth\\WSOAuthSchemaUpdater"
+		}
 	},
 	"config": {
-		"PluggableAuth_Class": {
-			"value": "WSOAuth",
-			"descriptionmsg": "wsoauth-pluggable-auth-class-desc"
-		},
-		"PluggableAuth_ButtonLabelMessage": {
-			"value": "wsoauth-pluggable-auth-button-label-message",
-			"descriptionmsg": "wsoauth-pluggable-auth-button-label-message-desc"
-		},
-		"OAuthUri": {
-			"value": false,
-			"descriptionmsg": "wsoauth-uri-desc"
-		},
-		"OAuthClientId": {
-			"value": false,
-			"descriptionmsg": "wsoauth-client-id-desc"
-		},
-		"OAuthClientSecret": {
-			"value": false,
-			"descriptionmsg": "wsoauth-client-secret-desc"
-		},
-		"OAuthRedirectUri": {
-			"value": false,
-			"descriptionmsg": "wsoauth-redirect-uri-desc"
-		},
 		"OAuthCustomAuthProviders": {
 			"value": false,
 			"descriptionmsg": "wsoauth-auth-providers-desc"
-		},
-		"OAuthAuthProvider": {
-			"value": "mediawiki",
-			"descriptionmsg": "wsoauth-auth-provider-desc"
 		},
 		"OAuthAutoPopulateGroups": {
 			"value": [],
@@ -86,7 +61,17 @@
 		}
 	},
 	"SpecialPages": {
-		"WSOAuthConnectRemote": "WSOAuthConnectRemoteSpecialPage"
+		"WSOAuthConnectRemote": "\\WSOAuth\\WSOAuthConnectRemoteSpecialPage"
+	},
+	"attributes": {
+		"PluggableAuth": {
+			"WSOAuth": {
+				"class": "\\WSOAuth\\WSOAuth",
+				"services": [
+					"UserNameUtils"
+				]
+			}
+		}
 	},
 	"load_composer_autoloader": true,
 	"manifest_version": 2

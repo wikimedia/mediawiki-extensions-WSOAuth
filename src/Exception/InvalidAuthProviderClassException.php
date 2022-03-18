@@ -14,7 +14,7 @@
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace Exception;
+namespace WSOAuth\Exception;
 
 /**
  * Class InvalidAuthProviderClassException
