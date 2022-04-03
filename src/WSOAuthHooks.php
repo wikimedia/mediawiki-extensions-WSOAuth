@@ -18,79 +18,14 @@
 
 namespace WSOAuth;
 
-use Exception;
-use MediaWiki\Extension\PluggableAuth\Hook\PluggableAuthPopulateGroups;
-use MediaWiki\Extension\PluggableAuth\PluggableAuthFactory;
-use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
-use MediaWiki\User\UserGroupManager;
-use MediaWiki\User\UserIdentity;
 use MWException;
 use OOUI\ButtonWidget;
 use RequestContext;
 use SpecialPage;
 use User;
 
-class WSOAuthHooks implements PluggableAuthPopulateGroups, GetPreferencesHook {
-	/**
-	 * @var PluggableAuthFactory
-	 */
-	private $pluggableAuthFactory;
-	/**
-	 * @var UserGroupManager
-	 */
-	private $userGroupManager;
-	/**
-	 * @var HookContainer
-	 */
-	private $hookContainer;
-
-	/**
-	 * @param PluggableAuthFactory $pluggableAuthFactory
-	 * @param UserGroupManager $userGroupManager
-	 * @param HookContainer $hookContainer
-	 */
-	public function __construct(
-		PluggableAuthFactory $pluggableAuthFactory,
-		UserGroupManager $userGroupManager,
-		HookContainer $hookContainer
-	) {
-		$this->pluggableAuthFactory = $pluggableAuthFactory;
-		$this->userGroupManager = $userGroupManager;
-		$this->hookContainer = $hookContainer;
-	}
-
-	/**
-	 * Adds the user to the groups defined via $wgOAuthAutoPopulateGroups after authentication.
-	 *
-	 * @param User $user
-	 *
-	 * @throws Exception
-	 * @internal
-	 */
-	public function onPluggableAuthPopulateGroups( UserIdentity $user ): void {
-		$currentPlugin = $this->pluggableAuthFactory->getInstance();
-		if ( !( $currentPlugin instanceof WSOAuth ) ) {
-			// We can only sync groups in the context of a WSOAuth authentication flow,
-			// not for arbitrary other plugins
-			return;
-		}
-
-		$result = $this->hookContainer->run( 'WSOAuthBeforeAutoPopulateGroups', [ &$user ] );
-
-		if ( $result === false ) {
-			return;
-		}
-
-		$populateGroups = array_diff(
-			(array)$currentPlugin->autoPopulateGroups,
-			$this->userGroupManager->getUserEffectiveGroups( $user )
-		);
-
-		foreach ( $populateGroups as $group ) {
-			$this->userGroupManager->addUserToGroup( $user, $group );
-		}
-	}
+class WSOAuthHooks implements GetPreferencesHook {
 
 	/**
 	 * Modify user preferences.
