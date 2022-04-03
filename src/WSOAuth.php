@@ -18,6 +18,7 @@
 
 namespace WSOAuth;
 
+use Config;
 use ConfigException;
 use DBError;
 use Exception;
@@ -99,13 +100,16 @@ class WSOAuth extends PluggableAuth {
 	/**
 	 * WSOAuth constructor.
 	 *
+	 * @param Config $mainConfig
 	 * @param UserNameUtils $userNameUtils
 	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
+		Config $mainConfig,
 		UserNameUtils $userNameUtils,
 		HookContainer $hookContainer
 	) {
+		$this->mainConfig = $mainConfig;
 		$this->userNameUtils = $userNameUtils;
 		$this->hookContainer = $hookContainer;
 		$this->session = SessionManager::getGlobalSession();
@@ -125,17 +129,19 @@ class WSOAuth extends PluggableAuth {
 		$this->authProvider = $this->getAuthProvider( $data['type'], $data );
 		$this->authProvider->setLogger( $this->logger );
 
-		$this->disallowRemoteOnlyAccounts = $this->data['disallowRemoteOnlyAccounts'] ??
-			$GLOBALS['wgOAuthDisallowRemoteOnlyAccounts'];
+		$this->disallowRemoteOnlyAccounts = $this->getConfigValue( 'DisallowRemoteOnlyAccounts' );
+		$this->useRealNameAsUsername = $this->getConfigValue( 'UseRealNameAsUsername' );
+		$this->migrateUsersByUsername = $this->getConfigValue( 'MigrateUsersByUsername' );
+		$this->autoPopulateGroups = $this->getConfigValue( 'AutoPopulateGroups' );
+	}
 
-		$this->useRealNameAsUsername = $this->data['useRealNameAsUsername'] ??
-			$GLOBALS['wgOAuthUseRealNameAsUsername'];
-
-		$this->migrateUsersByUsername = $this->data['migrateUsersByUsername'] ??
-			$GLOBALS['wgOAuthMigrateUsersByUsername'];
-
-		$this->autoPopulateGroups = $this->data['autoPopulateGroups'] ??
-			$GLOBALS['wgOAuthAutoPopulateGroups'] ?? [];
+	/**
+	 * @param string $name
+	 * @return mixed
+	 */
+	private function getConfigValue( string $name ) {
+		return $this->config->has( $name ) ? $this->config->get( $name ) :
+			$this->mainConfig->get( 'OAuth' . $name );
 	}
 
 	/**
@@ -216,6 +222,22 @@ class WSOAuth extends PluggableAuth {
 
 		$this->createMapping( $id, $remoteUsername );
 		$this->authProvider->saveExtraAttributes( $id );
+	}
+
+	/**
+	 * Adds the user to the groups defined via $wgOAuthAutoPopulateGroups after authentication.
+	 * @param UserIdentity $user
+	 * @return array
+	 * @throws Exception
+	 */
+	public function getAttributes( UserIdentity $user ): array {
+		$result = $this->hookContainer->run( 'WSOAuthBeforeAutoPopulateGroups', [ &$user ] );
+
+		if ( $result === false ) {
+			return [];
+		}
+
+		return $this->autoPopulateGroups;
 	}
 
 	/**
