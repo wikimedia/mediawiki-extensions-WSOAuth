@@ -5,10 +5,6 @@
 		]
 	},
 	"wsoauth-desc": "讓 PluggableAuth 擴充套件使用 OAuth 提供認證。",
-	"wsoauth-uri-desc": "OAuth 認證 URL。",
-	"wsoauth-auth-provider-desc": "擴充套件將使用的 OAuth 提供者。",
-	"wsoauth-pluggable-auth-button-label-message-desc": "使用在 Special:UserLogin 表單上登入按鈕標籤的訊息名稱。",
-	"wsoauth-pluggable-auth-button-label-message": "以 OAuth 登入",
 	"wsoauth-authentication-failure": "認證失敗（您是否有獲得此 wiki 的授權？）。",
 	"wsoauth-invalid-username": "由 OAuth 提供者給予的使用者名稱無效。",
 	"wsoauth-unknown-auth-provider-class-exception-message": "OAuth 提供者類別無法載入或找不到",

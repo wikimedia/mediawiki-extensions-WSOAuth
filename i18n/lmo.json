@@ -6,13 +6,6 @@
 	},
 	"wsoauth-disallow-remote-only-accounts": "Se permeter o minga ai cunt de minga havégh ona contropart local.",
 	"wsoauth-already-logged-in-through-remote": "Te seet an'mò coness a travers d'on cunt distant o migrad. Te podet no coneter on cunt distant al quell cunt chì. Se te voeulet andàgh denter cont el drovà on alter cunt distant, desconetes e vàgh denter drovando on alter cunt.",
-	"wsoauth-account-already-coupled": "Te sgiamò coness quell cunt local chì cont on cunt distant.",
 	"wsoauth-remote-only-accounts-disabled": "L'access domà distant l'è stad disativa d in su 'sto wiki chì. Un cunt distant el gh'ha de vesser coness a un local.",
-	"wsoauth-remote-already-used": "El cunt \"$1\" a l'è sgiamò coness a on cunt local (diferent).",
-	"wsoauth-prefs-manage-remote": "Cunt distantː",
-	"wsoauth-connect-remote": "Conet on cunt distant",
-	"wsoauth-remote-connected": "Coness al cunt distant \"$1\"",
-	"wsoauth-connect-remote-special-page-header": "Pizza l'access distant",
-	"wsoauth-connect-remote-special-page-description": "Te podet pizzà l'acess distant a clicà in sul buton de bass. de poeu de havé pizzad l'acess distant, te podet doperà el servizzi distant per andà denter in quell wiki chì. I to parolle ciav i seguterann a vesser bone.",
-	"wsoauth-connect-remote-special-page-wrapper-legend": "Pizza l'acess distant"
+	"wsoauth-prefs-manage-remote": "Cunt distantː"
 }
