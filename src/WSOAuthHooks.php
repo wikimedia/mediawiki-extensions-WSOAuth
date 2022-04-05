@@ -19,6 +19,7 @@ namespace WSOAuth;
 use Exception;
 use Hooks;
 use MediaWiki\Extension\PluggableAuth\Hook\PluggableAuthPopulateGroups;
+use MediaWiki\Extension\PluggableAuth\PluggableAuthFactory;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
@@ -30,14 +31,23 @@ use User;
 
 class WSOAuthHooks implements PluggableAuthPopulateGroups, GetPreferencesHook {
 	/**
+	 * @var PluggableAuthFactory
+	 */
+	private $pluggableAuthFactory;
+	/**
 	 * @var UserGroupManager
 	 */
 	private $userGroupManager;
 
 	/**
+	 * @param PluggableAuthFactory $pluggableAuthFactory
 	 * @param UserGroupManager $userGroupManager
 	 */
-	public function __construct( UserGroupManager $userGroupManager ) {
+	public function __construct(
+		PluggableAuthFactory $pluggableAuthFactory,
+		UserGroupManager $userGroupManager
+	) {
+		$this->pluggableAuthFactory = $pluggableAuthFactory;
 		$this->userGroupManager = $userGroupManager;
 	}
 
@@ -50,6 +60,13 @@ class WSOAuthHooks implements PluggableAuthPopulateGroups, GetPreferencesHook {
 	 * @internal
 	 */
 	public function onPluggableAuthPopulateGroups( UserIdentity $user ): void {
+		$currentPlugin = $this->pluggableAuthFactory->getInstance();
+		if ( !( $currentPlugin instanceof WSOAuth ) ) {
+			// We can only sync groups in the context of a WSOAuth authentication flow,
+			// not for arbitrary other plugins
+			return;
+		}
+
 		$result = Hooks::run( 'WSOAuthBeforeAutoPopulateGroups', [ &$user ] );
 
 		if ( $result === false ) {

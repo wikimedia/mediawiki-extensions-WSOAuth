@@ -35,6 +35,7 @@
 		"main": {
 			"class": "\\WSOAuth\\WSOAuthHooks",
 			"services": [
+				"PluggableAuthFactory",
 				"UserGroupManager"
 			]
 		},
