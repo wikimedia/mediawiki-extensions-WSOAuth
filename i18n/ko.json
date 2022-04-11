@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ellif",
 			"Ykhwong"
 		]
 	},
 	"wsoauth-already-logged-in-through-remote": "원격 또는 이관된 계정을 통해 이미 로그인되어 있습니다. 원격 계정을 이 계정에 연결할 수 없습니다. 다른 원격 계쩡을 사용하여 로그인하고 싶으시다면 로그아웃한 다음 닫른 계정을 사용하여 로그인해 주십시오.",
-	"wsoauth-prefs-manage-remote": "원격 계정:"
+	"wsoauth-prefs-manage-remote": "원격계정:",
+	"wsoauth-missing-client-id": "클라이언트 ID가 설정되어 있지 않습니다.",
+	"wsoauth-manage-remotes": "원격계정 관리"
 }
