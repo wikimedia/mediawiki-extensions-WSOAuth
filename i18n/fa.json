@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mojtabakd"
+		]
+	},
+	"wsoauth-prefs-manage-remote": "حساب‌های کاربری از راه دور:",
+	"wsoauth-missing-uri": "هیچ URI از راه دوری پیکره‌بندی نشده.",
+	"wsoauth-missing-client-id": "هیچ شناسه کلاینتی پیکره‌بندی نشده.",
+	"wsoauth-manage-remotes": "مدیریت حساب‌های کاربری از راه دور"
+}
