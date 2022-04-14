@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
+			"Beta16",
 			"GpieroMW"
 		]
 	},
-	"wsoauth-manage-remotes": "Gestisci account remoti"
+	"wsoauth-manage-remotes": "Gestisci utenze remote"
 }
