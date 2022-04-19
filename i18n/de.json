@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Brettchenweber",
 			"MuratTheTurkish",
 			"Robby",
 			"Umherirrender"
@@ -23,7 +24,7 @@
 	"wsoauth-disallow-remote-only-accounts": "Ob Konten ohne lokales Gegenstück zugelassen werden sollen oder nicht.",
 	"wsoauth-already-logged-in-through-remote": "Du bist bereits über ein entferntes oder migriertes Konto angemeldet. Du kannst kein entferntes Konto mit diesem Konto verbinden. Wenn du dich über ein anderes entferntes Konto anmelden möchtest, melde dich bitte ab und melde dich über das andere Konto an.",
 	"wsoauth-remote-only-accounts-disabled": "Die reine Fernanmeldung wurde in diesem Wiki deaktiviert. Ein entferntes Konto muss mit einem lokalen Konto verbunden sein",
-	"wsoauth-special-page-content": "Du kannst ein entferntes Konto mit diesem Konto verbinden, indem du dich bei dem entfernten Konto über [[Special:UserLogin]] anmeldest, während du angemeldet bist. In Zukunft wird es möglich sein, deiner entfernten Konten von dieser Spezialseite aus zu verwalten.",
+	"wsoauth-special-page-content": "Du kannst ein entferntes Konto mit diesem Konto verbinden, indem du dich bei dem entfernten Konto über [[Special:UserLogin]] anmeldest, während du angemeldet bist. In Zukunft wird es möglich sein, deine entfernten Konten von dieser Spezialseite aus zu verwalten.",
 	"wsoauth-prefs-manage-remote": "Entfernte Konten:",
 	"wsoauth-missing-uri": "Es ist kein entfernter URI konfiguriert.",
 	"wsoauth-missing-client-id": "Es ist keine Client-ID konfiguriert.",
