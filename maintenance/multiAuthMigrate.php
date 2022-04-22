@@ -131,7 +131,10 @@ class MultiAuthMigrate extends Maintenance {
 			] );
 
 			// Delete the old mapping and user, so we don't migrate twice
-			$this->database->delete( 'wsoauth_mappings', [ 'wsoauth_user' => $localId ] );
+			if ( $this->database->tableExists( 'wsoauth_mappings' ) ) {
+				$this->database->delete( 'wsoauth_mappings', [ 'wsoauth_user' => $localId ] );
+			}
+
 			$this->database->delete( 'wsoauth_users', [ 'wsoauth_user' => $localId ] );
 		} catch ( Exception $exception ) {
 			$this->output( "\n" );
@@ -151,6 +154,11 @@ class MultiAuthMigrate extends Maintenance {
 	 * @return string
 	 */
 	private function getRemoteName( User $user ): string {
+		if ( !$this->database->tableExists( 'wsoauth_mappings' ) ) {
+			// The user is upgrading from a version before 5.0
+			return $user->getName();
+		}
+
 		$mappings = $this->database->select(
 			'wsoauth_mappings',
 			'wsoauth_remote_name',
