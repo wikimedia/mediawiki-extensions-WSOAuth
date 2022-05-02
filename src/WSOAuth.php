@@ -197,7 +197,7 @@ class WSOAuth extends PluggableAuth {
 			);
 		}
 
-		if ( !isset( $remoteUserInfo['name'] ) || !$this->userNameUtils->isValid( $remoteUserInfo['name'] ) ) {
+		if ( !isset( $remoteUserInfo['name'] ) || !$this->userNameUtils->isValid( ucfirst( $remoteUserInfo['name'] ) ) ) {
 			// Missing or invalid 'name' attribute
 			throw new ContinuationException( wfMessage( 'wsoauth-invalid-username' )->parse() );
 		}
