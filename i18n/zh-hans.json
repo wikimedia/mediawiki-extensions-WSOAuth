@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ff98sha"
+		]
+	},
+	"wsoauth-extensionname": "WSOAuth",
+	"wsoauth-desc": "为PluggableAuth插件提供OAuth验证。",
+	"wsoauth-pluggable-auth-class-desc": "PluggableAuth中要拓展的类名；此配置选项由插件设置，不应由用户编辑。",
+	"wsoauth-auth-providers-desc": "自定义OAuth提供商列表，及其对应的类名。",
+	"wsoauth-auto-populate-groups-desc": "用户验证后自动授予的MediaWiki用户组列表。",
+	"wsoauth-authentication-failure": "验证失败（你被授权访问此wiki吗？）。",
+	"wsoauth-invalid-username": "OAuth提供商提供的用户名无效。",
+	"wsoauth-unknown-auth-provider-class-exception-message": "OAuth提供商的类未加载或未找到。",
+	"wsoauth-unknown-auth-provider-exception-message": "未知的OAuth提供商（$1）",
+	"wsoauth-invalid-auth-provider-class-exception-message": "OAuth提供商的类未用于AuthProvider。",
+	"wsoauth-initiate-login-failure": "无法与OAuth提供商进行通信。",
+	"wsoauth-migrate-users-by-username-desc": "是否允许占有同用户名的现有账号。",
+	"wsoauth-user-already-exists-message": "用户名“$1”已被使用。",
+	"wsoauth-not-configured-message": "此wiki未配置远程登录。请尝试其他认证方式。"
+}
