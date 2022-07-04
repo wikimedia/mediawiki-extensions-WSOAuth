@@ -20,6 +20,7 @@ use ConfigException;
 use DBError;
 use Exception;
 use Hooks;
+use MediaWiki\Auth\AuthManager;
 use MediaWiki\Extension\PluggableAuth\PluggableAuth;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
@@ -29,6 +30,7 @@ use WSOAuth\AuthenticationProvider\AuthProvider;
 use WSOAuth\AuthenticationProvider\FacebookAuth;
 use WSOAuth\AuthenticationProvider\MediaWikiAuth;
 use WSOAuth\Exception\ContinuationException;
+use WSOAuth\Exception\FinalisationException;
 use WSOAuth\Exception\InitialisationException;
 use WSOAuth\Exception\InvalidAuthProviderClassException;
 use WSOAuth\Exception\UnknownAuthProviderException;
@@ -39,8 +41,11 @@ use WSOAuth\Exception\UnknownAuthProviderException;
  * @link https://datatracker.ietf.org/doc/html/rfc6749
  */
 class WSOAuth extends PluggableAuth {
-	use SessionAwareTrait;
+	public const WSOAUTH_REMOTE_USERNAME_SESSION_KEY = 'WSOAuthRemoteUsername';
+	public const WSOAUTH_OAUTH_REQUEST_KEY_SESSION_KEY = 'WSOAuthOAuthRequestKey';
+	public const WSOAUTH_OAUTH_REQUEST_SECRET_SESSION_KEY = 'WSOAuthOAuthRequestSecret';
 
+	public const UNIQUE_NAME_MAX_TRIES = 256;
 	public const MAPPING_TABLE_NAME = 'wsoauth_multiauth_mappings';
 	public const DEFAULT_AUTH_PROVIDERS = [
 		"mediawiki" => MediaWikiAuth::class,
@@ -58,12 +63,34 @@ class WSOAuth extends PluggableAuth {
 	private $userNameUtils;
 
 	/**
+	 * @var AuthManager The current AuthManager instance
+	 */
+	private $authManager;
+
+	/**
+	 * @var bool Whether to disallow remote only accounts
+	 */
+	private $disallowRemoteOnlyAccounts;
+
+	/**
+	 * @var bool Whether to use the real name as the username
+	 */
+	private $useRealNameAsUsername;
+
+	/**
+	 * @var bool Whether to migrate users based on their username
+	 */
+	private $migrateUsersByUsername;
+
+	/**
 	 * WSOAuth constructor.
 	 *
 	 * @param UserNameUtils $userNameUtils
+	 * @param AuthManager $authManager
 	 */
-	public function __construct( UserNameUtils $userNameUtils ) {
+	public function __construct( UserNameUtils $userNameUtils, AuthManager $authManager ) {
 		$this->userNameUtils = $userNameUtils;
+		$this->authManager = $authManager;
 	}
 
 	/**
@@ -77,7 +104,16 @@ class WSOAuth extends PluggableAuth {
 			throw new ConfigException( wfMessage( "wsoauth-not-configured-message" )->parse() );
 		}
 
-		$this->authProvider = self::getAuthProvider( $data['type'], $data );
+		$this->authProvider = $this->getAuthProvider( $data['type'], $data );
+
+		$this->disallowRemoteOnlyAccounts = $this->data['disallowRemoteOnlyAccounts'] ??
+			$GLOBALS['wgOAuthDisallowRemoteOnlyAccounts'];
+
+		$this->useRealNameAsUsername = $this->data['useRealNameAsUsername'] ??
+			$GLOBALS['wgOAuthUseRealNameAsUsername'];
+
+		$this->migrateUsersByUsername = $this->data['migrateUsersByUsername'] ??
+			$GLOBALS['wgOAuthMigrateUsersByUsername'];
 	}
 
 	/**
@@ -103,19 +139,27 @@ class WSOAuth extends PluggableAuth {
 				// Will redirect the user and exit the script if no error occurs
 				$this->initiateLogin();
 			} else {
-				// Continue the OAuth login, last part of the 3-logged OAuth login
-				$this->continueLogin(
-					$this->popSessionVariable( "request_key" ),
-					$this->popSessionVariable( "request_secret" ),
-					$id,
-					$username,
-					$realname,
-					$email
-				);
+				$requestKey = $this->authManager->getAuthenticationSessionData( self::WSOAUTH_OAUTH_REQUEST_KEY_SESSION_KEY );
+				$requestSecret = $this->authManager->getAuthenticationSessionData( self::WSOAUTH_OAUTH_REQUEST_SECRET_SESSION_KEY );
+
+				try {
+					// Continue the OAuth login, last part of the 3-logged OAuth login
+					$this->continueLogin(
+						$requestKey,
+						$requestSecret,
+						$id,
+						$username,
+						$realname,
+						$email
+					);
+				} finally {
+					$this->authManager->removeAuthenticationSessionData( self::WSOAUTH_OAUTH_REQUEST_KEY_SESSION_KEY );
+					$this->authManager->removeAuthenticationSessionData( self::WSOAUTH_OAUTH_REQUEST_SECRET_SESSION_KEY );
+				}
 			}
 
 			return true;
-		} catch ( InitialisationException | ContinuationException $exception ) {
+		} catch ( InitialisationException | ContinuationException | FinalisationException $exception ) {
 			// Set the error message if something went wrong
 			$errorMessage = $exception->getMessage();
 
@@ -137,11 +181,19 @@ class WSOAuth extends PluggableAuth {
 	/**
 	 * @param int $id
 	 * @return void
-	 * @throws DBError
+	 * @throws DBError|FinalisationException
 	 * @internal
 	 */
 	public function saveExtraAttributes( int $id ): void {
-		$this->createMapping( $id, User::newFromId( $id )->getName() );
+		$remoteUsername = $this->authManager->getAuthenticationSessionData(
+			self::WSOAUTH_REMOTE_USERNAME_SESSION_KEY
+		);
+
+		if ( $remoteUsername === null ) {
+			throw new FinalisationException( wfMessage( "wsoauth-could-not-create-mapping" )->parse() );
+		}
+
+		$this->createMapping( $id, $remoteUsername );
 		$this->authProvider->saveExtraAttributes( $id );
 	}
 
@@ -158,9 +210,8 @@ class WSOAuth extends PluggableAuth {
 			throw new InitialisationException( wfMessage( 'wsoauth-initiate-login-failure' )->parse() );
 		}
 
-		$this->setSessionVariable( 'request_key', $key ?? '' );
-		$this->setSessionVariable( 'request_secret', $secret ?? '' );
-		$this->saveSession();
+		$this->authManager->setAuthenticationSessionData( self::WSOAUTH_OAUTH_REQUEST_KEY_SESSION_KEY, $key );
+		$this->authManager->setAuthenticationSessionData( self::WSOAUTH_OAUTH_REQUEST_SECRET_SESSION_KEY, $secret );
 
 		// Redirect the user to the second part of the 3-legged OAuth login
 		header( "Location: $auth_url" );
@@ -177,7 +228,7 @@ class WSOAuth extends PluggableAuth {
 	 * @param string|null &$realname Set this to the user's real name, or leave empty
 	 * @param string|null &$email Set this to the user's email address, or leave empty
 	 *
-	 * @throws ContinuationException
+	 * @throws ContinuationException|FinalisationException
 	 */
 	private function continueLogin(
 		string $key,
@@ -202,22 +253,27 @@ class WSOAuth extends PluggableAuth {
 			throw new ContinuationException( wfMessage( 'wsoauth-invalid-username' )->parse() );
 		}
 
-		// Already set the "realname" and "email", so we do not need to worry about that later
-		$realname = $remoteUserInfo['realname'] ?? '';
-		$email = $remoteUserInfo['email'] ?? '';
+		// Set $realname and $email to the values returned from the authentication provider, if they are available
+		$realname = $remoteUserInfo['realname'] ?? null;
+		$email = $remoteUserInfo['email'] ?? null;
 
 		$remoteUsername = ucfirst( $remoteUserInfo['name'] );
-		$currentUser = RequestContext::getMain()->getUser();
-		$localAccountID = $this->getLocalAccountID( $remoteUsername );
+		$localUserId = $this->getLocalAccountID( $remoteUsername );
 
-		if ( $localAccountID !== 0 ) {
+		$this->authManager->setAuthenticationSessionData(
+			self::WSOAUTH_REMOTE_USERNAME_SESSION_KEY,
+			$remoteUsername
+		);
+
+		if ( $localUserId !== 0 ) {
 			// Case 1: A mapping is available from the remote user to a user on the wiki. In this case, we can simply
 			// log into the account that has been coupled.
-			$username = User::newFromId( $localAccountID )->getName();
-			$id = $localAccountID;
-		} elseif ( $currentUser->getId() > 0 ) {
+			$username = User::newFromId( $localUserId )->getName();
+			$id = $localUserId;
+		} elseif ( RequestContext::getMain()->getUser()->getId() > 0 ) {
 			// Case 2: A user is currently logged in locally, and no mapping is available
 			// In this case, we want to create a mapping from the remote account to this account.
+			$currentUser = RequestContext::getMain()->getUser();
 			$currentUserId = $currentUser->getId();
 
 			$this->createMapping( $currentUserId, $remoteUsername );
@@ -228,33 +284,31 @@ class WSOAuth extends PluggableAuth {
 		} else {
 			// Case 3: No user is currently logged in locally, and no mapping is available. In this case, we want to
 			// create a new account, or usurp an existing account if enabled
-			if ( $GLOBALS['wgOAuthDisallowRemoteOnlyAccounts'] === true ) {
+			if ( $this->disallowRemoteOnlyAccounts ) {
 				// Block the login, since account creation though remote login is disabled
 				throw new ContinuationException( wfMessage( "wsoauth-remote-only-accounts-disabled" )->parse() );
 			}
 
-			// Get the user ID of any account with the same name
-			$userId = User::newFromName( $remoteUsername )->idForName();
+			$desiredLocalUsername = $this->useRealNameAsUsername && $realname !== null ? $realname : $remoteUsername;
+			$userId = User::newFromName( $desiredLocalUsername )->idForName();
 
-			if ( $userId > 0 ) {
-				if ( $GLOBALS['wgOAuthMigrateUsersByUsername'] !== true ) {
-					// Automatic remote-only account usurpation is disabled
-					throw new ContinuationException(
-						wfMessage( 'wsoauth-user-already-exists-message', $remoteUsername )->parse()
-					);
-				}
-
+			if ( $userId > 0 && $this->migrateUsersByUsername ) {
 				// Usurp the account
 				$this->saveExtraAttributes( $userId );
-			}
 
-			$username = $remoteUsername;
-			$id = $userId > 0 ? $userId : null;
+				$username = $desiredLocalUsername;
+				$id = $userId;
+			} else {
+				// Create a new account with a unique name
+				$username = $this->getUniqueName( $desiredLocalUsername );
+				// We can set $id to null since $username is guaranteed to not exist on the wiki
+				$id = null;
+			}
 		}
 	}
 
 	/**
-	 * Creates a mapping from the given remote user name to the given local user ID.
+	 * Creates a mapping from the given remote username to the given local user ID.
 	 *
 	 * @param int $localUserID
 	 * @param string $remoteAccountName
@@ -299,8 +353,43 @@ class WSOAuth extends PluggableAuth {
 	 * @return bool
 	 */
 	private function isContinuation(): bool {
-		return $this->doesSessionVariableExist( "request_key" ) &&
-			$this->doesSessionVariableExist( "request_secret" );
+		return $this->authManager->getAuthenticationSessionData( self::WSOAUTH_OAUTH_REQUEST_KEY_SESSION_KEY, false ) &&
+			$this->authManager->getAuthenticationSessionData( self::WSOAUTH_OAUTH_REQUEST_SECRET_SESSION_KEY, false );
+	}
+
+	/**
+	 * Returns a valid unique name based on the given name. This function checks if the given name is available as a
+	 * username on the wiki, if it is, it will return that, otherwise it will continually increment a number and
+	 * append that until a username that is available is found.
+	 *
+	 * @param string $name
+	 * @return string
+	 * @throws ContinuationException
+	 */
+	private function getUniqueName( string $name ): string {
+		if ( !$this->userNameUtils->isValid( $name ) ) {
+			// Missing or invalid 'name' attribute
+			throw new ContinuationException( wfMessage( 'wsoauth-invalid-username' )->parse() );
+		}
+
+		$name = ucfirst( $name );
+		$userId = User::newFromName( $name )->idForName();
+
+		if ( $userId === 0 ) {
+			// The real name is not yet taken
+			return $name;
+		}
+
+		for ( $i = 1; $i < self::UNIQUE_NAME_MAX_TRIES; $i++ ) {
+			$newRealname = sprintf( "%s %s", $name, $i );
+			$userId = User::newFromName( $newRealname )->idForName();
+
+			if ( $userId === 0 ) {
+				return $newRealname;
+			}
+		}
+
+		throw new ContinuationException( 'Unable to get a unique real name' );
 	}
 
 	/**

@@ -6,7 +6,6 @@
 	},
 	"wsoauth-extensionname": "WSOAuth",
 	"wsoauth-desc": "Extends the PluggableAuth extension to provide authentication using OAuth.",
-	"wsoauth-pluggable-auth-class-desc": "The class name that extends PluggableAuth; this configuration parameter is set by the extension and should not be edited by the user.",
 	"wsoauth-auth-providers-desc": "An array containing a list of custom OAuth providers together with their class name.",
 	"wsoauth-auto-populate-groups-desc": "An array containing a list of MediaWiki group names that must be automatically assigned to the user after they are authenticated.",
 	"wsoauth-authentication-failure": "Authentication failed (are you authorised for this wiki?).",
@@ -15,10 +14,9 @@
 	"wsoauth-unknown-auth-provider-exception-message": "Unknown OAuth provider ($1)",
 	"wsoauth-invalid-auth-provider-class-exception-message": "The OAuth provider class does not implement AuthProvider",
 	"wsoauth-initiate-login-failure": "Unable to initiate communication with OAuth provider.",
-	"wsoauth-migrate-users-by-username-desc": "Whether or not to allow usurpation of existing accounts by username.",
-	"wsoauth-user-already-exists-message": "The username \"$1\" is already taken.",
+	"wsoauth-migrate-users-by-username-desc": "Whether or not to allow usurpation of existing accounts by username (used only if <code>migrateUsersByUsername</code> is not set for the specific authentication provider).",
 	"wsoauth-not-configured-message": "Remote login has not been configured for this wiki. Please try a different authentication method.",
-	"wsoauth-disallow-remote-only-accounts": "Whether or not to allow accounts to not have a local counterpart.",
+	"wsoauth-disallow-remote-only-accounts-desc": "Whether or not to allow accounts to not have a local counterpart (used only if <code>disallowRemoteOnlyAccounts</code> is not set for the specific authentication provider).",
 	"wsoauth-already-logged-in-through-remote": "You are already logged in through a remote or migrated account. You cannot connect a remote account to this account. If you want to log in using another remote, please log out and log in using the other account.",
 	"wsoauth-remote-only-accounts-disabled": "Remote-only login has been disabled on this wiki. A remote account must be connected to a local account.",
 	"wsoauth-special-page-content": "You can connect a remote account to this account by logging in to the remote from [[Special:UserLogin]] while being logged in. In the future, it will be possible to manage your remote accounts from this special page.",
@@ -26,5 +24,7 @@
 	"wsoauth-missing-uri": "No remote URI is configured.",
 	"wsoauth-missing-client-id": "No client ID is configured.",
 	"wsoauth-missing-client-secret": "No client secret is configured.",
-	"wsoauth-manage-remotes": "Manage remote accounts"
+	"wsoauth-manage-remotes": "Manage remote accounts",
+	"wsoauth-use-real-name-as-username-desc": "Whether to use the real name as the username (used only if <code>useRealNameAsUsername</code> is not set for the specific authentication provider).",
+	"wsoauth-could-not-create-mapping": "Could not create mapping."
 }

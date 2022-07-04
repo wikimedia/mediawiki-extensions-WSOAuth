@@ -1,6 +1,6 @@
 {
 	"name": "WSOAuth",
-	"version": "6.0.2",
+	"version": "6.1.0",
 	"namemsg": "wsoauth-extensionname",
 	"url": "https://www.mediawiki.org/wiki/Extension:WSOAuth",
 	"type": "other",
@@ -58,7 +58,11 @@
 		},
 		"OAuthDisallowRemoteOnlyAccounts": {
 			"value": false,
-			"descriptionmsg": "wsoauth-disallow-remote-only-accounts"
+			"descriptionmsg": "wsoauth-disallow-remote-only-accounts-desc"
+		},
+		"OAuthUseRealNameAsUsername": {
+			"value": false,
+			"descriptionmsg": "wsoauth-use-real-name-as-username-desc"
 		}
 	},
 	"SpecialPages": {
@@ -69,7 +73,8 @@
 			"WSOAuth": {
 				"class": "\\WSOAuth\\WSOAuth",
 				"services": [
-					"UserNameUtils"
+					"UserNameUtils",
+					"AuthManager"
 				]
 			}
 		}
