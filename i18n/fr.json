@@ -9,7 +9,6 @@
 	},
 	"wsoauth-extensionname": "WSOAuth",
 	"wsoauth-desc": "Étend l’extension PluggableAuth pour fournir une authentification utilisant OAuth.",
-	"wsoauth-pluggable-auth-class-desc": "Le nom de classe qui étend PluggableAuth ; ce paramètre de configuration est défini par l’extension et ne devrait pas être modifié par l’utilisateur.",
 	"wsoauth-auth-providers-desc": "Un tableau contenant une liste personnalisée de fournisseurs OAuth, conjointement avec leur nom de classe.",
 	"wsoauth-auto-populate-groups-desc": "Un tableau contenant une liste de noms des groupes MediaWiki qui doivent être automatiquement affectés à l’utilisateur après s’être authentifié.",
 	"wsoauth-authentication-failure": "Échec d’authentification (êtes-vous autorisé pour ce wiki ?).",
@@ -18,10 +17,9 @@
 	"wsoauth-unknown-auth-provider-exception-message": "Fournisseur OAuth inconnu ($1)",
 	"wsoauth-invalid-auth-provider-class-exception-message": "La classe du fournisseur OAuth ne met pas en œuvre AuthProvider",
 	"wsoauth-initiate-login-failure": "Impossible d’initialiser la communication avec le fournisseur OAuth.",
-	"wsoauth-migrate-users-by-username-desc": "S’il faut ou non permettre l’usurpation de comptes existants par nom d’utilisateur.",
-	"wsoauth-user-already-exists-message": "Le nom d’utilisateur « $1 » est déjà pris.",
+	"wsoauth-migrate-users-by-username-desc": "S’il faut ou non permettre l’usurpation de comptes existants par nom d’utilisateur (utilisé uniquement si <code>migrateUsersByUsername</code> n’est pas défini pour le fournisseur d’authentification spécifique).",
 	"wsoauth-not-configured-message": "La connexion à distance n’a pas été configurée pour ce wiki. Veuillez essayer une méthode d’authentification différente.",
-	"wsoauth-disallow-remote-only-accounts": "S’il faut ou non autoriser les comptes à ne pas avoir de contrepartie locale.",
+	"wsoauth-disallow-remote-only-accounts-desc": "S’il faut autoriser ou non les comptes à ne pas avoir de contrepartie locale (utilisé uniquement si <code>disallowRemoteOnlyAccounts</code> n’est pas défini pour le fournisseur d’authentification spécifique).",
 	"wsoauth-already-logged-in-through-remote": "Vous êtes déjà connecté via un compte distant ou migré. Vous ne pouvez pas connecter un compte distant pour ce compte. Si vous voulez vous connecter en utilisant un autre compte distant, veuillez vous déconnecter et vous reconnecter en utilisant l’autre compte.",
 	"wsoauth-remote-only-accounts-disabled": "La connexion à distance seulement a été désactivée sur ce wiki. Un compte distant doit être connecté à un compte local.",
 	"wsoauth-special-page-content": "Vous pouvez connecter un compte distant à ce compte en vous identifiant sur le compte distant depuis [[Special:UserLogin]] alors que vous êtes connecté ici. À l’avenir, il sera possible de gérer vos comptes distants depuis cette page spéciale.",
@@ -29,5 +27,7 @@
 	"wsoauth-missing-uri": "Aucune URI distante n’est configurée.",
 	"wsoauth-missing-client-id": "Aucun identifiant de client n’est configuré.",
 	"wsoauth-missing-client-secret": "Aucun secret de client n’est configuré.",
-	"wsoauth-manage-remotes": "Gérer les comptes distants"
+	"wsoauth-manage-remotes": "Gérer les comptes distants",
+	"wsoauth-use-real-name-as-username-desc": "S’il faut utiliser le nom réel comme nom d’utilisateur (utilisé uniquement si <code>disallowRemoteOnlyAccounts</code> n’est pas défini pour le fournisseur d’authentification spécifique).",
+	"wsoauth-could-not-create-mapping": "Impossible de créer la correspondance."
 }

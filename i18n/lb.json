@@ -4,6 +4,5 @@
 			"Robby"
 		]
 	},
-	"wsoauth-unknown-auth-provider-exception-message": "onbekannten OAuth-provider ($1)",
-	"wsoauth-user-already-exists-message": "De Benotzernumm \"$1\" gëtt scho benotzt."
+	"wsoauth-unknown-auth-provider-exception-message": "onbekannten OAuth-provider ($1)"
 }

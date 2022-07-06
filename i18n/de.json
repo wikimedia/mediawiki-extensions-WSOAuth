@@ -9,7 +9,6 @@
 	},
 	"wsoauth-extensionname": "WSOAuth",
 	"wsoauth-desc": "Erweitert die PluggableAuth-Erweiterung, um die Authentifizierung mit OAuth bereitzustellen.",
-	"wsoauth-pluggable-auth-class-desc": "Der Klassenname, der PluggableAuth erweitert. Dieser Konfigurationsparameter wird von der Erweiterung festgelegt und sollte vom Benutzer nicht bearbeitet werden.",
 	"wsoauth-auth-providers-desc": "Ein Array mit einer Liste von benutzerdefinierten OAuth-Anbietern zusammen mit ihrem Klassennamen.",
 	"wsoauth-auto-populate-groups-desc": "Ein Array mit einer Liste von MediaWiki-Gruppennamen, die dem Benutzer nach seiner Authentifizierung automatisch zugewiesen werden müssen.",
 	"wsoauth-authentication-failure": "Authentifizierung fehlgeschlagen (bist du für dieses Wiki autorisiert?).",
@@ -18,10 +17,9 @@
 	"wsoauth-unknown-auth-provider-exception-message": "Unbekannter OAuth-Provider ($1)",
 	"wsoauth-invalid-auth-provider-class-exception-message": "Die OAuth-Provider-Klasse implementiert nicht AuthProvider",
 	"wsoauth-initiate-login-failure": "Die Kommunikation mit dem OAuth-Provider kann nicht initiiert werden.",
-	"wsoauth-migrate-users-by-username-desc": "Ob die Aneignung bestehender Konten durch den Benutzernamen erlaubt werden soll oder nicht.",
-	"wsoauth-user-already-exists-message": "Der Benutzername „$1“ wird bereits genutzt.",
+	"wsoauth-migrate-users-by-username-desc": "Ob die Aneignung bestehender Konten durch den Benutzernamen erlaubt werden soll oder nicht (wird nur verwendet, wenn <code>migrateUsersByUsername</code> für den spezifischen Authentifizierungsanbieter nicht gesetzt ist).",
 	"wsoauth-not-configured-message": "Die Fernanmeldung wurde für dieses Wiki nicht konfiguriert. Bitte versuche eine andere Authentifizierungsmethode.",
-	"wsoauth-disallow-remote-only-accounts": "Ob Konten ohne lokales Gegenstück zugelassen werden sollen oder nicht.",
+	"wsoauth-disallow-remote-only-accounts-desc": "Ob Konten erlaubt werden sollen, die kein lokales Gegenstück haben (wird nur verwendet, wenn <code>disallowRemoteOnlyAccounts</code> für den spezifischen Authentifizierungsanbieter nicht gesetzt ist).",
 	"wsoauth-already-logged-in-through-remote": "Du bist bereits über ein entferntes oder migriertes Konto angemeldet. Du kannst kein entferntes Konto mit diesem Konto verbinden. Wenn du dich über ein anderes entferntes Konto anmelden möchtest, melde dich bitte ab und melde dich über das andere Konto an.",
 	"wsoauth-remote-only-accounts-disabled": "Die reine Fernanmeldung wurde in diesem Wiki deaktiviert. Ein entferntes Konto muss mit einem lokalen Konto verbunden sein",
 	"wsoauth-special-page-content": "Du kannst ein entferntes Konto mit diesem Konto verbinden, indem du dich bei dem entfernten Konto über [[Special:UserLogin]] anmeldest, während du angemeldet bist. In Zukunft wird es möglich sein, deine entfernten Konten von dieser Spezialseite aus zu verwalten.",
@@ -29,5 +27,7 @@
 	"wsoauth-missing-uri": "Es ist kein entfernter URI konfiguriert.",
 	"wsoauth-missing-client-id": "Es ist keine Client-ID konfiguriert.",
 	"wsoauth-missing-client-secret": "Es ist kein Client-Geheimnis konfiguriert.",
-	"wsoauth-manage-remotes": "Verwalten von Fernkonten"
+	"wsoauth-manage-remotes": "Verwalten von Fernkonten",
+	"wsoauth-use-real-name-as-username-desc": "Ob der echte Name als Benutzername verwendet werden soll (wird nur verwendet, wenn <code>useRealNameAsUsername</code> für den spezifischen Authentifizierungsanbieter nicht gesetzt ist).",
+	"wsoauth-could-not-create-mapping": "Zuordnung konnte nicht erstellt werden."
 }

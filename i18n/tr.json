@@ -5,7 +5,6 @@
 		]
 	},
 	"wsoauth-desc": "PluggableAuth uzantısını OAuth kullanarak kimlik doğrulaması sağlayacak şekilde genişletir.",
-	"wsoauth-pluggable-auth-class-desc": "PluggableAuth genişleten sınıf adı; bu yapılandırma parametresi uzantı tarafından ayarlanır ve kullanıcı tarafından düzenlenmemelidir.",
 	"wsoauth-auth-providers-desc": "Sınıf adlarıyla birlikte özel OAuth sağlayıcılarının listesini içeren bir dizi.",
 	"wsoauth-auto-populate-groups-desc": "Kimliği doğrulandıktan sonra kullanıcıya otomatik olarak atanması gereken MediaWiki grup adlarının listesini içeren bir dizi.",
 	"wsoauth-authentication-failure": "Kimlik doğrulama başarısız oldu (bu viki için yetkiniz var mı?).",
@@ -15,6 +14,5 @@
 	"wsoauth-invalid-auth-provider-class-exception-message": "OAuth sağlayıcı sınıfı AuthProvider uygulamıyor",
 	"wsoauth-initiate-login-failure": "OAuth sağlayıcısı ile iletişim başlatılamıyor.",
 	"wsoauth-migrate-users-by-username-desc": "Mevcut hesapların kullanıcı adına göre kullanılmasına izin verilip verilmeyeceği.",
-	"wsoauth-user-already-exists-message": "\"$1\" kullanıcı adı zaten alınmış.",
 	"wsoauth-not-configured-message": "Bu viki için uzaktan oturum açma yapılandırılmamış. Lütfen farklı bir kimlik doğrulama yöntemi deneyin."
 }

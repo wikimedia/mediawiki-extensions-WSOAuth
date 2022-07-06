@@ -6,7 +6,6 @@
 	},
 	"wsoauth-extensionname": "WSOAuth",
 	"wsoauth-desc": "Zorgt voor authenticatie met behulp van OAuth in combinatie met PluggableAuth.",
-	"wsoauth-pluggable-auth-class-desc": "De naam van de class die PluggableAuth extend; deze configuratie parameter wordt door de extensie ingesteld en zou niet door de gebruiker aan moeten worden gepast.",
 	"wsoauth-auth-providers-desc": "Een lijst (array) met alle niet-standaard authenticatieleveranciers samen met de naam van hun class.",
 	"wsoauth-auto-populate-groups-desc": "Een lijst (array) met MediaWiki groepen die automatisch aan de gebruiker worden toegewezen nadat deze successvol is geauthenticeerd.",
 	"wsoauth-authentication-failure": "Authenticatie mislukt (bent u geauthoriseerd voor deze wiki?).",
@@ -15,6 +14,5 @@
 	"wsoauth-unknown-auth-provider-exception-message": "Onbekende OAuth-provider ($1)",
 	"wsoauth-invalid-auth-provider-class-exception-message": "De OAuth-provider class is geen implementatie van AuthProvider",
 	"wsoauth-initiate-login-failure": "Kan communicatie met OAuth-provider niet starten.",
-	"wsoauth-migrate-users-by-username-desc": "Het al dan niet toestaan van toe-eigening van bestaande accounts gebaseerd op gebruikersnaam.",
-	"wsoauth-user-already-exists-message": "De gebruikersnaam \"$1\" is al bezet."
+	"wsoauth-migrate-users-by-username-desc": "Het al dan niet toestaan van toe-eigening van bestaande accounts gebaseerd op gebruikersnaam."
 }

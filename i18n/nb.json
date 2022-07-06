@@ -5,7 +5,6 @@
 		]
 	},
 	"wsoauth-desc": "Utvider PluggableAuth-utvidelsen til å gi autentisering med OAuth.",
-	"wsoauth-pluggable-auth-class-desc": "Klassenavnet som utvider PluggableAuth; denne konfigurasjonsparameteren er satt av utvidelsen, og bør ikke redigeres av brukeren.",
 	"wsoauth-auth-providers-desc": "En tabell med ei liste over egendefinerte OAuth-tilbydere med deres klassenavn.",
 	"wsoauth-auto-populate-groups-desc": "En tabell med ei liste over MediaWiki-gruppenavn som automatisk må tildeles brukeren etter at vedkommende er autentisert.",
 	"wsoauth-authentication-failure": "Autentisering feilet (er du autorisert or denne wikien?).",
@@ -15,6 +14,5 @@
 	"wsoauth-invalid-auth-provider-class-exception-message": "OAuth-tilbyderklassen implementerer ikke AuthProvider",
 	"wsoauth-initiate-login-failure": "Kunne ikke initiere kommunikasjon med OAuth-tilbyder.",
 	"wsoauth-migrate-users-by-username-desc": "Hvorvidt det skal tillates å overta eksisterende kontoer etter brukernavn.",
-	"wsoauth-user-already-exists-message": "Brukernavnet «$1» er allerede i bruk.",
 	"wsoauth-not-configured-message": "Ekstern innlogging er ikke satt opp for denne wikien. Prøv en annen autentiseringsmetode."
 }

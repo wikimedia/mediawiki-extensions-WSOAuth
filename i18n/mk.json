@@ -5,7 +5,6 @@
 		]
 	},
 	"wsoauth-desc": "Го проширува додатокот PluggableAuth со можност за заверка со помош на OAuth.",
-	"wsoauth-pluggable-auth-class-desc": "Назив на класата која го проширува PluggableAuth; овој параметар се задава од додатокот и не треба да се уредува од корисникот.",
 	"wsoauth-auth-providers-desc": "Строј со список на прилагодени OAuth-услужници заедно со називот на нивната класа.",
 	"wsoauth-auto-populate-groups-desc": "Стројот со список на групи на МедијаВики мора автоматски да се зададе на корисникот по неговата заверка.",
 	"wsoauth-authentication-failure": "Заверката не успеа (дали сте овластени на ова вики?).",
@@ -14,10 +13,9 @@
 	"wsoauth-unknown-auth-provider-exception-message": "Непознат OAuth-услужник ($1)",
 	"wsoauth-invalid-auth-provider-class-exception-message": "Класата на OAuth-услужник не спроведува AuthProvider",
 	"wsoauth-initiate-login-failure": "Не можев да го отпочнам општењето со OAuth-услужникот.",
-	"wsoauth-migrate-users-by-username-desc": "Дали да се дозволи узурпација на постоечки сметки по корисничко име.",
-	"wsoauth-user-already-exists-message": "Корисничкото име „$1“ е зафатено.",
+	"wsoauth-migrate-users-by-username-desc": "Дали да се дозволи узурпација на постоечки сметки по корисничко име (се користи само ако <code>migrateUsersByUsername</code> не е зададено за дадениот давател на заверка).",
 	"wsoauth-not-configured-message": "На ова вики нема далечинско најавување. Обидете се на друг начин.",
-	"wsoauth-disallow-remote-only-accounts": "Дали да се дозволи сметките да немаат месен истоветник.",
+	"wsoauth-disallow-remote-only-accounts-desc": "Дали да се дозволи сметките да немаат месен пандан (се користи само ако <code>disallowRemoteOnlyAccounts</code> не е зададено за дадениот давател на заверка).",
 	"wsoauth-already-logged-in-through-remote": "Веќе сте најавени преку далечинска или преселена сметка. Не можете да врзете далечинска сметка за оваа сметка. Ако сакате да се најавите со друга далечинска сметка, прво одјавете се од оваа.",
 	"wsoauth-remote-only-accounts-disabled": "На ова вики е оневозможено исклучиво далечинско најавување. Далечинската сметка мора да се поврзе со месна.",
 	"wsoauth-special-page-content": "Можете да поврзете оддалечена сметка со оваа сметка, најавувајќи се на далечинската од [[Special:UserLogin]] додека сте најавени на оваа. Во иднина ќе можете да управувате со оддалечените сметки од оваа службена страница.",
@@ -25,5 +23,7 @@
 	"wsoauth-missing-uri": "Нема поставено далечинска URI.",
 	"wsoauth-missing-client-id": "Нема поставено клиентска назнака.",
 	"wsoauth-missing-client-secret": "Нема поставено клиентска тајна.",
-	"wsoauth-manage-remotes": "Урпавување со далечински пристап"
+	"wsoauth-manage-remotes": "Урпавување со далечински пристап",
+	"wsoauth-use-real-name-as-username-desc": "Дали да се користи вистинското име како корисничко (се користи само ако <code>useRealNameAsUsername</code> не е зададено за дадениот давател на заверка).",
+	"wsoauth-could-not-create-mapping": "Не можев да ги создадам задавањата."
 }

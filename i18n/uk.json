@@ -7,7 +7,6 @@
 	},
 	"wsoauth-extensionname": "WSOAuth",
 	"wsoauth-desc": "Розширює розширення PluggableAuth для забезпечення автентифікації за допомогою OAuth.",
-	"wsoauth-pluggable-auth-class-desc": "Назва класу, що розширює PluggableAuth; цей параметр конфігурації встановлюється розширенням і не повинен редагуватися користувачем.",
 	"wsoauth-auth-providers-desc": "Масив, що містить список користувацьких постачальників OAuth разом із назвою їх класу.",
 	"wsoauth-auto-populate-groups-desc": "Масив, що містить список назв груп MediaWiki, які повинні бути автоматично призначені користувачеві після їх автентифікації.",
 	"wsoauth-authentication-failure": "Помилка автентифікації (чи ви авторизовані для цієї вікі?).",
@@ -17,6 +16,5 @@
 	"wsoauth-invalid-auth-provider-class-exception-message": "Клас постачальника OAuth не реалізує AuthProvider",
 	"wsoauth-initiate-login-failure": "Не вдається розпочати зв’язок із провайдером OAuth.",
 	"wsoauth-migrate-users-by-username-desc": "Дозволити узурпацію наявних облікових записів за допомогою імені користувача чи ні.",
-	"wsoauth-user-already-exists-message": "Ім’я користувача \"$1\" уже зайнято.",
 	"wsoauth-not-configured-message": "Для цієї вікі не налаштовано віддалений вхід. Спробуйте інший метод автентифікації."
 }

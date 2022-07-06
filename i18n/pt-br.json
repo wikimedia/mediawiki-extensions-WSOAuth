@@ -7,7 +7,6 @@
 		]
 	},
 	"wsoauth-desc": "Estende a extensão PluggableAuth para fornecer autenticação usando OAuth.",
-	"wsoauth-pluggable-auth-class-desc": "O nome da classe que estende PluggableAuth; este parâmetro de configuração é definido pela extensão e não deve ser editado pelo usuário.",
 	"wsoauth-auth-providers-desc": "Uma matriz contendo uma lista de provedores OAuth personalizados junto com seus nomes de classe.",
 	"wsoauth-auto-populate-groups-desc": "Um array contendo uma lista de nomes de grupos MediaWiki que devem ser atribuídos automaticamente ao usuário após a autenticação.",
 	"wsoauth-authentication-failure": "A autenticação falhou (você está autorizado para essa wiki?).",
@@ -17,7 +16,6 @@
 	"wsoauth-invalid-auth-provider-class-exception-message": "A classe do provedor OAuth não implementa AuthProvider",
 	"wsoauth-initiate-login-failure": "Não foi possível iniciar a comunicação com o provedor OAuth.",
 	"wsoauth-migrate-users-by-username-desc": "Permitir ou não a usurpação de contas existentes por nome de usuário.",
-	"wsoauth-user-already-exists-message": "O nome de usuário \"$1\" já está em uso.",
 	"wsoauth-not-configured-message": "A entrada remoto não foi configurado para essa wiki. Tente um método de autenticação diferente.",
 	"wsoauth-prefs-manage-remote": "Contas remotas:",
 	"wsoauth-manage-remotes": "Gerenciar contas remotas"
