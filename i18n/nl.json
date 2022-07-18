@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Marijn van Wezel <xxmarijnw>"
+			"Marijn van Wezel <xxmarijnw>",
+			"McDutchie"
 		]
 	},
 	"wsoauth-extensionname": "WSOAuth",
@@ -14,5 +15,5 @@
 	"wsoauth-unknown-auth-provider-exception-message": "Onbekende OAuth-provider ($1)",
 	"wsoauth-invalid-auth-provider-class-exception-message": "De OAuth-provider class is geen implementatie van AuthProvider",
 	"wsoauth-initiate-login-failure": "Kan communicatie met OAuth-provider niet starten.",
-	"wsoauth-migrate-users-by-username-desc": "Het al dan niet toestaan van toe-eigening van bestaande accounts gebaseerd op gebruikersnaam."
+	"wsoauth-migrate-users-by-username-desc": "De toeëigening van bestaande accounts al dan niet toestaan op basis van de gebruikersnaam. (Deze instelling is alleen van toepassing als <code>migrateUsersByUsername</code> niet is ingesteld voor de gebruikte authenticatieprovider.)"
 }
