@@ -1,6 +1,6 @@
 {
 	"name": "WSOAuth",
-	"version": "6.1.0",
+	"version": "6.1.1",
 	"namemsg": "wsoauth-extensionname",
 	"url": "https://www.mediawiki.org/wiki/Extension:WSOAuth",
 	"type": "other",
@@ -73,8 +73,7 @@
 			"WSOAuth": {
 				"class": "\\WSOAuth\\WSOAuth",
 				"services": [
-					"UserNameUtils",
-					"AuthManager"
+					"UserNameUtils"
 				]
 			}
 		}
