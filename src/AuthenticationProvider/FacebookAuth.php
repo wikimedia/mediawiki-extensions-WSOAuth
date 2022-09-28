@@ -21,7 +21,8 @@ namespace WSOAuth\AuthenticationProvider;
 use League\OAuth2\Client\Provider\Facebook;
 use MediaWiki\User\UserIdentity;
 
-class FacebookAuth implements AuthProvider {
+class FacebookAuth extends AuthProvider {
+
 	/**
 	 * @var Facebook
 	 */
