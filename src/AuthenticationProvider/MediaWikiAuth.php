@@ -23,8 +23,10 @@ use MediaWiki\OAuthClient\Consumer;
 use MediaWiki\OAuthClient\Exception;
 use MediaWiki\OAuthClient\Token;
 use MediaWiki\User\UserIdentity;
+use Psr\Log\LoggerInterface;
 
-class MediaWikiAuth implements AuthProvider {
+class MediaWikiAuth extends AuthProvider {
+
 	/**
 	 * @var Client
 	 */
@@ -55,7 +57,16 @@ class MediaWikiAuth implements AuthProvider {
 	/**
 	 * @inheritDoc
 	 */
+	public function setLogger( LoggerInterface $logger ) {
+		parent::setLogger( $logger );
+		$this->client->setLogger( $logger );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
 	public function login( ?string &$key, ?string &$secret, ?string &$authUrl ): bool {
+		$this->logger->debug( 'In ' . __METHOD__ );
 		try {
 			list( $authUrl, $token ) = $this->client->initiate();
 
@@ -64,7 +75,7 @@ class MediaWikiAuth implements AuthProvider {
 
 			return true;
 		} catch ( Exception $e ) {
-			wfDebugLog( "WSOAuth", $e->getMessage() );
+			$this->logger->debug( 'Failed to get request token', [ $e->getMessage() ] );
 			return false;
 		}
 	}
@@ -79,7 +90,9 @@ class MediaWikiAuth implements AuthProvider {
 	 * @inheritDoc
 	 */
 	public function getUser( string $key, string $secret, &$errorMessage ) {
+		$this->logger->debug( 'In ' . __METHOD__ );
 		if ( !isset( $_GET['oauth_verifier'] ) ) {
+			$this->logger->debug( 'No oauth_verifier found in URL.' );
 			return false;
 		}
 
@@ -89,11 +102,13 @@ class MediaWikiAuth implements AuthProvider {
 
 			$access_token = new Token( $access_token->key, $access_token->secret );
 			$identity = $this->client->identify( $access_token );
+			$this->logger->debug( 'Identity', [ $identity ] );
 
 			return [
 				"name" => $identity->username
 			];
 		} catch ( \Exception $e ) {
+			$this->logger->debug( 'Failed to get user', [ $e->getMessage() ] );
 			return false;
 		}
 	}

@@ -17,11 +17,16 @@
 namespace WSOAuth\AuthenticationProvider;
 
 use MediaWiki\User\UserIdentity;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 
 /**
  * @stable for implementation
  */
-interface AuthProvider {
+abstract class AuthProvider implements LoggerAwareInterface {
+
+	use LoggerAwareTrait;
+
 	/**
 	 * AuthProvider constructor.
 	 *
@@ -30,7 +35,9 @@ interface AuthProvider {
 	 * @param string|null $authUri
 	 * @param string|null $redirectUri
 	 */
-	public function __construct( string $clientId, string $clientSecret, ?string $authUri, ?string $redirectUri );
+	abstract public function __construct(
+		string $clientId, string $clientSecret, ?string $authUri, ?string $redirectUri
+	);
 
 	/**
 	 * Log in the user through the external OAuth provider.
@@ -41,7 +48,7 @@ interface AuthProvider {
 	 * @return bool Returns true on successful login, false otherwise.
 	 * @internal
 	 */
-	public function login( ?string &$key, ?string &$secret, ?string &$authUrl ): bool;
+	abstract public function login( ?string &$key, ?string &$secret, ?string &$authUrl ): bool;
 
 	/**
 	 * Log out the user and destroy the session.
@@ -50,7 +57,7 @@ interface AuthProvider {
 	 * @return void
 	 * @internal
 	 */
-	public function logout( UserIdentity &$user ): void;
+	abstract public function logout( UserIdentity &$user ): void;
 
 	/**
 	 * Get user info from session. Returns false when the request failed or the user is not authorised.
@@ -61,7 +68,7 @@ interface AuthProvider {
 	 * @return bool|array Returns an array with at least a 'name' when the user is authenticated, returns false when the user is not authorised or the authentication failed.
 	 * @internal
 	 */
-	public function getUser( string $key, string $secret, &$errorMessage );
+	abstract public function getUser( string $key, string $secret, &$errorMessage );
 
 	/**
 	 * Gets called whenever a user is successfully authenticated, so extra attributes about the user can be saved.
@@ -70,5 +77,5 @@ interface AuthProvider {
 	 * @return void
 	 * @internal
 	 */
-	public function saveExtraAttributes( int $id ): void;
+	abstract public function saveExtraAttributes( int $id ): void;
 }
