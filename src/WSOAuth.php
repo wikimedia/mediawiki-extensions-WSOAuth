@@ -415,7 +415,7 @@ class WSOAuth extends PluggableAuth {
 	 *
 	 * @throws UnknownAuthProviderException|InvalidAuthProviderClassException|ConfigException
 	 */
-	private static function getAuthProvider( string $type, array $data ): AuthProvider {
+	private function getAuthProvider( string $type, array $data ): AuthProvider {
 		$auth_providers = self::getAuthProviders();
 
 		if ( !isset( $auth_providers[$type] ) ) {
