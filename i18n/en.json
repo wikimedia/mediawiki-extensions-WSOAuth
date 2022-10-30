@@ -26,5 +26,8 @@
 	"wsoauth-missing-client-secret": "No client secret is configured.",
 	"wsoauth-manage-remotes": "Manage remote accounts",
 	"wsoauth-use-real-name-as-username-desc": "Whether to use the real name as the username (used only if <code>useRealNameAsUsername</code> is not set for the specific authentication provider).",
-	"wsoauth-could-not-create-mapping": "Could not create mapping."
+	"wsoauth-could-not-create-mapping": "Could not create mapping.",
+	"wsoauth-login-button-label-wikipedia": "Login with Wikipedia",
+	"wsoauth-login-button-label-wikimedia": "Login with Wikimedia",
+	"wsoauth-login-button-label-facebook": "Login with Facebook"
 }
