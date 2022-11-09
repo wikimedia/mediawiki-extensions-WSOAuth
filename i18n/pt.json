@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hamilton Abreu"
+		]
+	},
+	"wsoauth-desc": "Expande a extensão PluggableAuth para fornecer autenticação usando OAuth.",
+	"wsoauth-auth-providers-desc": "Uma matriz que contém uma lista de fornecedores personalizados OAuth em conjunto com o seu nome de classe.",
+	"wsoauth-auto-populate-groups-desc": "Uma matriz que contém uma lista de nomes de grupos do MediaWiki que têm de ser atribuídos automaticamente ao utilizador depois de este estar autenticado.",
+	"wsoauth-authentication-failure": "A autenticação falhou (está autorizado para esta wiki?).",
+	"wsoauth-invalid-username": "O nome de utilizador dado pelo fornecedor OAuth não é válido.",
+	"wsoauth-unknown-auth-provider-class-exception-message": "A classe do fornecedor OAuth não está carregada ou não foi encontrada",
+	"wsoauth-unknown-auth-provider-exception-message": "Fornecedor OAuth desconhecido ($1)",
+	"wsoauth-invalid-auth-provider-class-exception-message": "A classe do fornecedor OAuth não implementa AuthProvider",
+	"wsoauth-initiate-login-failure": "Não foi possível iniciar a comunicação com o fornecedor OAuth.",
+	"wsoauth-migrate-users-by-username-desc": "Permitir ou não a usurpação de contas existentes por nome de utilizador (usado somente se <code>migrateUsersByUsername</code> não estiver definido para o fornecedor de autenticação específico).",
+	"wsoauth-not-configured-message": "O início de sessão remoto não foi configurado para esta wiki. Tente um método de autenticação diferente, por favor.",
+	"wsoauth-disallow-remote-only-accounts-desc": "Permitir ou não que as contas não tenham uma contraparte local (usado somente se <code>disallowRemoteOnlyAccounts</code> não estiver definido para o fornecedor de autenticação específico).",
+	"wsoauth-already-logged-in-through-remote": "Tem sessão iniciada por meio de uma conta remota ou migrada. Não pode ligar uma conta remota a esta conta. Se quiser iniciar sessão usando outra conta remota, saia e entre usando a outra conta.",
+	"wsoauth-remote-only-accounts-disabled": "Os inícios de sessão somente remotos foram desativados nesta wiki. Uma conta remota tem de estar ligada a uma conta local.",
+	"wsoauth-special-page-content": "Pode ligar uma conta remota a esta conta iniciando uma sessão na conta remota em [[Special:UserLogin]] enquanto tem uma sessão ativa nesta conta. No futuro, será possível gerir as suas contas remotas desta página especial.",
+	"wsoauth-prefs-manage-remote": "Contas remotas:",
+	"wsoauth-missing-uri": "Não está configurado nenhum URI remoto.",
+	"wsoauth-missing-client-id": "Não está configurado nenhum identificador de cliente.",
+	"wsoauth-missing-client-secret": "Não está configurado nenhum segredo de cliente.",
+	"wsoauth-manage-remotes": "Gerir contas remotas",
+	"wsoauth-use-real-name-as-username-desc": "Usar ou não o nome verdadeiro como nome de utilizador (usado somente se <code>useRealNameAsUsername</code> não estiver definido para o fornecedor de autenticação específico).",
+	"wsoauth-could-not-create-mapping": "Não foi possível criar o mapeamento.",
+	"wsoauth-login-button-label-wikipedia": "Entrar com a Wikipédia",
+	"wsoauth-login-button-label-wikimedia": "Entrar com a Wikimedia",
+	"wsoauth-login-button-label-facebook": "Entrar com o Facebook"
+}
