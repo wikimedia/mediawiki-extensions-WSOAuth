@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hamilton Abreu"
+		]
+	},
+	"wsoauth-desc": "Expande a extensão PluggableAuth para fornecer autenticação usando OAuth.",
+	"wsoauth-auth-providers-desc": "Uma matriz que contém uma lista de fornecedores personalizados OAuth em conjunto com o seu nome de classe.",
+	"wsoauth-auto-populate-groups-desc": "Uma matriz que contém uma lista de nomes de grupos do MediaWiki que têm de ser atribuídos automaticamente ao utilizador depois de este estar autenticado.",
+	"wsoauth-authentication-failure": "A autenticação falhou (está autorizado para esta wiki?).",
+	"wsoauth-invalid-username": "O nome de utilizador dado pelo fornecedor OAuth não é válido.",
+	"wsoauth-unknown-auth-provider-class-exception-message": "A classe do fornecedor OAuth não está carregada ou não foi encontrada",
+	"wsoauth-unknown-auth-provider-exception-message": "Fornecedor OAuth desconhecido ($1)",
+	"wsoauth-invalid-auth-provider-class-exception-message": "A classe do fornecedor OAuth não implementa AuthProvider",
+	"wsoauth-initiate-login-failure": "Não foi possível iniciar a comunicação com o fornecedor OAuth.",
+	"wsoauth-not-configured-message": "O início de sessão remoto não foi configurado para esta wiki. Tente um método de autenticação diferente, por favor."
+}
