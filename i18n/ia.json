@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"wsoauth-desc": "Extende le extension PluggableAuth pro fornir authentication usante OAuth.",
+	"wsoauth-auth-providers-desc": "Un matrice/array que contine un lista personalisate de fornitores OAuth con lor nomine de classe.",
+	"wsoauth-auto-populate-groups-desc": "Un matrice/array que contine un lista de nomines de gruppo MediaWiki que debe esser automaticamente assignate al usator post que illos es authenticate.",
+	"wsoauth-authentication-failure": "Authentication fallite (es tu autorisate pro iste wiki?).",
+	"wsoauth-invalid-username": "Le nomine de usator date per le fornitor OAuth non es valide.",
+	"wsoauth-unknown-auth-provider-class-exception-message": "Le classe del fornitor OAuth non ha essite cargate o trovate",
+	"wsoauth-unknown-auth-provider-exception-message": "Fornitor OAuth incognite ($1)",
+	"wsoauth-invalid-auth-provider-class-exception-message": "Le classe del fornitor OAuth non implementa AuthProvider",
+	"wsoauth-initiate-login-failure": "Non pote initiar communication con fornitor OAuth.",
+	"wsoauth-migrate-users-by-username-desc": "Indica si permitter le usurpation de contos existente per nomine de usator (usate solmente si <code>migrateUsersByUsername</code> non es definite pro le fornitor de authentication specific).",
+	"wsoauth-not-configured-message": "Le apertura de session remote non ha essite configurate pro iste wiki. Per favor essaya un altere methodo de authentication.",
+	"wsoauth-disallow-remote-only-accounts-desc": "Indica si permitter que contos non ha un contraparte local (usate solmente si <code>disallowRemoteOnlyAccounts</code> non es definite pro le fornitor de authentication specific).",
+	"wsoauth-already-logged-in-through-remote": "Tu es ja authenticate per medio de un conto remote o migrate. Tu non pote connecter un conto remote a iste conto. Si tu vole authenticar te usante un altere conto remote, per favor claude session e reaperi session usante le altere conto.",
+	"wsoauth-remote-only-accounts-disabled": "Le apertura de session solo remote ha essite disactivate sur iste wiki. Un conto remote debe esser connectite a un conto local.",
+	"wsoauth-special-page-content": "Tu pote connecter un conto remote a iste conto per authenticar te al remote desde [[Special:UserLogin]] durante que tu es authenticate. In le futuro, il essera possibile gerer tu contos remote desde iste pagina special.",
+	"wsoauth-prefs-manage-remote": "Contos remote:",
+	"wsoauth-missing-uri": "Nulle URI remote es configurate.",
+	"wsoauth-missing-client-id": "Nulle ID de cliente es configurate.",
+	"wsoauth-missing-client-secret": "Nulle secrete de cliente es configurate.",
+	"wsoauth-manage-remotes": "Gerer contos remote",
+	"wsoauth-use-real-name-as-username-desc": "Indica si usar le nomine real como le nomine de usator (usate solmente si <code>useRealNameAsUsername</code> non es definite pro le fornitor de authentication specific).",
+	"wsoauth-could-not-create-mapping": "Non poteva crear mappamento.",
+	"wsoauth-login-button-label-wikipedia": "Aperir session con Wikipedia",
+	"wsoauth-login-button-label-wikimedia": "Aperir session con Wikimedia",
+	"wsoauth-login-button-label-facebook": "Aperir session con Facebook"
+}
