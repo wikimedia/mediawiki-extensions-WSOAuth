@@ -4,6 +4,7 @@
 			"Duke of Wikipädia",
 			"Eduardo Addad de Oliveira",
 			"Eduardoaddad",
+			"Fúlvio",
 			"YuriNikolai"
 		]
 	},
@@ -19,5 +20,9 @@
 	"wsoauth-migrate-users-by-username-desc": "Permitir ou não a usurpação de contas existentes por nome de usuário(usado somente se <code>migrateUsersByUsername</code> não estiver definido para o provedor de autenticação específico).",
 	"wsoauth-not-configured-message": "A entrada remoto não foi configurado para essa wiki. Tente um método de autenticação diferente.",
 	"wsoauth-prefs-manage-remote": "Contas remotas:",
-	"wsoauth-manage-remotes": "Gerenciar contas remotas"
+	"wsoauth-manage-remotes": "Gerenciar contas remotas",
+	"wsoauth-could-not-create-mapping": "Não foi possível criar o mapeamento.",
+	"wsoauth-login-button-label-wikipedia": "Entrar com a Wikipédia",
+	"wsoauth-login-button-label-wikimedia": "Entrar com a Wikimedia",
+	"wsoauth-login-button-label-facebook": "Entrar com o Facebook"
 }
