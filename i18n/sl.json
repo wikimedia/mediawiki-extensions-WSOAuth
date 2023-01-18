@@ -5,6 +5,8 @@
 		]
 	},
 	"wsoauth-auth-providers-desc": "Imenik, ki vsebuje seznam ponudnikov OAuth po meri, vključno z njihovim imenom razreda.",
+	"wsoauth-prefs-manage-remote": "Oddaljeni računi:",
+	"wsoauth-manage-remotes": "Upravljaj oddaljene račune",
 	"wsoauth-login-button-label-wikipedia": "Prijava z Wikipedijo",
 	"wsoauth-login-button-label-wikimedia": "Prijava z Wikimedio",
 	"wsoauth-login-button-label-facebook": "Prijava s Facebookom"
