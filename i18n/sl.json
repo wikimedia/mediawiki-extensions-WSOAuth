@@ -4,5 +4,16 @@
 			"Eleassar"
 		]
 	},
-	"wsoauth-auth-providers-desc": "Imenik, ki vsebuje seznam ponudnikov OAuth po meri, vključno z njihovim imenom razreda."
+	"wsoauth-desc": "Razširi razširitev PluggableAuth za zagotavljanje avtentikacije z OAuth.",
+	"wsoauth-auth-providers-desc": "Imenik, ki vsebuje seznam ponudnikov OAuth po meri, vključno z njihovim imenom razreda.",
+	"wsoauth-auto-populate-groups-desc": "Polje, ki vsebuje seznam imen skupin MediaWiki, ki morajo biti samodejno dodeljena uporabniku, potem ko se avtenticira.",
+	"wsoauth-authentication-failure": "Aventikacija ni uspela (ste pooblaščeni za ta viki?)",
+	"wsoauth-invalid-username": "Uporabniško ime, ki ga je posredoval ponudnik OAuth, ni veljavno.",
+	"wsoauth-unknown-auth-provider-class-exception-message": "Razred ponudnika OAuth ni naložen ali ni najden",
+	"wsoauth-unknown-auth-provider-exception-message": "Neznani ponudnik OAuth ($1)",
+	"wsoauth-invalid-auth-provider-class-exception-message": "Razred ponudnika OAuth ne implementira AuthProvider",
+	"wsoauth-initiate-login-failure": "Komunikacije s ponudnikom OAuth ni mogoče začeti.",
+	"wsoauth-not-configured-message": "Oddaljena prijava ni bila konfigurirana za ta viki. Poskusite z drugo metodo avtentikacije.",
+	"wsoauth-already-logged-in-through-remote": "Ste že prijavljeni prek oddaljenega ali preseljenega računa. S tem računom ne morete povezati oddaljenega računa. Če se želite prijaviti z drugim oddaljenim računom, se odjavite in prijavite z drugim računom.",
+	"wsoauth-remote-only-accounts-disabled": "Prijava samo na daljavo je bila v tem vikiju onemogočena. Oddaljeni račun mora biti povezan z lokalnim računom."
 }
