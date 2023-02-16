@@ -5,8 +5,8 @@
 		]
 	},
 	"wsoauth-desc": "Razširi razširitev PluggableAuth za zagotavljanje avtentikacije z OAuth.",
-	"wsoauth-auth-providers-desc": "Imenik, ki vsebuje seznam ponudnikov OAuth po meri, vključno z njihovim imenom razreda.",
-	"wsoauth-auto-populate-groups-desc": "Polje, ki vsebuje seznam imen skupin MediaWiki, ki morajo biti samodejno dodeljena uporabniku, potem ko se avtenticira.",
+	"wsoauth-auth-providers-desc": "Matrika, ki vsebuje seznam uporabniško opredeljenih ponudnikov OAuth, vključno z njihovimi imeni razreda.",
+	"wsoauth-auto-populate-groups-desc": "Matrik, ki vsebuje seznam imen MediaWiki skupin za samodejno dodelitev uporabniku, potem ko se avtenticira.",
 	"wsoauth-authentication-failure": "Aventikacija ni uspela (ste pooblaščeni za ta viki?)",
 	"wsoauth-invalid-username": "Uporabniško ime, ki ga je posredoval ponudnik OAuth, ni veljavno.",
 	"wsoauth-unknown-auth-provider-class-exception-message": "Razred ponudnika OAuth ni naložen ali ni najden",
