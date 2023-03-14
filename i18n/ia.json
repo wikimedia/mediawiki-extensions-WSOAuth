@@ -5,8 +5,8 @@
 		]
 	},
 	"wsoauth-desc": "Extende le extension PluggableAuth pro fornir authentication usante OAuth.",
-	"wsoauth-auth-providers-desc": "Un matrice/array que contine un lista personalisate de fornitores OAuth con lor nomine de classe.",
-	"wsoauth-auto-populate-groups-desc": "Un matrice/array que contine un lista de nomines de gruppo MediaWiki que debe esser automaticamente assignate al usator post que illos es authenticate.",
+	"wsoauth-auth-providers-desc": "Un matrice que contine un lista personalisate de fornitores OAuth con lor nomine de classe.",
+	"wsoauth-auto-populate-groups-desc": "Un matrice que contine un lista de nomines de gruppo MediaWiki que debe esser automaticamente assignate al usator post esser authenticate.",
 	"wsoauth-authentication-failure": "Authentication fallite (es tu autorisate pro iste wiki?).",
 	"wsoauth-invalid-username": "Le nomine de usator date per le fornitor OAuth non es valide.",
 	"wsoauth-unknown-auth-provider-class-exception-message": "Le classe del fornitor OAuth non ha essite cargate o trovate",
