@@ -36,9 +36,10 @@ abstract class AuthProvider implements LoggerAwareInterface {
 	 * @param string $clientSecret
 	 * @param string|null $authUri
 	 * @param string|null $redirectUri
+	 * @param array       $extensionData
 	 */
 	abstract public function __construct(
-		string $clientId, string $clientSecret, ?string $authUri, ?string $redirectUri
+		string $clientId, string $clientSecret, ?string $authUri, ?string $redirectUri, array $extensionData = []
 	);
 
 	/**
