@@ -459,7 +459,8 @@ class WSOAuth extends PluggableAuth {
 			$data['clientId'],
 			$data['clientSecret'],
 			$data['uri'] ?? null,
-			$data['redirectUri'] ?? null
+			$data['redirectUri'] ?? null,
+			$data['extensionData'] ?? []
 		);
 	}
 }
