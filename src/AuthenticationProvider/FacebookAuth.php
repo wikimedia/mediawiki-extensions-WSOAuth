@@ -31,7 +31,7 @@ class FacebookAuth extends AuthProvider {
 	/**
 	 * @inheritDoc
 	 */
-	public function __construct( string $clientId, string $clientSecret, ?string $authUri, ?string $redirectUri ) {
+	public function __construct( string $clientId, string $clientSecret, ?string $authUri, ?string $redirectUri, array $extensionData = [] ) {
 		$this->provider = new Facebook( [
 			'clientId' => $clientId,
 			'clientSecret' => $clientSecret,
