@@ -56,6 +56,12 @@ class WSOAuth extends PluggableAuth {
 	];
 
 	/**
+	 * @var array The groups to populate
+	 * @public Must be accessible from WSOAuthHooks
+	 */
+	public $autoPopulateGroups;
+
+	/**
 	 * @var AuthProvider|null The requested authentication provider
 	 */
 	private $authProvider;
@@ -117,6 +123,9 @@ class WSOAuth extends PluggableAuth {
 
 		$this->migrateUsersByUsername = $this->data['migrateUsersByUsername'] ??
 			$GLOBALS['wgOAuthMigrateUsersByUsername'];
+
+		$this->autoPopulateGroups = $this->data['autoPopulateGroups'] ??
+			$GLOBALS['wgOAuthAutoPopulateGroups'] ?? [];
 	}
 
 	/**
