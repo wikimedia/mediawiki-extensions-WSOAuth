@@ -75,12 +75,8 @@ class WSOAuthHooks implements PluggableAuthPopulateGroups, GetPreferencesHook {
 			return;
 		}
 
-		if ( !isset( $GLOBALS['wgOAuthAutoPopulateGroups'] ) ) {
-			return;
-		}
-
 		$populateGroups = array_diff(
-			(array)$GLOBALS['wgOAuthAutoPopulateGroups'],
+			(array)$currentPlugin->autoPopulateGroups,
 			$this->userGroupManager->getUserEffectiveGroups( $user )
 		);
 
