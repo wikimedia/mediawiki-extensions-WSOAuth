@@ -21,8 +21,9 @@ namespace WSOAuth;
 use ConfigException;
 use DBError;
 use Exception;
-use Hooks;
 use MediaWiki\Extension\PluggableAuth\PluggableAuth;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\User\UserIdentity;
@@ -70,6 +71,10 @@ class WSOAuth extends PluggableAuth {
 	 * @var UserNameUtils The UserNameUtils service
 	 */
 	private $userNameUtils;
+	/**
+	 * @var HookContainer
+	 */
+	private $hookContainer;
 
 	/**
 	 * @var bool Whether to disallow remote only accounts
@@ -95,9 +100,14 @@ class WSOAuth extends PluggableAuth {
 	 * WSOAuth constructor.
 	 *
 	 * @param UserNameUtils $userNameUtils
+	 * @param HookContainer $hookContainer
 	 */
-	public function __construct( UserNameUtils $userNameUtils ) {
+	public function __construct(
+		UserNameUtils $userNameUtils,
+		HookContainer $hookContainer
+	) {
 		$this->userNameUtils = $userNameUtils;
+		$this->hookContainer = $hookContainer;
 		$this->session = SessionManager::getGlobalSession();
 	}
 
@@ -187,7 +197,7 @@ class WSOAuth extends PluggableAuth {
 	 * @internal
 	 */
 	public function deauthenticate( UserIdentity &$user ): void {
-		Hooks::run( 'WSOAuthBeforeLogout', [ &$user ] );
+		$this->hookContainer->run( 'WSOAuthBeforeLogout', [ &$user ] );
 		$this->authProvider->logout( $user );
 	}
 
@@ -254,7 +264,8 @@ class WSOAuth extends PluggableAuth {
 	): void {
 		$this->logger->debug( 'In ' . __METHOD__ );
 		$remoteUserInfo = $this->authProvider->getUser( (string)$key, $secret, $errorMessage );
-		$hookResult = Hooks::run( 'WSOAuthAfterGetUser', [ &$remoteUserInfo, &$errorMessage, $this->configId ] );
+		$hookResult = $this->hookContainer->run( 'WSOAuthAfterGetUser',
+			[ &$remoteUserInfo, &$errorMessage, $this->configId ] );
 
 		if ( $remoteUserInfo === false || $hookResult === false ) {
 			$this->logger->debug( 'Request failed or user is not authorised' );
@@ -416,7 +427,8 @@ class WSOAuth extends PluggableAuth {
 		$auth_providers = self::DEFAULT_AUTH_PROVIDERS;
 
 		try {
-			Hooks::run( "WSOAuthGetAuthProviders", [ &$auth_providers ] );
+			MediaWikiServices::getInstance()->getHookContainer()
+				->run( "WSOAuthGetAuthProviders", [ &$auth_providers ] );
 		} catch ( Exception $exception ) {
 		}
 
