@@ -36,7 +36,8 @@
 			"class": "\\WSOAuth\\WSOAuthHooks",
 			"services": [
 				"PluggableAuthFactory",
-				"UserGroupManager"
+				"UserGroupManager",
+				"HookContainer"
 			]
 		},
 		"SchemaUpdater": {
@@ -73,7 +74,8 @@
 			"WSOAuth": {
 				"class": "\\WSOAuth\\WSOAuth",
 				"services": [
-					"UserNameUtils"
+					"UserNameUtils",
+					"HookContainer"
 				]
 			}
 		}
