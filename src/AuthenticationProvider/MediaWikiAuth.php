@@ -37,7 +37,13 @@ class MediaWikiAuth extends AuthProvider {
 	/**
 	 * @inheritDoc
 	 */
-	public function __construct( string $clientId, string $clientSecret, ?string $authUri, ?string $redirectUri, array $extensionData = [] ) {
+	public function __construct(
+		string $clientId,
+		string $clientSecret,
+		?string $authUri,
+		?string $redirectUri,
+		array $extensionData = []
+	) {
 		if ( $authUri === null ) {
 			$message = wfMessage( 'wsoauth-missing-uri' )->parse();
 			throw new ConfigException( $message );
