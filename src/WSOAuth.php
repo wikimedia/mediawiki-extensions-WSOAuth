@@ -119,15 +119,15 @@ class WSOAuth extends PluggableAuth {
 	 * @inheritDoc
 	 * @throws UnknownAuthProviderException|InvalidAuthProviderClassException|ConfigException
 	 */
-	public function init( string $configId, ?array $data ) {
-		parent::init( $configId, $data );
+	public function init( string $configId, array $config ) {
+		parent::init( $configId, $config );
 
-		if ( !isset( $data['type'] ) ) {
+		if ( !$this->getData()->has( 'type' ) ) {
 			throw new ConfigException( wfMessage( "wsoauth-not-configured-message" )->parse() );
 		}
 
-		$this->authProvider = $this->getAuthProvider( $data['type'], $data );
-		$this->authProvider->setLogger( $this->logger );
+		$this->authProvider = $this->getAuthProvider( $this->getData()->get( 'type' ), $config['data'] );
+		$this->authProvider->setLogger( $this->getLogger() );
 
 		$this->disallowRemoteOnlyAccounts = $this->getConfigValue( 'DisallowRemoteOnlyAccounts' );
 		$this->useRealNameAsUsername = $this->getConfigValue( 'UseRealNameAsUsername' );
@@ -140,7 +140,7 @@ class WSOAuth extends PluggableAuth {
 	 * @return mixed
 	 */
 	private function getConfigValue( string $name ) {
-		return $this->config->has( $name ) ? $this->config->get( $name ) :
+		return $this->getData()->has( $name ) ? $this->getData()->get( $name ) :
 			$this->mainConfig->get( 'OAuth' . $name );
 	}
 
@@ -247,11 +247,11 @@ class WSOAuth extends PluggableAuth {
 	 * @throws InitialisationException
 	 */
 	private function initiateLogin(): void {
-		$this->logger->debug( 'In ' . __METHOD__ );
+		$this->getLogger()->debug( 'In ' . __METHOD__ );
 		$result = $this->authProvider->login( $key, $secret, $auth_url );
 
 		if ( $result === false || empty( $auth_url ) ) {
-			$this->logger->debug( 'Result empty or no auth URL.' );
+			$this->getLogger()->debug( 'Result empty or no auth URL.' );
 			throw new InitialisationException( wfMessage( 'wsoauth-initiate-login-failure' )->parse() );
 		}
 
@@ -284,13 +284,13 @@ class WSOAuth extends PluggableAuth {
 		?string &$realname,
 		?string &$email
 	): void {
-		$this->logger->debug( 'In ' . __METHOD__ );
+		$this->getLogger()->debug( 'In ' . __METHOD__ );
 		$remoteUserInfo = $this->authProvider->getUser( (string)$key, $secret, $errorMessage );
 		$hookResult = $this->hookContainer->run( 'WSOAuthAfterGetUser',
-			[ &$remoteUserInfo, &$errorMessage, $this->configId ] );
+			[ &$remoteUserInfo, &$errorMessage, $this->getConfigId() ] );
 
 		if ( $remoteUserInfo === false || $hookResult === false ) {
-			$this->logger->debug( 'Request failed or user is not authorised' );
+			$this->getLogger()->debug( 'Request failed or user is not authorised' );
 			throw new ContinuationException(
 				$errorMessage ?? wfMessage( 'wsoauth-authentication-failure' )->parse()
 			);
@@ -367,7 +367,7 @@ class WSOAuth extends PluggableAuth {
 			[
 				'wsoauth_user' => $localUserID,
 				'wsoauth_remote_name' => $remoteAccountName,
-				'wsoauth_provider_id' => $this->configId
+				'wsoauth_provider_id' => $this->getConfigId()
 			],
 			__METHOD__
 		);
@@ -383,7 +383,7 @@ class WSOAuth extends PluggableAuth {
 		$results = wfGetDB( DB_PRIMARY )->select(
 			self::MAPPING_TABLE_NAME,
 			[ 'wsoauth_user' ],
-			[ 'wsoauth_remote_name' => $name, 'wsoauth_provider_id' => $this->configId ],
+			[ 'wsoauth_remote_name' => $name, 'wsoauth_provider_id' => $this->getConfigId() ],
 			__METHOD__
 		);
 
