@@ -107,6 +107,7 @@ class WSOAuth extends PluggableAuth {
 		}
 
 		$this->authProvider = $this->getAuthProvider( $data['type'], $data );
+		$this->authProvider->setLogger( $this->logger );
 
 		$this->disallowRemoteOnlyAccounts = $this->data['disallowRemoteOnlyAccounts'] ??
 			$GLOBALS['wgOAuthDisallowRemoteOnlyAccounts'];
@@ -205,9 +206,11 @@ class WSOAuth extends PluggableAuth {
 	 * @throws InitialisationException
 	 */
 	private function initiateLogin(): void {
+		$this->logger->debug( 'In ' . __METHOD__ );
 		$result = $this->authProvider->login( $key, $secret, $auth_url );
 
 		if ( $result === false || empty( $auth_url ) ) {
+			$this->logger->debug( 'Result empty or no auth URL.' );
 			throw new InitialisationException( wfMessage( 'wsoauth-initiate-login-failure' )->parse() );
 		}
 
@@ -240,11 +243,12 @@ class WSOAuth extends PluggableAuth {
 		?string &$realname,
 		?string &$email
 	): void {
+		$this->logger->debug( 'In ' . __METHOD__ );
 		$remoteUserInfo = $this->authProvider->getUser( (string)$key, $secret, $errorMessage );
 		$hookResult = Hooks::run( 'WSOAuthAfterGetUser', [ &$remoteUserInfo, &$errorMessage, $this->configId ] );
 
 		if ( $remoteUserInfo === false || $hookResult === false ) {
-			// Request failed or user is not authorised
+			$this->logger->debug( 'Request failed or user is not authorised' );
 			throw new ContinuationException(
 				$errorMessage ?? wfMessage( 'wsoauth-authentication-failure' )->parse()
 			);
