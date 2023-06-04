@@ -27,5 +27,8 @@
 	"wsoauth-missing-client-secret": "Exception  message shown when no client secret is configured.",
 	"wsoauth-manage-remotes": "Button shown on Special:Preferences to manage your remote accounts.",
 	"wsoauth-use-real-name-as-username-desc": "The description of the configuration parameter that defines whether to use the real name as the username.",
-	"wsoauth-could-not-create-mapping": "Exception message shown when a mapping could not be created for various reasons."
+	"wsoauth-could-not-create-mapping": "Exception message shown when a mapping could not be created for various reasons.",
+	"wsoauth-login-button-label-wikipedia": "Login button text for Wikimedia login (branded as \"Wikipedia\").",
+	"wsoauth-login-button-label-wikimedia": "Login button text for Wikimedia login (branded as \"Wikimedia\").",
+	"wsoauth-login-button-label-facebook": "Login button text for Facebook login."
 }
