@@ -29,5 +29,8 @@
 	"wsoauth-missing-client-secret": "Es ist kein Client-Geheimnis konfiguriert.",
 	"wsoauth-manage-remotes": "Verwalten von Fernkonten",
 	"wsoauth-use-real-name-as-username-desc": "Ob der echte Name als Benutzername verwendet werden soll (wird nur verwendet, wenn <code>useRealNameAsUsername</code> für den spezifischen Authentifizierungsanbieter nicht gesetzt ist).",
-	"wsoauth-could-not-create-mapping": "Zuordnung konnte nicht erstellt werden."
+	"wsoauth-could-not-create-mapping": "Zuordnung konnte nicht erstellt werden.",
+	"wsoauth-login-button-label-wikipedia": "Mit Wikipedia anmelden",
+	"wsoauth-login-button-label-wikimedia": "Mit Wikimedia anmelden",
+	"wsoauth-login-button-label-facebook": "Mit Facebook anmelden"
 }

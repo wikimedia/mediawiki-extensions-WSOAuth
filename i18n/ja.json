@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"MathXplore"
+			"MathXplore",
+			"春春眠眠"
 		]
 	},
-	"wsoauth-manage-remotes": "リモートアカウントを管理する"
+	"wsoauth-manage-remotes": "リモートアカウントを管理する",
+	"wsoauth-login-button-label-wikipedia": "ウィキペディアでログイン",
+	"wsoauth-login-button-label-facebook": "Facebook を使用してログイン"
 }

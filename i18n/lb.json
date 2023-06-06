@@ -4,5 +4,6 @@
 			"Robby"
 		]
 	},
-	"wsoauth-unknown-auth-provider-exception-message": "onbekannten OAuth-provider ($1)"
+	"wsoauth-unknown-auth-provider-exception-message": "onbekannten OAuth-provider ($1)",
+	"wsoauth-login-button-label-facebook": "Mat Facebook aloggen"
 }

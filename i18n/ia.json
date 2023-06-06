@@ -25,5 +25,8 @@
 	"wsoauth-missing-client-secret": "Nulle secrete de cliente es configurate.",
 	"wsoauth-manage-remotes": "Gerer contos remote",
 	"wsoauth-use-real-name-as-username-desc": "Indica si usar le nomine real como le nomine de usator (usate solmente si <code>useRealNameAsUsername</code> non es definite pro le fornitor de authentication specific).",
-	"wsoauth-could-not-create-mapping": "Non poteva crear mappamento."
+	"wsoauth-could-not-create-mapping": "Non poteva crear mappamento.",
+	"wsoauth-login-button-label-wikipedia": "Aperir session con Wikipedia",
+	"wsoauth-login-button-label-wikimedia": "Aperir session con Wikimedia",
+	"wsoauth-login-button-label-facebook": "Aperir session con Facebook"
 }

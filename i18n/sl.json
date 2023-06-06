@@ -25,5 +25,8 @@
 	"wsoauth-missing-client-secret": "Konfigurirana ni nobena skrivnost odjemalca.",
 	"wsoauth-manage-remotes": "Upravljaj oddaljene račune",
 	"wsoauth-use-real-name-as-username-desc": "Ali naj se kot uporabniško ime uporabi pravo ime (uporablja se le, če <code>useRealNameAsUsername</code> ni nastavljeno za določenega ponudnika avtentikacije).",
-	"wsoauth-could-not-create-mapping": "Preslikave ni bilo mogoče ustvariti."
+	"wsoauth-could-not-create-mapping": "Preslikave ni bilo mogoče ustvariti.",
+	"wsoauth-login-button-label-wikipedia": "Prijava z Wikipedijo",
+	"wsoauth-login-button-label-wikimedia": "Prijava z Wikimedio",
+	"wsoauth-login-button-label-facebook": "Prijava s Facebookom"
 }

@@ -29,5 +29,8 @@
 	"wsoauth-missing-client-secret": "Aucun secret de client n’est configuré.",
 	"wsoauth-manage-remotes": "Gérer les comptes distants",
 	"wsoauth-use-real-name-as-username-desc": "S’il faut utiliser le nom réel comme nom d’utilisateur (utilisé uniquement si <code>useRealNameAsUsername</code> n’est pas défini pour le fournisseur d’authentification spécifique).",
-	"wsoauth-could-not-create-mapping": "Impossible de créer la correspondance."
+	"wsoauth-could-not-create-mapping": "Impossible de créer la correspondance.",
+	"wsoauth-login-button-label-wikipedia": "Connexion avec Wikipédia",
+	"wsoauth-login-button-label-wikimedia": "Connexion avec Wikimedia",
+	"wsoauth-login-button-label-facebook": "Connexion avec Facebook"
 }

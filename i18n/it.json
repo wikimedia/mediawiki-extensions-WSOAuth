@@ -5,5 +5,8 @@
 			"GpieroMW"
 		]
 	},
-	"wsoauth-manage-remotes": "Gestisci utenze remote"
+	"wsoauth-manage-remotes": "Gestisci utenze remote",
+	"wsoauth-login-button-label-wikipedia": "Accedi con Wikipedia",
+	"wsoauth-login-button-label-wikimedia": "Accedi con Wikimedia",
+	"wsoauth-login-button-label-facebook": "Accedi con Facebook"
 }

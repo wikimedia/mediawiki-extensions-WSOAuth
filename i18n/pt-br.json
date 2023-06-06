@@ -21,5 +21,8 @@
 	"wsoauth-not-configured-message": "A entrada remoto não foi configurado para essa wiki. Tente um método de autenticação diferente.",
 	"wsoauth-prefs-manage-remote": "Contas remotas:",
 	"wsoauth-manage-remotes": "Gerenciar contas remotas",
-	"wsoauth-could-not-create-mapping": "Não foi possível criar o mapeamento."
+	"wsoauth-could-not-create-mapping": "Não foi possível criar o mapeamento.",
+	"wsoauth-login-button-label-wikipedia": "Entrar com a Wikipédia",
+	"wsoauth-login-button-label-wikimedia": "Entrar com a Wikimedia",
+	"wsoauth-login-button-label-facebook": "Entrar com o Facebook"
 }

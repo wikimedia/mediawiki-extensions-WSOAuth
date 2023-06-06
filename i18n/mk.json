@@ -25,5 +25,8 @@
 	"wsoauth-missing-client-secret": "Нема поставено клиентска тајна.",
 	"wsoauth-manage-remotes": "Урпавување со далечински пристап",
 	"wsoauth-use-real-name-as-username-desc": "Дали да се користи вистинското име како корисничко (се користи само ако <code>useRealNameAsUsername</code> не е зададено за дадениот давател на заверка).",
-	"wsoauth-could-not-create-mapping": "Не можев да ги создадам задавањата."
+	"wsoauth-could-not-create-mapping": "Не можев да ги создадам задавањата.",
+	"wsoauth-login-button-label-wikipedia": "Најава со Википедија",
+	"wsoauth-login-button-label-wikimedia": "Најава со Википедија",
+	"wsoauth-login-button-label-facebook": "Најава со Фејсбук"
 }
