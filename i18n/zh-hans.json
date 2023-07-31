@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Diskdance",
 			"Ff98sha"
 		]
 	},
@@ -18,7 +19,7 @@
 	"wsoauth-not-configured-message": "此wiki未配置远程登录。请尝试其他认证方式。",
 	"wsoauth-already-logged-in-through-remote": "你已通过远程账号或迁移账号登录。你无法将远程账号连接到此账号。如果您想使用其他远程登录方式，请退出登录并使用其他账号登录。",
 	"wsoauth-remote-only-accounts-disabled": "此wiki上已禁用仅远程登录。远程账号必须连接到本地账号。",
-	"wsoauth-special-page-content": "你可以在已登录时，通过[[Special:UserLogin]]登录远程账号，将远程帐户连接到此账号。将来，你可以从这个特殊页面管理你的远程账号。",
+	"wsoauth-special-page-content": "你可以在已登录时，通过[[Special:UserLogin]]登录远程账号，将远程账号连接到此账号。将来，你可以从这个特殊页面管理你的远程账号。",
 	"wsoauth-prefs-manage-remote": "远程账号：",
 	"wsoauth-missing-uri": "未配置远程URI。",
 	"wsoauth-missing-client-id": "未配置客户端ID。",
