@@ -5,6 +5,18 @@
 			"מקף"
 		]
 	},
+	"wsoauth-desc": "הוספה להרחבה PluggableAuth אספקת אימות באמצעות OAuth.",
+	"wsoauth-auth-providers-desc": "מערך המכיל רשימה של ספקי OAuth מותאמים אישית יחד עם שם המחלקה שלהם.",
+	"wsoauth-auto-populate-groups-desc": "מערך המכיל רשימה של שמות קבוצות מדיה־ויקי שחייבות להיות משויכות באופן אוטומטי למשתמש לאחר שהוא מאומת.",
+	"wsoauth-authentication-failure": "אימות נכשל (האם יש לך הרשאה לוויקי הזה?).",
+	"wsoauth-invalid-username": "שם המשתמש שסופק על־ידי ספק OAuth אינו תקין.",
+	"wsoauth-unknown-auth-provider-class-exception-message": "מחלקת ספק OAuth לא נטענה או לא נמצאה",
+	"wsoauth-unknown-auth-provider-exception-message": "ספק OAuth לא ידוע ($1)",
+	"wsoauth-invalid-auth-provider-class-exception-message": "מחלקת ספק OAuth לא מממשת AuthProvider",
+	"wsoauth-initiate-login-failure": "לא ניתן להתחיל תקשורת עם ספק OAuth.",
+	"wsoauth-not-configured-message": "הכניסה מרחוק לא הוגדרת עבור הוויקי הזה. נא לנסות שיטת אימות אחרת.",
+	"wsoauth-already-logged-in-through-remote": "כבר נכנסת דרך חשבון מרוחק או מועבר (migrated). אין לך הרשאה לקשר חשבון מרוחק לחשבון הזה. אם ברצונך להיכנס באמצעות מרוחק אחר, נא לצאת ולהיכנס באמצעות החשבון האחר.",
 	"wsoauth-account-already-coupled": "כבר קישרת את החשבון המקומי הזה לחשבון המרוחק.",
+	"wsoauth-remote-only-accounts-disabled": "הכניסה מרחוק בלבד כבויה בוויקי הזה. חשבון מרוחק חייב להיות מחובר לחשבון מקומי.",
 	"wsoauth-connect-remote": "חיבור חשבון מרוחק"
 }
