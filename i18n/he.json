@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80"
+		]
+	},
+	"wsoauth-desc": "הוספה להרחבה PluggableAuth אספקת אימות באמצעות OAuth.",
+	"wsoauth-auth-providers-desc": "מערך המכיל רשימה של ספקי OAuth מותאמים אישית יחד עם שם המחלקה שלהם.",
+	"wsoauth-auto-populate-groups-desc": "מערך המכיל רשימה של שמות קבוצות מדיה־ויקי שחייבות להיות משויכות באופן אוטומטי למשתמש לאחר שהוא מאומת.",
+	"wsoauth-authentication-failure": "אימות נכשל (האם יש לך הרשאה לוויקי הזה?).",
+	"wsoauth-invalid-username": "שם המשתמש שסופק על־ידי ספק OAuth אינו תקין.",
+	"wsoauth-unknown-auth-provider-class-exception-message": "מחלקת ספק OAuth לא נטענה או לא נמצאה",
+	"wsoauth-unknown-auth-provider-exception-message": "ספק OAuth לא ידוע ($1)",
+	"wsoauth-invalid-auth-provider-class-exception-message": "מחלקת ספק OAuth לא מממשת AuthProvider",
+	"wsoauth-initiate-login-failure": "לא ניתן להתחיל תקשורת עם ספק OAuth.",
+	"wsoauth-migrate-users-by-username-desc": "האם לאפשר או לא לאפשר השתלטות (usurpation) על חשבונות קיימים בשם משתמש (משמש רק אם <code>useRealNameAsUsername</code> לא מוגדר עבור ספק האימות המסוים).",
+	"wsoauth-not-configured-message": "הכניסה מרחוק לא הוגדרת עבור הוויקי הזה. נא לנסות שיטת אימות אחרת.",
+	"wsoauth-disallow-remote-only-accounts-desc": "האם לאפשר או לא לאפשר לחשבונות לא להחזיק בבני־זוג מקומיים (local counterparts; משמש רק אם <code>disallowRemoteOnlyAccounts\n</code> לא מוגדר עבור ספק האימות המסוים).",
+	"wsoauth-already-logged-in-through-remote": "כבר נכנסת דרך חשבון מרוחק או מועבר (migrated). אין לך הרשאה לקשר חשבון מרוחק לחשבון הזה. אם ברצונך להיכנס באמצעות מרוחק אחר, נא לצאת ולהיכנס באמצעות החשבון האחר.",
+	"wsoauth-remote-only-accounts-disabled": "הכניסה מרחוק בלבד כבויה בוויקי הזה. חשבון מרוחק חייב להיות מחובר לחשבון מקומי.",
+	"wsoauth-special-page-content": "באפשרותך לחבר חשבון מרוחק לחשבון הזה על־ידי הכניסה למרוחק מהדף [[Special:UserLogin]] בזמן הכניסה. בעתיד, יהיה אפשר לנהל את החשבונות המרוחקים שלך מהדף המיוחד הזה.",
+	"wsoauth-prefs-manage-remote": "חשבונות מרוחקים:",
+	"wsoauth-missing-uri": "לא הוגדר URI מרחוק.",
+	"wsoauth-missing-client-id": "לא הוגדר מזהה לקוח.",
+	"wsoauth-missing-client-secret": "לא הוגדר סוד לקוח.",
+	"wsoauth-manage-remotes": "ניהול חשבונות מרוחקים",
+	"wsoauth-use-real-name-as-username-desc": "האם להשתמש בשם האמיתי כשם משתמש (משמש רק אם <code>useRealNameAsUsername</code> לא מוגדר עבור ספק האימות המסוים).",
+	"wsoauth-could-not-create-mapping": "לא היה אפשר ליצור מיפוי.",
+	"wsoauth-login-button-label-wikipedia": "כניסה עם ויקיפדיה",
+	"wsoauth-login-button-label-wikimedia": "כניסה עם ויקימדיה",
+	"wsoauth-login-button-label-facebook": "כניסה עם פייסבוק"
+}
