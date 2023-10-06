@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Diskdance",
-			"Ff98sha"
+			"Ff98sha",
+			"Xyb"
 		]
 	},
 	"wsoauth-extensionname": "WSOAuth",
@@ -15,7 +16,7 @@
 	"wsoauth-unknown-auth-provider-exception-message": "未知的OAuth提供商（$1）",
 	"wsoauth-invalid-auth-provider-class-exception-message": "OAuth提供商的类未用于AuthProvider。",
 	"wsoauth-initiate-login-failure": "无法与OAuth提供商进行通信。",
-	"wsoauth-migrate-users-by-username-desc": "是否允许占有同用户名的现有账号。",
+	"wsoauth-migrate-users-by-username-desc": "是否允许占有同用户名的现有账号（仅在未为特定身份验证提供程序设置<code>migrateUsersByUsername</code>时使用）。",
 	"wsoauth-not-configured-message": "此wiki未配置远程登录。请尝试其他认证方式。",
 	"wsoauth-already-logged-in-through-remote": "你已通过远程账号或迁移账号登录。你无法将远程账号连接到此账号。如果您想使用其他远程登录方式，请退出登录并使用其他账号登录。",
 	"wsoauth-remote-only-accounts-disabled": "此wiki上已禁用仅远程登录。远程账号必须连接到本地账号。",
