@@ -15,5 +15,20 @@
 	"wsoauth-unknown-auth-provider-exception-message": "Onbekende OAuth-provider ($1)",
 	"wsoauth-invalid-auth-provider-class-exception-message": "De OAuth-provider class is geen implementatie van AuthProvider",
 	"wsoauth-initiate-login-failure": "Kan communicatie met OAuth-provider niet starten.",
-	"wsoauth-migrate-users-by-username-desc": "De toeëigening van bestaande accounts al dan niet toestaan op basis van de gebruikersnaam. (Deze instelling is alleen van toepassing als <code>migrateUsersByUsername</code> niet is ingesteld voor de gebruikte authenticatieprovider.)"
+	"wsoauth-migrate-users-by-username-desc": "De toeëigening van bestaande accounts al dan niet toestaan op basis van de gebruikersnaam. (Deze instelling is alleen van toepassing als <code>migrateUsersByUsername</code> niet is ingesteld voor de gebruikte authenticatieprovider.)",
+	"wsoauth-not-configured-message": "Het aanmelden op afstand is niet ingesteld voor deze wiki. Probeer een andere authenticatiemethode.",
+	"wsoauth-disallow-remote-only-accounts-desc": "Of accounts al dan niet een lokale tegenhanger mogen hebben (wordt alleen gebruikt als <code>disallowRemoteOnlyAccounts</code> niet is ingesteld voor de specifieke authenticatieprovider).",
+	"wsoauth-already-logged-in-through-remote": "U bent al aangemeld via een extern of gemigreerd account. U kunt geen extern account aan dit account koppelen. Als u zich wilt aanmelden met een ander extern account, meld u dan af en meld u opnieuw aan met het andere account.",
+	"wsoauth-remote-only-accounts-disabled": "Het uitsluitend op afstand aanmelden is uitgeschakeld op deze wiki. Een extern account moet zijn verbonden met een lokaal account.",
+	"wsoauth-special-page-content": "U kunt een extern account aan dit account koppelen door zich op het externe account aan te melden vanuit [[Special:UserLogin]] terwijl u bent aangemeld. In de toekomst zal het mogelijk zijn uw externe accounts vanaf deze speciale pagina te beheren.",
+	"wsoauth-prefs-manage-remote": "Externe accounts:",
+	"wsoauth-missing-uri": "Er is geen externe URI geconfigureerd.",
+	"wsoauth-missing-client-id": "Er is geen cliënt-ID geconfigureerd.",
+	"wsoauth-missing-client-secret": "Er is geen cliëntgeheim geconfigureerd.",
+	"wsoauth-manage-remotes": "Externe accounts beheren",
+	"wsoauth-use-real-name-as-username-desc": "Of de echte naam als gebruikersnaam moet worden gebruikt (wordt alleen gebruikt als <code>useRealNameAsUsername</code> niet is ingesteld voor de specifieke authenticatieprovider).",
+	"wsoauth-could-not-create-mapping": "Kan geen toewijzing maken.",
+	"wsoauth-login-button-label-wikipedia": "Aanmelden met Wikipedia",
+	"wsoauth-login-button-label-wikimedia": "Aanmelden met Wikimedia",
+	"wsoauth-login-button-label-facebook": "Aanmelden met Facebook"
 }
