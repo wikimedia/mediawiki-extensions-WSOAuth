@@ -76,7 +76,7 @@ class MediaWikiAuth extends AuthProvider {
 	public function login( ?string &$key, ?string &$secret, ?string &$authUrl ): bool {
 		$this->logger->debug( 'In ' . __METHOD__ );
 		try {
-			list( $authUrl, $token ) = $this->client->initiate();
+			[ $authUrl, $token ] = $this->client->initiate();
 
 			$key = $token->key;
 			$secret = $token->secret;
