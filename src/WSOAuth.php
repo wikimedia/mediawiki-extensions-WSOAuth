@@ -97,6 +97,8 @@ class WSOAuth extends PluggableAuth {
 	 */
 	private $session;
 
+	private Config $mainConfig;
+
 	/**
 	 * WSOAuth constructor.
 	 *
