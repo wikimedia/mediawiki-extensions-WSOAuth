@@ -3,7 +3,8 @@
 		"authors": [
 			"Diskdance",
 			"Ff98sha",
-			"Xyb"
+			"Xyb",
+			"沈澄心"
 		]
 	},
 	"wsoauth-extensionname": "WSOAuth",
@@ -25,5 +26,8 @@
 	"wsoauth-missing-uri": "未配置远程URI。",
 	"wsoauth-missing-client-id": "未配置客户端ID。",
 	"wsoauth-missing-client-secret": "未配置客户端密钥。",
-	"wsoauth-manage-remotes": "管理远程账号"
+	"wsoauth-manage-remotes": "管理远程账号",
+	"wsoauth-could-not-create-mapping": "无法创建映射。",
+	"wsoauth-login-button-label-wikipedia": "使用维基百科登录",
+	"wsoauth-login-button-label-facebook": "使用Facebook登录"
 }
