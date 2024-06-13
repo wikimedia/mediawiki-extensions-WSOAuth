@@ -2,10 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"MathXplore",
-			"春春眠眠"
+			"春春眠眠",
+			"Chqaz"
 		]
 	},
 	"wsoauth-manage-remotes": "リモートアカウントを管理する",
 	"wsoauth-login-button-label-wikipedia": "ウィキペディアでログイン",
+	"wsoauth-login-button-label-wikimedia": "ウィキメディアでログイン",
 	"wsoauth-login-button-label-facebook": "Facebook を使用してログイン"
 }
