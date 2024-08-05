@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Robby"
+			"Robby",
+			"Volvox"
 		]
 	},
 	"wsoauth-unknown-auth-provider-exception-message": "onbekannten OAuth-provider ($1)",
+	"wsoauth-login-button-label-wikipedia": "Mat Wikipedia aloggen",
+	"wsoauth-login-button-label-wikimedia": "Mat Wikimedia aloggen",
 	"wsoauth-login-button-label-facebook": "Mat Facebook aloggen"
 }
