@@ -364,7 +364,7 @@ class WSOAuth extends PluggableAuth {
 	 * @param string $remoteAccountName
 	 */
 	private function createMapping( int $localUserID, string $remoteAccountName ): void {
-		wfGetDB( DB_PRIMARY )->insert(
+		MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY )->insert(
 			self::MAPPING_TABLE_NAME,
 			[
 				'wsoauth_user' => $localUserID,
@@ -382,7 +382,7 @@ class WSOAuth extends PluggableAuth {
 	 * @return int The account ID, or 0 is no mapping exists
 	 */
 	private function getLocalAccountID( string $name ): int {
-		$results = wfGetDB( DB_PRIMARY )->select(
+		$results = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY )->select(
 			self::MAPPING_TABLE_NAME,
 			[ 'wsoauth_user' ],
 			[ 'wsoauth_remote_name' => $name, 'wsoauth_provider_id' => $this->getConfigId() ],

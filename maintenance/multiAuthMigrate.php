@@ -16,6 +16,7 @@
  * THE SOFTWARE.
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -71,7 +72,7 @@ class MultiAuthMigrate extends Maintenance {
 	 */
 	public function execute() {
 		$this->provider = $this->getOption( 'provider' );
-		$this->database = wfGetDB( DB_PRIMARY );
+		$this->database = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 
 		if ( !$this->isProviderValid( $this->provider ) ) {
 			$this->fatalError(
