@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"DDPAT",
-			"Ice bulldog"
+			"Ice bulldog",
+			"Ата"
 		]
 	},
 	"wsoauth-extensionname": "WSOAuth",
@@ -15,6 +16,6 @@
 	"wsoauth-unknown-auth-provider-exception-message": "Невідомий постачальник OAuth ($1)",
 	"wsoauth-invalid-auth-provider-class-exception-message": "Клас постачальника OAuth не реалізує AuthProvider",
 	"wsoauth-initiate-login-failure": "Не вдається розпочати зв’язок із провайдером OAuth.",
-	"wsoauth-migrate-users-by-username-desc": "Дозволити узурпацію наявних облікових записів за допомогою імені користувача чи ні.",
+	"wsoauth-migrate-users-by-username-desc": "Дозволяти або забороняти узурпацію наявних облікових записів іменем користувача (використовується, лише якщо <code>migrateUsersByUsername</code> не встановлено для певного постачальника автентифікації).",
 	"wsoauth-not-configured-message": "Для цієї вікі не налаштовано віддалений вхід. Спробуйте інший метод автентифікації."
 }
