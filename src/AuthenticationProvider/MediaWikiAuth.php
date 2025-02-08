@@ -110,11 +110,18 @@ class MediaWikiAuth extends AuthProvider {
 
 			$access_token = new Token( $access_token->key, $access_token->secret );
 			$identity = $this->client->identify( $access_token );
-			$this->logger->debug( 'Identity', [ $identity ] );
+			$this->logger->debug( 'Identity: ' . print_r( $identity, true ) );
 
-			return [
+			$response = [
 				"name" => $identity->username
 			];
+			if ( isset( $identity->realname ) ) {
+				$response['realname'] = $identity->realname;
+			}
+			if ( isset( $identity->email ) ) {
+				$response['email'] = $identity->email;
+			}
+			return $response;
 		} catch ( \Exception $e ) {
 			$this->logger->debug( 'Failed to get user', [ $e->getMessage() ] );
 			return false;

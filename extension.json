@@ -1,6 +1,6 @@
 {
 	"name": "WSOAuth",
-	"version": "9.0.0",
+	"version": "9.0.1",
 	"namemsg": "wsoauth-extensionname",
 	"url": "https://www.mediawiki.org/wiki/Extension:WSOAuth",
 	"type": "other",
