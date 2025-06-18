@@ -25,9 +25,10 @@ use MediaWiki\OAuthClient\Consumer;
 use MediaWiki\OAuthClient\Exception;
 use MediaWiki\OAuthClient\Token;
 use MediaWiki\User\UserIdentity;
+use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 
-class MediaWikiAuth extends AuthProvider {
+class MediaWikiAuth extends AuthProvider implements LoggerAwareInterface {
 
 	/**
 	 * @var Client
@@ -65,7 +66,7 @@ class MediaWikiAuth extends AuthProvider {
 	/**
 	 * @inheritDoc
 	 */
-	public function setLogger( LoggerInterface $logger ) {
+	public function setLogger( LoggerInterface $logger ): void {
 		parent::setLogger( $logger );
 		$this->client->setLogger( $logger );
 	}
