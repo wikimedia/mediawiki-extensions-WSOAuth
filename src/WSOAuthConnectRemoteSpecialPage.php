@@ -38,7 +38,7 @@ class WSOAuthConnectRemoteSpecialPage extends SpecialPage {
 	 * @inheritDoc
 	 */
 	public function getDescription() {
-		return $this->msg( 'wsoauth-manage-remotes' )->parse();
+		return $this->msg( 'wsoauth-manage-remotes' );
 	}
 
 	/**
