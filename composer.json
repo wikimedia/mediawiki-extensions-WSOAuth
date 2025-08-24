@@ -1,6 +1,6 @@
 {
 	"require": {
-		"mediawiki/oauthclient": "*",
+		"mediawiki/oauthclient": "^2.3",
 		"league/oauth2-facebook": "^2.0"
 	},
 	"require-dev": {
