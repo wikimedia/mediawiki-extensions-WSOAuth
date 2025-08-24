@@ -24,6 +24,7 @@ use MediaWiki\OAuthClient\ClientConfig;
 use MediaWiki\OAuthClient\Consumer;
 use MediaWiki\OAuthClient\Exception;
 use MediaWiki\OAuthClient\Token;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerInterface;
 
@@ -44,6 +45,7 @@ class MediaWikiAuth extends AuthProvider {
 		?string $redirectUri,
 		array $extensionData = []
 	) {
+		global $wgSitename;
 		if ( $authUri === null ) {
 			$message = wfMessage( 'wsoauth-missing-uri' )->parse();
 			throw new ConfigException( $message );
@@ -52,6 +54,10 @@ class MediaWikiAuth extends AuthProvider {
 		$conf = new ClientConfig( $authUri );
 		$conf->setConsumer( new Consumer( $clientId, $clientSecret ) );
 		$conf->setRedirUrl( $conf->endpointURL . "/authenticate&" );
+		$version = \ExtensionRegistry::getInstance()->getAllThings()['WSOAuth']['version'];
+		$conf->setUserAgent( "WSOAuth/$verion (https://www.mediawiki.org/wiki/Extension:WSOAuth) "
+			. rawurlencode( $wgSitename ) . " (" . Title::newMainPage()->getCanonicalUrl() . ")"
+		);
 
 		$client = new Client( $conf );
 
