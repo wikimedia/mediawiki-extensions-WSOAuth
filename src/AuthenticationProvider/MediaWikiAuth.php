@@ -55,7 +55,7 @@ class MediaWikiAuth extends AuthProvider {
 		$conf->setConsumer( new Consumer( $clientId, $clientSecret ) );
 		$conf->setRedirUrl( $conf->endpointURL . "/authenticate&" );
 		$version = \ExtensionRegistry::getInstance()->getAllThings()['WSOAuth']['version'];
-		$conf->setUserAgent( "WSOAuth/$verion (https://www.mediawiki.org/wiki/Extension:WSOAuth) "
+		$conf->setUserAgent( "WSOAuth/$version (https://www.mediawiki.org/wiki/Extension:WSOAuth) "
 			. rawurlencode( $wgSitename ) . " (" . Title::newMainPage()->getCanonicalUrl() . ")"
 		);
 
