@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"MuratTheTurkish"
+			"MuratTheTurkish",
+			"SaldırganSincap"
 		]
 	},
 	"wsoauth-desc": "PluggableAuth uzantısını OAuth kullanarak kimlik doğrulaması sağlayacak şekilde genişletir.",
@@ -13,6 +14,6 @@
 	"wsoauth-unknown-auth-provider-exception-message": "Bilinmeyen OAuth sağlayıcısı ($1)",
 	"wsoauth-invalid-auth-provider-class-exception-message": "OAuth sağlayıcı sınıfı AuthProvider uygulamıyor",
 	"wsoauth-initiate-login-failure": "OAuth sağlayıcısı ile iletişim başlatılamıyor.",
-	"wsoauth-migrate-users-by-username-desc": "Mevcut hesapların kullanıcı adına göre kullanılmasına izin verilip verilmeyeceği.",
+	"wsoauth-migrate-users-by-username-desc": "Mevcut hesapların kullanıcı adına göre gasp edilmesine izin verilip verilmeyeceği (yalnızca belirli kimlik doğrulama sağlayıcısı için <code>migrateUsersByUsername</code> ayarlanmamışsa kullanılır).",
 	"wsoauth-not-configured-message": "Bu viki için uzaktan oturum açma yapılandırılmamış. Lütfen farklı bir kimlik doğrulama yöntemi deneyin."
 }
