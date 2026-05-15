@@ -31,7 +31,7 @@ class WSOAuthConnectRemoteSpecialPage extends SpecialPage {
 	 * @inheritDoc
 	 */
 	public function __construct() {
-		parent::__construct( "WSOAuthConnectRemote", "" );
+		parent::__construct( 'WSOAuthConnectRemote' );
 	}
 
 	/**
