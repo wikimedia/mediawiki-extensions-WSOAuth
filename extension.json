@@ -10,7 +10,7 @@
 	"descriptionmsg": "wsoauth-desc",
 	"license-name": "MIT",
 	"requires": {
-		"MediaWiki": ">= 1.35.0",
+		"MediaWiki": ">= 1.40.0",
 		"extensions": {
 			"PluggableAuth": ">= 7.0"
 		}
