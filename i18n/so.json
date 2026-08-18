@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"AhmedG612"
+		]
+	},
+	"wsoauth-desc": "Waxay kordhisaa kordhinta PluggableAuth si ay u bixiso xaqiijinta aqoonsiga iyadoo la adeegsanayo OAuth.",
+	"wsoauth-auth-providers-desc": "Hannaan ay ku jirto liiska bixiyeyaasha OAuth ee gaarka ah oo ay weheliyaan magacyada fasalladooda.",
+	"wsoauth-auto-populate-groups-desc": "Hannaan ay ku jirto liiska magacyada kooxaha MediaWiki ee si toos ah loogu qoondeynayo isticmaalaha kadib marka aqoonsigiisa la xaqiijiyo.",
+	"wsoauth-authentication-failure": "Xaqiijinta aqoonsiga way fashilantay (ma laguu oggolaaday wiki-gan?).",
+	"wsoauth-invalid-username": "Magaca isticmaalaha ee uu bixiyay bixiyaha OAuth ma aha mid ansax ah.",
+	"wsoauth-unknown-auth-provider-class-exception-message": "Fasalka bixiyaha OAuth lama soo dejin ama lama helin",
+	"wsoauth-unknown-auth-provider-exception-message": "Bixiye OAuth aan la aqoon ($1)",
+	"wsoauth-invalid-auth-provider-class-exception-message": "Fasalka bixiyaha OAuth ma hirgeliyo AuthProvider",
+	"wsoauth-initiate-login-failure": "Lama awoodin in lala bilaabo isgaarsiinta bixiyaha OAuth.",
+	"wsoauth-migrate-users-by-username-desc": "In la oggolaado iyo in kale in akoonnada jira lagu qabsado magaca isticmaalaha (waxaa la isticmaalaa oo keliya haddii <code>migrateUsersByUsername</code> aan loo dejin bixiyaha xaqiijinta aqoonsiga gaarka ah).",
+	"wsoauth-not-configured-message": "Gelitaanka fog looma habayn wiki-gan. Fadlan isku day hab kale oo xaqiijinta aqoonsiga ah.",
+	"wsoauth-disallow-remote-only-accounts-desc": "In la oggolaado ama aan la oggolaan xisaabaadka aan lahayn dhiggood maxalli ah (waxa la isticmaalaa oo keliya haddii <code>disallowRemoteOnlyAccounts</code> aan loo dejin adeeg-bixiyaha xaqiijinta gaarka ah).",
+	"wsoauth-already-logged-in-through-remote": "Waxaad hore ugu soo gashay xisaab fog ama la soo raray. Kuma xiriirin kartid akoon ka fog xisaabtan. Haddii aad rabto inaad ku gasho adigoo adeegsanaya akoon fog oo kale, fadlan ka bax oo ku gal akoon kale.",
+	"wsoauth-remote-only-accounts-disabled": "Gelitaanka akoonka fog keliya waa laga naafo gareeyay wikigan. Akoon fog waa in lagu xiraa akoon maxalli ah.",
+	"wsoauth-special-page-content": "Waxaad ku xiriirin kartaa akoon fog akoonkan adiga oo ku galaya akoonka fog [[Special:UserLogin]] inta aad ku jirto akoonkan. Mustaqbalka, waxa suurtagal noqon doonta inaad ka maamusho akoonnadaada fog boggan gaarka ah.",
+	"wsoauth-prefs-manage-remote": "Akoonnada fog:",
+	"wsoauth-missing-uri": "Lama habayn URI fog.",
+	"wsoauth-missing-client-id": "Lama habayn aqoonsiga macmiilka.",
+	"wsoauth-missing-client-secret": "Lama habayn sirta macmiilka.",
+	"wsoauth-manage-remotes": "Maamul akoonnada fog",
+	"wsoauth-use-real-name-as-username-desc": "Haddii magaca dhabta ah loo isticmaali doono magaca isticmaalaha (waxa la isticmaalaa oo keliya haddii <code>useRealNameAsUsername</code> aan loo dejin adeeg-bixiyaha xaqiijinta gaarka ah).",
+	"wsoauth-could-not-create-mapping": "Lama abuuri karin khariidaynta.",
+	"wsoauth-login-button-label-wikipedia": "Ku gal Wikipedia",
+	"wsoauth-login-button-label-wikimedia": "Ku gal Wikimedia",
+	"wsoauth-login-button-label-facebook": "Ku gal Facebook"
+}
