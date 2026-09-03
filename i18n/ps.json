@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"شاه زمان پټان"
+		]
+	},
+	"wsoauth-authentication-failure": "تاييد ناکام شو (ايا تاسو د دې ويکي اجازه لرئ؟)",
+	"wsoauth-invalid-username": "د OAuth چمتوکوونکي له‌خوا ورکړل شوی کارن‌نوم باوري نه دی.",
+	"wsoauth-unknown-auth-provider-class-exception-message": "OAuth چمتو کوونکی ټولگی نه دی بار شوی يا ونه موندل شو",
+	"wsoauth-prefs-manage-remote": "لري پراته گڼونه:",
+	"wsoauth-missing-uri": "هېڅ لرې يوآرآی نه دي ترتيب شوي.",
+	"wsoauth-missing-client-id": "هېڅ غوښتندوی پېژند نه دی ترتيب شوی.",
+	"wsoauth-missing-client-secret": "د غوښتندوی هېڅ راز نه دی ترتيب شوی.",
+	"wsoauth-manage-remotes": "لرې پراته گڼونونه مهارول",
+	"wsoauth-could-not-create-mapping": "نخشه کولی يې نشو.",
+	"wsoauth-login-button-label-wikipedia": "ويکي‌پېډيا سره ورننوتل",
+	"wsoauth-login-button-label-wikimedia": "ويکي‌پېډيا سره ورننوتل",
+	"wsoauth-login-button-label-facebook": "فيسبوک سره ورننوتل"
+}
